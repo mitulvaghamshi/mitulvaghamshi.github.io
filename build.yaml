@@ -1,0 +1,6 @@
+targets:
+  $default:
+    builders:
+      theme_extension_builder|theme_extension_builder:
+        generate_for:
+          - lib/theme/app_colors.dart

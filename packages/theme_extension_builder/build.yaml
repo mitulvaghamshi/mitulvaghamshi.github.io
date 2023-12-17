@@ -1,0 +1,8 @@
+builders:
+  theme_extension_builder:
+    import: "package:theme_extension_builder/theme_extension_builder.dart"
+    builder_factories: ["themeExtensionBuilder"]
+    build_extensions: {".dart": [".g.part"]}
+    auto_apply: dependents
+    build_to: cache
+    applies_builders: ["source_gen|combining_builder"]
