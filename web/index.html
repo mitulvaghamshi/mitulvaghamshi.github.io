@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <base href="$FLUTTER_BASE_HREF" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <!-- Content -->
+    <meta name="author" content="Mitul Vaghamshi" />
+    <meta name="description" content="Single page, responsive, theme aware, offline, installable personal portfolio web-app built with Flutter." />
+    <!-- Facebook & others -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Portfolio - Mitul Vaghamshi" />
+    <meta property="og:url" content="https://mitulvaghamshi.github.io" />
+    <meta property="og:title" content="Portfolio - Mitul Vaghamshi" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image" content="https://mitulvaghamshi.github.io/icons/icon-512.webp" />
+    <meta property="og:description" content="Single page, responsive, theme aware, offline, installable personal portfolio web-app built with Flutter." />
+    <!-- Twitter -->
+    <meta name="twitter:site" content="@mitulvaghamshi" />
+    <meta name="twitter:creator" content="@mitulvaghamshi" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="icons/icon-512.webp" />
+    <meta name="twitter:image:alt" content="Portfolio logo - Mitul Vaghamshi" />
+    <meta name="twitter:title" content="Personal portfolio app - Mitul Vaghamshi" />
+    <meta name="twitter:description" content="Single page, responsive, theme aware, offline, installable personal portfolio web-app built with Flutter." />
+    <!-- iOS meta tags & icons -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Portfolio" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/webp" href="icons/icon-192.webp" />
+    <link rel="apple-touch-icon" type="image/webp" href="icons/icon-512.webp" />
+    <link href="https://mitulvaghamshi.github.io" rel="canonical" />
+    <link href="manifest.json" rel="manifest" />
+    <title>Portfolio - Mitul Vaghamshi</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+        }
+
+        body {
+            inset: 0;
+            margin: 0;
+            padding: 0;
+            position: fixed;
+            overflow: hidden;
+        }
+
+        #loading {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #loading img {
+            animation: 1s ease-in-out 0s infinite alternate breathe;
+        }
+
+        @keyframes breathe {
+            from {
+                transform: scale(1)
+            }
+
+            to {
+                transform: scale(0.95)
+            }
+        }
+    </style>
+    <script> var serviceWorkerVersion = null; </script>
+    <script defer src="flutter.js"></script>
+</head>
+
+<body>
+    <noscript>
+        <meta content="0;url=https://mitulvaghamshi.github.io/static/" http-equiv="refresh">
+    </noscript>
+    <div id="loading">
+        <img alt="Please wait..." src="https://mitulvaghamshi.github.io/icons/icon-512.webp" />
+    </div>
+    <script>
+        window.addEventListener('load', ev => {
+            _flutter.loader.loadEntrypoint({
+                serviceWorker: { serviceWorkerVersion: serviceWorkerVersion, }
+            }).then(e => e.initializeEngine()).then(r => {
+                r.runApp();
+                loading.remove();
+            });
+        });
+    </script>
+</body>
+
+</html>

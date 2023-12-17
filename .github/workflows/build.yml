@@ -1,0 +1,45 @@
+name: Build and deploy portfolio app.
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+jobs:
+  build:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Remove debug repos.json
+        working-directory: .
+        run: |
+          cp pubspec.yaml temp.yaml
+          rm pubspec.yaml
+          sed '/assets\/repos.json/d' temp.yaml > pubspec.yaml
+          rm temp.yaml
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - name: Install Dependencies
+        run: flutter pub get
+        working-directory: .
+      - name: Build Web
+        run: flutter build web
+        working-directory: .
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: 'build/web'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1

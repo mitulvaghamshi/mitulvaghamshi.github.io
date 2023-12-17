@@ -1,0 +1,3 @@
+class ThemeClass {
+  const ThemeClass();
+}
