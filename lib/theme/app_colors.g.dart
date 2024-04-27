@@ -139,7 +139,7 @@ class $AppColors extends ThemeExtension<$AppColors> {
     );
   }
 
-  static final $AppColors _lightTheme = $AppColors._(
+  static final $AppColors _lightThemeExt = $AppColors._(
     themeButton: AppColors.themeButton.$1,
     imageBlend: AppColors.imageBlend.$1,
     introContainer: AppColors.introContainer.$1,
@@ -164,7 +164,7 @@ class $AppColors extends ThemeExtension<$AppColors> {
     aboutText: AppColors.aboutText.$1,
   );
 
-  static final $AppColors _darkTheme = $AppColors._(
+  static final $AppColors _darkThemeExt = $AppColors._(
     themeButton: AppColors.themeButton.$2,
     imageBlend: AppColors.imageBlend.$2,
     introContainer: AppColors.introContainer.$2,
@@ -191,8 +191,8 @@ class $AppColors extends ThemeExtension<$AppColors> {
 }
 
 extension AppColorsThemeExtension on AppColors {
-  $AppColors get lightTheme => $AppColors._lightTheme;
-  $AppColors get darkTheme => $AppColors._darkTheme;
+  $AppColors get lightThemeExtension => $AppColors._lightThemeExt;
+  $AppColors get darkThemeExtension => $AppColors._darkThemeExt;
 }
 
 extension $AppColorsExtension on BuildContext {

@@ -1,39 +1,58 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Theme Extension Builder
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+Theme extension builder (`theme_extension_builder`) package generages `ThemeExtension` boilerplate code.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+This package depends on `theme_extension` annotation package and requires `build_runner` as dev dependency.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Generate boilerplate code for your theme extension.
+- Generate optional extensions to easly and conveniently access generated themes in your code.
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+- Add this dependency to your project into `dependencies` section of `pubspec.yaml`.
+- Assume package located in `projectroot/packages/theme_extension` folder.
+
+```yaml
+dependencies:
+  theme_extension:
+    path: packages/theme_extension
+    # git: github_repo_path
+```
+
+- Add this dependency to your project into `dev_dependencies` section of `pubspec.yaml`.
+- Assume package located in `projectroot/packages/theme_extension_builder` folder.
+
+```yaml
+dev_dependencies:
+  build_runner: <resolveable-version>
+  theme_extension_builder:
+    path: packages/theme_extension_builder
+    # git: github_repo_path
+```
+
+- Then run `flutter pub get`.
+
+- Create new file on project root called: `build.yaml` and add this code:
+- Assume your `AppColors` class is located in: `lib/theme/app_colors.dart`
+
+```yaml
+targets:
+  $default:
+    builders:
+      theme_extension_builder|theme_extension_builder:
+        generate_for:
+          - lib/theme/app_colors.dart
+        # - more source files here...
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
-```
+For usage example see: [ThemeExtension](../theme_extension/README.md#usage)
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+- The package is specifically designed to meet this project `Portfolio` needs.
+- This package not published on pub.dev or distributed anywhere else.
+- Code licensed under MIL License.

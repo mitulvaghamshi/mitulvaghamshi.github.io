@@ -1,45 +1,53 @@
 name: Build and deploy portfolio app.
+
 on:
   push:
     branches: [ "main" ]
+
   workflow_dispatch:
+
 permissions:
   contents: read
   pages: write
   id-token: write
+
 concurrency:
   group: "pages"
   cancel-in-progress: true
+
 jobs:
-  build:
+  main:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+
+    runs-on: macos-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Remove debug repos.json
-        working-directory: .
-        run: |
-          cp pubspec.yaml temp.yaml
-          rm pubspec.yaml
-          sed '/assets\/repos.json/d' temp.yaml > pubspec.yaml
-          rm temp.yaml
-      - uses: subosito/flutter-action@v2
+      - uses: actions/checkout@v4.1.1
+
+      - name: Minify and remove repos.json
+        shell: bash
+        run: bash .github/workflows/script.sh
+
+      - uses: subosito/flutter-action@v2.16.0
         with:
           channel: stable
-      - name: Install Dependencies
+
+      - name: Install dependencies
         run: flutter pub get
-        working-directory: .
-      - name: Build Web
+
+      - name: Build web
         run: flutter build web
-        working-directory: .
-      - name: Setup Pages
-        uses: actions/configure-pages@v2
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+
+      - name: Configure GitHub pages
+        uses: actions/configure-pages@v5.0.0
+
+      - name: Upload GitHub pages artifact
+        uses: actions/upload-pages-artifact@v3.0.1
         with:
           path: 'build/web'
-      - name: Deploy to GitHub Pages
+
+      - name: Deploy to GitHub pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4.0.5

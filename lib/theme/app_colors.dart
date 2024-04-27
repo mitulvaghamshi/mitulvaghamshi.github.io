@@ -4,7 +4,7 @@ import 'package:theme_extension/theme_extension.dart';
 part 'app_colors.g.dart';
 
 @immutable
-@ThemeClass()
+@colorConfig
 class AppColors {
   // Theme Button
   static const themeButton = (Color(0xFF000B37), Color(0xFFFF5500));
@@ -43,21 +43,24 @@ class AppColors {
   static const aboutText = (Color(0xFF19364B), Color(0xFFE4E5E9));
 }
 
-interface class SampleColors {
-  static const blackDark = Color(0xFF343739);
-  static const blackLight = Color(0xFF8F959B);
-  static const redDark = Color(0xFFF18075);
-  static const redLight = Color(0xFFF4A59E);
-  static const greenDark = Color(0xFF20694C);
-  static const greenLight = Color(0xFF7DFFBD);
-  static const orangeDark = Color(0xFFDF6902);
-  static const orangeLight = Color(0xFFF6D059);
-  static const blueDark = Color(0xFF7EABF6);
-  static const blueLight = Color(0xFFA6C4F8);
-  static const pinkDark = Color(0xFFE953F6);
-  static const pinkLight = Color(0xFFF2ADF7);
-  static const cyanDark = Color(0xFF3FB7BF);
-  static const cyanLight = Color(0xFF75F8F9);
-  static const whiteDark = Color(0xFFFFFFFF);
-  static const whiteLight = Color(0xFFF6F9FA);
-}
+// interface class SampleLightColors {
+//   static const blackLight = Color(0xFF8F959B);
+//   static const whiteLight = Color(0xFFF6F9FA);
+//   static const redLight = Color(0xFFF4A59E);
+//   static const greenLight = Color(0xFF7DFFBD);
+//   static const blueLight = Color(0xFFA6C4F8);
+//   static const pinkLight = Color(0xFFF2ADF7);
+//   static const cyanLight = Color(0xFF75F8F9);
+//   static const orangeLight = Color(0xFFF6D059);
+// }
+
+// interface class SampleDarkColors {
+//   static const blackDark = Color(0xFF343739);
+//   static const whiteDark = Color(0xFFFFFFFF);
+//   static const redDark = Color(0xFFF18075);
+//   static const greenDark = Color(0xFF20694C);
+//   static const blueDark = Color(0xFF7EABF6);
+//   static const pinkDark = Color(0xFFE953F6);
+//   static const cyanDark = Color(0xFF3FB7BF);
+//   static const orangeDark = Color(0xFFDF6902);
+// }

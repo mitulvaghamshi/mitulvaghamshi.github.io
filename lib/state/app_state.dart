@@ -1,38 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:layout_breakpoint/layout_breakpoint.dart';
 import 'package:portfolio/github/github_api.dart';
-import 'package:portfolio/theme/app_theme.dart';
+import 'package:portfolio/theme/theme_controller.dart';
 
 @immutable
 class AppState {
   const AppState({
     required this.width,
-    required this.theme,
-    required this.github,
-    required this.layout,
+    required this.themeController,
+    required this.githubApiService,
+    required this.layoutConfig,
   });
 
-  AppState.from({required this.width})
-      : theme = AppTheme.instance,
-        github = GitHubApi.instance..fetchAsync(),
-        layout = AppLayout.from(width);
+  AppState.create({required this.width})
+      : themeController = ThemeController.instance,
+        githubApiService = GitHubApiService.instance..fetchAsync(),
+        layoutConfig = LayoutConfig.from(width);
 
   final double width;
-  final AppTheme theme;
-  final GitHubApi github;
-  final AppLayout layout;
+  final ThemeController themeController;
+  final GitHubApiService githubApiService;
+  final LayoutConfig layoutConfig;
+
+  AppState update(final double width) =>
+      layoutConfig.data.isWithin(width) ? setWidth(width) : setConfigFor(width);
+
+  AppState setWidth(final double width) => copyWith(width: width);
+
+  AppState setConfigFor(final double width) {
+    return copyWith(
+      width: width,
+      layoutConfig: LayoutConfig.from(width),
+    );
+  }
 
   AppState copyWith({
     final double? width,
-    final AppTheme? theme,
-    final GitHubApi? github,
-    final AppLayout? layout,
+    final ThemeController? themeController,
+    final GitHubApiService? githubApiService,
+    final LayoutConfig? layoutConfig,
   }) {
     return AppState(
       width: width ?? this.width,
-      theme: theme ?? this.theme,
-      github: github ?? this.github,
-      layout: layout ?? this.layout,
+      themeController: themeController ?? this.themeController,
+      githubApiService: githubApiService ?? this.githubApiService,
+      layoutConfig: layoutConfig ?? this.layoutConfig,
     );
   }
 }

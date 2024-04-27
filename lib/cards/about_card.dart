@@ -19,7 +19,10 @@ class AboutCard extends StatelessWidget {
     );
     final space = SizedBox.square(dimension: layout.dp);
     final items = [
-      Image.asset('assets/icon.webp'),
+      Padding(
+        padding: EdgeInsets.all(layout.dp / 2),
+        child: Image.asset('assets/icon.webp'),
+      ),
       space,
       Text('© ${DateTime.now().year} Portfolio App. ', style: style),
       Text('All Rights Reserved. ', style: style),
@@ -34,7 +37,10 @@ class AboutCard extends StatelessWidget {
             children: [...items, space, const AboutButtons()],
           ),
           tabletLarge760: Column(
-            children: [Row(children: items), const AboutButtons()],
+            children: [
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: items),
+              const AboutButtons()
+            ],
           ),
         ),
       ),
@@ -59,6 +65,17 @@ class AboutButtons extends StatelessWidget {
       fontWeight: FontWeight.bold,
     );
     return Wrap(children: [
+      ...AppData.footerLinks.map((link) => SizedBox(
+          width: buttonWidth,
+          child: Frame.link(
+            url: link.url,
+            color: colors.aboutCard,
+            child: Text(
+              link.value,
+              style: style,
+              textAlign: TextAlign.center,
+            ),
+          ))),
       SizedBox(
         width: buttonWidth,
         child: Frame.card(
@@ -71,17 +88,6 @@ class AboutButtons extends StatelessWidget {
           ),
         ),
       ),
-      ...AppData.footerLinks.map((link) => SizedBox(
-          width: buttonWidth,
-          child: Frame.link(
-            url: link.url,
-            color: colors.aboutCard,
-            child: Text(
-              link.value,
-              style: style,
-              textAlign: TextAlign.center,
-            ),
-          ))),
     ]);
   }
 }

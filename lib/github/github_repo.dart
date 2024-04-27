@@ -24,7 +24,7 @@ class GitHubRepo {
         description: desc ?? 'No description',
       );
     }
-    throw const FormatException('Invalid JSON');
+    throw const FormatException('[Error/GitHubRepo]: Invalid json data.');
   }
 
   final String name;

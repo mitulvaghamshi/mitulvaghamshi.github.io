@@ -12,7 +12,7 @@ class LayoutData {
   final double minWidth;
   final double maxWidth;
 
-  bool contains(final double width) => width >= minWidth && width < maxWidth;
+  bool isWithin(final double width) => width >= minWidth && width < maxWidth;
 }
 
 const palceholderData = LayoutData(dp: 12, minWidth: 0, maxWidth: 290);

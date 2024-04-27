@@ -7,6 +7,29 @@ import 'package:portfolio/widgets/frame.dart';
 import 'package:url_launcher/link.dart';
 
 @immutable
+class ThemeButton extends StatelessWidget {
+  const ThemeButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = AppScope.of(context).themeController;
+    return Frame.card(
+      color: context.colors.themeButton,
+      onTap: () => theme.change(Theme.of(context).brightness),
+      child: Icon(
+        switch (theme.themeMode) {
+          ThemeMode.dark => Icons.light_mode,
+          ThemeMode.light => Icons.dark_mode,
+          ThemeMode.system => Icons.brightness_4,
+        },
+        color: const Color(0xffffffff),
+        size: context.layout.data.dp * 1.5,
+      ),
+    );
+  }
+}
+
+@immutable
 class FullName extends StatelessWidget {
   const FullName({super.key});
 
@@ -83,8 +106,8 @@ class Description extends StatelessWidget {
 }
 
 @immutable
-class SocialButtonRow extends StatelessWidget {
-  const SocialButtonRow({super.key});
+class SocialButtonBar extends StatelessWidget {
+  const SocialButtonBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +127,7 @@ class SocialButtonRow extends StatelessWidget {
 class SocialButton extends StatelessWidget {
   const SocialButton.entry(this.link, {super.key});
 
-  final Pair link;
+  final Deux link;
 
   @override
   Widget build(BuildContext context) {

@@ -38,7 +38,7 @@ class _Widget940 extends StatelessWidget {
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [FullName(), Description(), SocialButtonRow()],
+            children: [FullName(), Description(), SocialButtonBar()],
           ),
         ),
       ],
@@ -65,7 +65,7 @@ class _Widget760 extends StatelessWidget {
           ),
         ],
       ),
-      SocialButtonRow(),
+      SocialButtonBar(),
     ]);
   }
 }
@@ -84,7 +84,7 @@ class _Widget640 extends StatelessWidget {
           Expanded(child: Description()),
         ],
       ),
-      SocialButtonRow(),
+      SocialButtonBar(),
     ]);
   }
 }
@@ -99,7 +99,7 @@ class _Widget290 extends StatelessWidget {
       ProfilePicture(),
       FullName(),
       Description(),
-      SocialButtonRow(),
+      SocialButtonBar(),
     ]);
   }
 }

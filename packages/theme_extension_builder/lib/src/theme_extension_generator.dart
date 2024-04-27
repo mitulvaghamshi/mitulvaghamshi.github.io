@@ -7,7 +7,7 @@ import 'package:theme_extension/theme_extension.dart';
 import 'package:theme_extension_builder/src/field_visitor.dart';
 import 'package:theme_extension_builder/src/theme_template.dart';
 
-class ThemeExtensionGenerator extends GeneratorForAnnotation<ThemeClass> {
+class ThemeExtensionGenerator extends GeneratorForAnnotation<ColorConfig> {
   @override
   FutureOr<String> generateForAnnotatedElement(
     Element element,

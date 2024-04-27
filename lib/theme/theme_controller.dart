@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class AppTheme extends ChangeNotifier {
-  AppTheme._();
+class ThemeController extends ChangeNotifier {
+  ThemeController._();
 
-  static final _instance = AppTheme._();
-  static AppTheme get instance => _instance;
+  static final _instance = ThemeController._();
+  static ThemeController get instance => _instance;
 
-  ThemeMode mode = ThemeMode.system;
+  ThemeMode themeMode = ThemeMode.system;
 
   void change(final Brightness brightness) {
-    mode = switch (mode) {
+    themeMode = switch (themeMode) {
       ThemeMode.dark => ThemeMode.light,
       ThemeMode.light => ThemeMode.dark,
       ThemeMode.system => brightness == Brightness.dark //

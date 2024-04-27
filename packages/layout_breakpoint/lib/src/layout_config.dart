@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:layout_breakpoint/src/layout_data.dart';
 
-enum AppLayout {
+enum LayoutConfig {
   // Placeholder
   placeholder(data: palceholderData),
   // Mobile portrait
@@ -20,12 +20,12 @@ enum AppLayout {
   desktop2k(data: desktop_2k),
   desktop4k(data: desktop_4k);
 
-  const AppLayout({required this.data});
+  const LayoutConfig({required this.data});
 
   final LayoutData data;
 
-  static AppLayout from(final double width) =>
-      values.firstWhere((final layout) => layout.data.contains(width),
+  static LayoutConfig from(final double width) =>
+      values.firstWhere((final layout) => layout.data.isWithin(width),
           orElse: () => placeholder);
 
   /// Responsive widget builder with fallback.

@@ -10,7 +10,7 @@ class RepoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final github = AppScope.of(context).github;
+    final github = AppScope.of(context).githubApiService;
     final layout = context.layout.data;
     final colors = context.colors;
     final width = context.width;

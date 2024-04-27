@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-typedef Pair = ({String url, String value});
+typedef Deux = ({String url, String value});
 
 typedef Cinq = ({
   String url,
@@ -15,9 +15,10 @@ mixin AppData {
   static String get introText => _introText;
   static String get wesBadgeUrl => _wesBadgeUrl;
   static String get wesReportUrl => _wesReportUrl;
+  static String get githubApiUrl => _githubApiUrl;
 
-  static Iterable<Pair> get socialLinks => _socialLinks;
-  static Iterable<Pair> get footerLinks => _footerLinks;
+  static Iterable<Deux> get socialLinks => _socialLinks;
+  static Iterable<Deux> get footerLinks => _footerLinks;
   static Iterable<Cinq> get educationLinks => _educationLinks;
 
   static String buildSVG({
@@ -30,6 +31,8 @@ mixin AppData {
   }
 }
 
+const _githubApiUrl = 'https://api.github.com/users/mitulvaghamshi/repos';
+
 const _wesBadgeUrl =
     'https://www.credly.com/badges/b78c680a-1a8b-49df-a97d-cf08ef481db9';
 
@@ -37,7 +40,8 @@ const _wesReportUrl =
     'https://badges.wes.org/Evidence?type=ca&i=3794f10a-19b3-47f0-82bd-393315bc6584';
 
 const _introText =
-    'To obtain a challenge in a professional progressing environment where my resourceful experience and knowledge of Computer Programming, Data Analysis and Project Management will add significant value to organizational operations. Eager to learn and improve skills through hands-on learning and development work. Quick learner adaptable to new processes and ready to take on challenging assignments. Prepared for challenges of position and ready to use abilities in communication and problem-solving to meet goals.';
+    'Results-driven software developer with a strong foundation in computer science and software engineering principles. Proficient in a variety of programming languages and technologies. Committed to writing clean, modular, and well-documented code that meets industry standards. Passionate about staying up to date with industry trends and advancing my skills to drive innovation and success. Excited to bring my technical expertise and passion for software development to a collaborative team environment and contribute to the success of innovative projects.';
+// 'To obtain a challenge in a professional progressing environment where my resourceful experience and knowledge of Computer Programming, Data Analysis and Project Management will add significant value to organizational operations. Eager to learn and improve skills through hands-on learning and development work. Quick learner adaptable to new processes and ready to take on challenging assignments. Prepared for challenges of position and ready to use abilities in communication and problem-solving to meet goals.';
 
 const _socialLinks = [
   (
@@ -67,19 +71,11 @@ const _socialLinks = [
   ),
 ];
 
+const _resume = 'https://mitulvaghamshi.github.io/resume';
 const _footerLinks = [
-  (
-    url: 'https://mitulvaghamshi.github.io/mitulvaghamshi/policy.html',
-    value: 'Privacy Policy',
-  ),
-  (
-    url: 'https://mitulvaghamshi.github.io/mitulvaghamshi/',
-    value: 'HTML Version',
-  ),
-  (
-    url: 'https://mitulvaghamshi.github.io/mitulvaghamshi/resume.pdf',
-    value: 'Download Resume',
-  ),
+  (url: '$_resume/resume.pdf', value: 'Download Resume'),
+  (url: _resume, value: 'See Html Version'),
+  (url: '$_resume/policy.html', value: 'Privacy Policy'),
 ];
 
 const _educationLinks = [

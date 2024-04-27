@@ -16,7 +16,7 @@ class AppScope extends InheritedWidget {
       oldWidget is AppScope ? data.width != oldWidget.data.width : false;
 }
 
-extension Extensions on BuildContext {
-  AppLayout get layout => AppScope.of(this).layout;
+extension AppScopeExtension on BuildContext {
+  LayoutConfig get layout => AppScope.of(this).layoutConfig;
   double get width => AppScope.of(this).width;
 }
