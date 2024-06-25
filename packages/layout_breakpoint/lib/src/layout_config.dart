@@ -3,24 +3,24 @@ import 'package:layout_breakpoint/src/layout_data.dart';
 
 enum LayoutConfig {
   // Placeholder
-  placeholder(data: palceholderData),
+  placeholder(palceholderData),
   // Mobile portrait
-  mobileSmall(data: smallMobile),
-  mobileMedium(data: mediumMobile),
-  mobileLarge(data: largeMobile),
+  mobileSmall(smallMobile),
+  mobileMedium(mediumMobile),
+  mobileLarge(largeMobile),
   // Tablet portrait // Mobile Landscape
-  tabletSmall(data: smallTablet),
-  tabletMedium(data: mediumTablet),
-  tabletLarge(data: largeTablet),
+  tabletSmall(smallTablet),
+  tabletMedium(mediumTablet),
+  tabletLarge(largeTablet),
   // Laptop Landscape // Tablet Landscape
-  laptopSmall(data: smallLaptop),
-  laptopMedium(data: mediumLaptop),
-  laptopLarge(data: largeLaptop),
+  laptopSmall(smallLaptop),
+  laptopMedium(mediumLaptop),
+  laptopLarge(largeLaptop),
   // Desktop Landscape // Laptop Landscape
-  desktop2k(data: desktop_2k),
-  desktop4k(data: desktop_4k);
+  desktop2k(desktop_2k),
+  desktop4k(desktop_4k);
 
-  const LayoutConfig({required this.data});
+  const LayoutConfig(this.data);
 
   final LayoutData data;
 
@@ -28,20 +28,17 @@ enum LayoutConfig {
       values.firstWhere((final layout) => layout.data.isWithin(width),
           orElse: () => placeholder);
 
-  /// Responsive widget builder with fallback.
+  /// Responsive widget builder with fallback. Builds widgets based on screen size
+  /// using named breakpoints. Unspecified breakpoints show a [placeholder].
   ///
-  /// All breakpoints are optional, in that case it will show a [placeholder]
-  /// for different sections of the screen.
+  /// For example, providing a widget for [mobileSmall290] will display that widget
+  /// for screens with `minWidth >= 290`.
   ///
-  /// All parameters named after its minimum supported width,
-  /// i.g. providing a widget for [mobileSmall290] breakpoint will only display
-  /// that widget for any screen greater then or equal to `290`
-  /// (`minWidth >= 290`), a [placeholder] otherwise.
-  ///
-  /// Any given breakpoint automatically covers all absent breakpoints,
-  /// and display same widget using scaling factor for any active breakpoint.
+  /// Each breakpoint covers smaller sizes, scaling the widget as needed.
+  /// Breakpoint widgets are only initialized when the breakpoint is active.
   ///
   /// Example:
+  ///
   /// ```dart
   /// @immutable
   /// class SampleWidget extends StatelessWidget {
@@ -61,11 +58,6 @@ enum LayoutConfig {
   ///   }
   /// }
   /// ```
-  ///
-  /// Providing possible breakpoints upfront is complately safe,
-  /// only widget matching breakpoint gets initialized,
-  /// other remains untouched until minimum width jump to other breakpoint
-  /// by resizing browser window or device rotation.
   Widget build({
     final Widget? mobileSmall290,
     final Widget? mobileMedium320,

@@ -1,35 +1,50 @@
 #!/bin/bash
 
-# Visit all directories and files.
+# Recursively visit all items in the given directory
 function visit {
-    for item in $1; do
-        if [ -d $item ]; then
-            visit "$item/*";
+    local item
+    for item in "$1"/*; do
+        if [ -d "$item" ]; then
+            # If it's a directory, visit its contents
+            echo "Visiting $item directory..."
+            visit "$item"
+        elif [ -f "$item" ]; then
+            # Check the item if it's a regular file
+            echo "> Checking file: $item"
+            minify "$item"
         fi
-        minify $item;
     done
 }
 
-# If file is html or json, remove new-lines.
+# Minify .html and .json files by removing unnecessary whitespace
 function minify {
-    case $1 in *.html | *.json)
-        cat $1 | while read line; do echo -n "$line" >> temp.bak; done
-        mv -f temp.bak $1;
-        ;;
+    case "$1" in
+        *.html | *.json)
+            # Use a temporary file in the same directory
+            TMP_FILE=$(mktemp "$1.XXXXXX")
+            tr -d '\n\r' < "$1" > "$TMP_FILE"
+            mv -f "$TMP_FILE" "$1"
+            echo ">> Minified file: $1"
+            ;;
     esac
 }
 
-echo "Minify web sources...";
-visit "web/*";
+# Visit all items in the "web" directory
+echo "Visiting web directory..."
+visit "web"
 
-echo "Remove pubspec asset: repos.json";
-cp pubspec.yaml temp.yaml;
-sed '/assets\/repos.json/d' temp.yaml > pubspec.yaml;
-
-echo "Remove file: repos.json";
+# Remove the line containing "assets/repos.json" from pubspec.yaml
+PUB_FILE='pubspec.yaml'
+TMP_FILE=$(mktemp "$PUB_FILE.XXXXXX")
+echo "Removing 'assets/repos.json' line from $PUB_FILE"
+sed -i "$TMP_FILE" '/assets\/repos.json/d' "$PUB_FILE"
 if [[ $? -eq 0 ]]; then
-    rm temp.yaml;
-    rm assets/repos.json;
-else
-     mv -f temp.yaml pubspec.yaml;
+    echo "> Removing $TMP_FILE file..."
+    rm "$TMP_FILE"
 fi
+
+# Remove repos.json if it exists
+echo "Removing assets/repos.json if it exists..."
+rm -f "assets/repos.json" 2>/dev/null
+
+echo "Done."

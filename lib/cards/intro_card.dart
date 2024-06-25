@@ -53,18 +53,15 @@ class _Widget760 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Column(children: [
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ProfilePicture(),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [FullName(), Description()],
-            ),
+      Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        ProfilePicture(),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [FullName(), Description()],
           ),
-        ],
-      ),
+        ),
+      ]),
       SocialButtonBar(),
     ]);
   }
@@ -77,13 +74,10 @@ class _Widget640 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Column(children: [
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Column(children: [ProfilePicture(), FullName()]),
-          Expanded(child: Description()),
-        ],
-      ),
+      Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Column(children: [ProfilePicture(), FullName()]),
+        Expanded(child: Description()),
+      ]),
       SocialButtonBar(),
     ]);
   }

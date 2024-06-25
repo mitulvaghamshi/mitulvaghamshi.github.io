@@ -10,23 +10,18 @@ import 'package:portfolio/widgets/widgets.dart';
 class Home extends StatelessWidget {
   const Home({super.key});
 
-  static const widgets = [
-    IntroCard(),
-    EduCard(),
-    RepoCard(),
-    WesCard(),
-    AboutCard(),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: const ThemeButton(),
       body: CustomScrollView(slivers: [
-        SliverList.builder(
-          itemCount: 5,
-          itemBuilder: (_, index) => widgets[index],
-        ),
+        SliverList.list(children: const [
+          IntroCard(),
+          EduCard(),
+          RepoCard(),
+          WesCard(),
+          AboutCard(),
+        ]),
       ]),
     );
   }

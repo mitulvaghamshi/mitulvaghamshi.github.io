@@ -13,7 +13,7 @@ class App extends StatelessWidget {
     AppState? state;
     return LayoutBuilder(builder: (_, constraints) {
       final width = constraints.biggest.width;
-      state = state == null //
+      state = state == null // 
           ? AppState.create(width: width)
           : state!.update(width);
       return PortfolioApp(state: state!);

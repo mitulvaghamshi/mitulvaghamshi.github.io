@@ -97,6 +97,7 @@ class _FrameCard extends Frame {
   @override
   Widget build(BuildContext context) {
     final layout = context.layout.data;
+
     return Frame(
       onTap: onTap,
       color: color,
@@ -115,6 +116,7 @@ class _FrameContainer extends Frame {
   @override
   Widget build(BuildContext context) {
     final layout = context.layout.data;
+
     return Frame(
       color: color,
       animate: true,

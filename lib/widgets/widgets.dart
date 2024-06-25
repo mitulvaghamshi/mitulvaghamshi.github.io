@@ -14,8 +14,8 @@ class ThemeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = AppScope.of(context).themeController;
     return Frame.card(
+      onTap: theme.toggleTheme,
       color: context.colors.themeButton,
-      onTap: () => theme.change(Theme.of(context).brightness),
       child: Icon(
         switch (theme.themeMode) {
           ThemeMode.dark => Icons.light_mode,
@@ -37,26 +37,32 @@ class FullName extends StatelessWidget {
   Widget build(BuildContext context) {
     final layout = context.layout.data;
     final colors = context.colors;
+
     final style = TextStyle(
       color: colors.introText,
       fontSize: layout.dp,
       fontWeight: FontWeight.bold,
     );
+
     return Frame.card(
       color: colors.introCard,
       child: Text.rich(
-        TextSpan(text: 'Software Developer\n', style: style, children: [
-          TextSpan(
-            text: 'Mitul Vaghamshi',
-            style: style.copyWith(fontSize: layout.dp * 2),
-            children: [
-              TextSpan(
-                text: '_',
-                style: TextStyle(color: colors.themeButton),
-              ),
-            ],
-          ),
-        ]),
+        TextSpan(
+          text: 'Software Developer\n',
+          style: style,
+          children: [
+            TextSpan(
+              text: 'Mitul Vaghamshi',
+              style: style.copyWith(fontSize: layout.dp * 2),
+              children: [
+                TextSpan(
+                  text: '_',
+                  style: TextStyle(color: colors.themeButton),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -70,8 +76,8 @@ class ProfilePicture extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.asset(
       'assets/me.webp',
-      width: 340,
-      cacheWidth: 340,
+      width: 300,
+      cacheWidth: 300,
       fit: BoxFit.contain,
       colorBlendMode: BlendMode.color,
       color: context.colors.imageBlend,
@@ -91,6 +97,7 @@ class Description extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+
     return Frame.card(
       color: colors.introCard,
       child: Text(

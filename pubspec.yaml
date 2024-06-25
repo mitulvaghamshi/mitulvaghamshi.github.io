@@ -2,7 +2,7 @@ name: portfolio
 description: Portfolio.
 version: 1.0.0+1
 publish_to: none
-homepage: https://mitulvaghamshi.github.io
+homepage: https://mitulvaghamshi.github.io/
 
 environment:
   sdk: ^3.4.0

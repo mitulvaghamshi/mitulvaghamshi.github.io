@@ -39,9 +39,9 @@ const _wesBadgeUrl =
 const _wesReportUrl =
     'https://badges.wes.org/Evidence?type=ca&i=3794f10a-19b3-47f0-82bd-393315bc6584';
 
+// Seeking a challenging role in a growth-oriented environment to leverage my expertise in Computer Programming, Data Analysis, and Project Management.  Eager to learn, adaptable, and a proven problem-solver.
 const _introText =
-    'Results-driven software developer with a strong foundation in computer science and software engineering principles. Proficient in a variety of programming languages and technologies. Committed to writing clean, modular, and well-documented code that meets industry standards. Passionate about staying up to date with industry trends and advancing my skills to drive innovation and success. Excited to bring my technical expertise and passion for software development to a collaborative team environment and contribute to the success of innovative projects.';
-// 'To obtain a challenge in a professional progressing environment where my resourceful experience and knowledge of Computer Programming, Data Analysis and Project Management will add significant value to organizational operations. Eager to learn and improve skills through hands-on learning and development work. Quick learner adaptable to new processes and ready to take on challenging assignments. Prepared for challenges of position and ready to use abilities in communication and problem-solving to meet goals.';
+    'Software developer with expertise in CS and software engineering principles. Proficient in various programming languages and committed to writing clean, well-documented code. Passionate about staying current with industry trends and driving innovation. Eager to collaborate and contribute to successful projects.';
 
 const _socialLinks = [
   (

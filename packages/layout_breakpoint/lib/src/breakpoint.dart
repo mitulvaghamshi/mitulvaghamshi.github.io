@@ -1,358 +1,270 @@
 import 'package:flutter/material.dart';
 
-enum AspectRatio {
-  ratio3by2(aspectRatio: 3 / 2),
-  ratio7by5(aspectRatio: 7 / 5),
-  ratio4by3(aspectRatio: 4 / 3),
-  ratio5by3(aspectRatio: 5 / 3),
-  ratio5by4(aspectRatio: 5 / 4),
-  ratio14by9(aspectRatio: 14 / 9),
-  ratio16by9(aspectRatio: 16 / 9),
-  ratio16by10(aspectRatio: 16 / 10),
-  ratio17by9(aspectRatio: 17 / 9),
+enum Breakpoint {
+  cga(
+    name: '1:CGA',
+    size: Size(320, 200),
+    ratio: AspectRatio.ratio16by10,
+  ),
+
+  qvga(
+    name: '2:QVGA',
+    size: Size(320, 240),
+    ratio: AspectRatio.ratio4by3,
+  ),
+
+  varient1(
+    name: '3:VGA Varient 1',
+    size: Size(480, 320),
+    ratio: AspectRatio.ratio3by2,
+  ),
+
+  vga(
+    name: '4:VGA',
+    size: Size(640, 480),
+    ratio: AspectRatio.ratio4by3,
+  ),
+
+  ntsc(
+    name: '5:NTSC',
+    size: Size(720, 480),
+    ratio: AspectRatio.ratio3by2,
+  ),
+
+  varient2(
+    name: '6:VGA Varient 2',
+    size: Size(768, 480),
+    ratio: AspectRatio.ratio3by2,
+  ),
+
+  pal(
+    name: '7:PAL',
+    size: Size(768, 576),
+    ratio: AspectRatio.ratio4by3,
+  ),
+
+  wvga(
+    name: '8:WVGA',
+    size: Size(800, 480),
+    ratio: AspectRatio.ratio5by3,
+  ),
+
+  svga(
+    name: '9:SVGA',
+    size: Size(800, 600),
+    ratio: AspectRatio.ratio4by3,
+  ),
+
+  fwvga(
+    name: '10:FWVGA',
+    size: Size(854, 480),
+    ratio: AspectRatio.ratio16by9,
+  ),
+
+  varient3(
+    name: '11:VGA Varient 3',
+    size: Size(960, 600),
+    ratio: AspectRatio.ratio16by10,
+  ),
+
+  varient4(
+    name: '12:VGA Varient 4',
+    size: Size(960, 640),
+    ratio: AspectRatio.ratio3by2,
+  ),
+
+  wsvga(
+    name: '13:WSVGA',
+    size: Size(1024, 600),
+    ratio: AspectRatio.ratio5by3,
+  ),
+
+  varient5(
+    name: '14:VGA Varient 5',
+    size: Size(1024, 720),
+    ratio: AspectRatio.ratio7by5,
+  ),
+
+  xga(
+    name: '15:XGA',
+    size: Size(1024, 768),
+    ratio: AspectRatio.ratio4by3,
+  ),
+
+  varient6(
+    name: '16:VGA Varient 6',
+    size: Size(1152, 720),
+    ratio: AspectRatio.ratio16by10,
+  ),
+
+  varient7(
+    name: '17:VGA Varient 7',
+    size: Size(1125, 768),
+    ratio: AspectRatio.ratio3by2,
+  ),
+
+  hd720(
+    name: '18:HD 720',
+    size: Size(1280, 720),
+    ratio: AspectRatio.ratio16by9,
+  ),
+
+  wxga(
+    name: '19:WXGA',
+    size: Size(1280, 768),
+    ratio: AspectRatio.ratio5by3,
+  ),
+
+  varient8(
+    name: '20:VGA Varient 8',
+    size: Size(1280, 800),
+    ratio: AspectRatio.ratio16by10,
+  ),
+
+  varient9(
+    name: '21:VGA Varient 9',
+    size: Size(1280, 854),
+    ratio: AspectRatio.ratio3by2,
+  ),
+
+  varient10(
+    name: '22:VGA Varient 10',
+    size: Size(1280, 900),
+    ratio: AspectRatio.ratio7by5,
+  ),
+
+  varient11(
+    name: '23:VGA Varient 11',
+    size: Size(1280, 960),
+    ratio: AspectRatio.ratio4by3,
+  ),
+
+  sxga(
+    name: '24:SXGA',
+    size: Size(1280, 1024),
+    ratio: AspectRatio.ratio5by4,
+  ),
+
+  varient12(
+    name: '25:VGA Varient 12',
+    size: Size(1366, 768),
+    ratio: AspectRatio.ratio16by9,
+  ),
+
+  varient13(
+    name: '26:VGA Varient 13',
+    size: Size(1400, 900),
+    ratio: AspectRatio.ratio14by9,
+  ),
+
+  varient14(
+    name: '27:VGA Varient 14',
+    size: Size(1400, 960),
+    ratio: AspectRatio.ratio7by5,
+  ),
+
+  sxgaPlus(
+    name: '28:SXGA+',
+    size: Size(1400, 1050),
+    ratio: AspectRatio.ratio4by3,
+  ),
+
+  varient15(
+    name: '29:VGA Varient 15',
+    size: Size(1440, 900),
+    ratio: AspectRatio.ratio16by10,
+  ),
+
+  varient16(
+    name: '30:VGA Varient 16',
+    size: Size(1440, 960),
+    ratio: AspectRatio.ratio3by2,
+  ),
+
+  varient17(
+    name: '31:VGA Varient 17',
+    size: Size(1600, 1050),
+    ratio: AspectRatio.ratio7by5,
+  ),
+
+  varient18(
+    name: '32:VGA Varient 18',
+    size: Size(1600, 1080),
+    ratio: AspectRatio.ratio5by3,
+  ),
+
+  usxga(
+    name: '33:UXGA',
+    size: Size(1600, 1200),
+    ratio: AspectRatio.ratio4by3,
+  ),
+
+  wsxgaPlus(
+    name: '34:WSXGA+',
+    size: Size(1680, 1050),
+    ratio: AspectRatio.ratio16by10,
+  ),
+
+  hd1080(
+    name: '35:HD 1080',
+    size: Size(1920, 1080),
+    ratio: AspectRatio.ratio16by9,
+  ),
+
+  wuxga(
+    name: '36:WUXGA',
+    size: Size(1920, 1200),
+    ratio: AspectRatio.ratio16by10,
+  ),
+
+  hd2k(
+    name: '37:2K',
+    size: Size(2048, 1080),
+    ratio: AspectRatio.ratio17by9,
+  ),
+
+  qxga(
+    name: '38:QXGA',
+    size: Size(2048, 1536),
+    ratio: AspectRatio.ratio4by3,
+  ),
+
+  wqxga(
+    name: '39:WQXGA',
+    size: Size(2560, 1600),
+    ratio: AspectRatio.ratio16by10,
+  ),
+
+  qsxga(
+    name: '40:QSQGA',
+    size: Size(2560, 2048),
+    ratio: AspectRatio.ratio5by4,
+  ),
   ;
 
-  const AspectRatio({required this.aspectRatio});
-
-  final double aspectRatio;
-}
-
-@immutable
-class Breakpoint {
   const Breakpoint({
-    required this.index,
     required this.name,
-    required this.width,
-    required this.height,
+    required this.size,
     required this.ratio,
   });
 
-  final int index;
   final String name;
-  final double width;
-  final double height;
+  final Size size;
   final AspectRatio ratio;
 }
 
-@immutable
-class Breakpoints {
-  static const cga = Breakpoint(
-    index: 1,
-    name: 'CGA',
-    width: 320,
-    height: 200,
-    ratio: AspectRatio.ratio16by10,
-  );
+enum AspectRatio {
+  ratio3by2(3 / 2),
+  ratio7by5(7 / 5),
+  ratio4by3(4 / 3),
+  ratio5by3(5 / 3),
+  ratio5by4(5 / 4),
+  ratio14by9(14 / 9),
+  ratio16by9(16 / 9),
+  ratio16by10(16 / 10),
+  ratio17by9(17 / 9);
 
-  static const qvga = Breakpoint(
-    index: 2,
-    name: 'QVGA',
-    width: 320,
-    height: 240,
-    ratio: AspectRatio.ratio4by3,
-  );
+  const AspectRatio(this.aspectRatio);
 
-  static const varient1 = Breakpoint(
-    index: 3,
-    name: 'VGA Varient 1',
-    width: 480,
-    height: 320,
-    ratio: AspectRatio.ratio3by2,
-  );
-
-  static const vga = Breakpoint(
-    index: 4,
-    name: 'VGA',
-    width: 640,
-    height: 480,
-    ratio: AspectRatio.ratio4by3,
-  );
-
-  static const ntsc = Breakpoint(
-    index: 5,
-    name: 'NTSC',
-    width: 720,
-    height: 480,
-    ratio: AspectRatio.ratio3by2,
-  );
-
-  static const varient2 = Breakpoint(
-    index: 6,
-    name: 'VGA Varient 2',
-    width: 768,
-    height: 480,
-    ratio: AspectRatio.ratio3by2,
-  );
-
-  static const pal = Breakpoint(
-    index: 7,
-    name: 'PAL',
-    width: 768,
-    height: 576,
-    ratio: AspectRatio.ratio4by3,
-  );
-
-  static const wvga = Breakpoint(
-    index: 8,
-    name: 'WVGA',
-    width: 800,
-    height: 480,
-    ratio: AspectRatio.ratio5by3,
-  );
-
-  static const svga = Breakpoint(
-    index: 9,
-    name: 'SVGA',
-    width: 800,
-    height: 600,
-    ratio: AspectRatio.ratio4by3,
-  );
-
-  static const fwvga = Breakpoint(
-    index: 10,
-    name: 'FWVGA',
-    width: 854,
-    height: 480,
-    ratio: AspectRatio.ratio16by9,
-  );
-
-  static const varient3 = Breakpoint(
-    index: 11,
-    name: 'VGA Varient 3',
-    width: 960,
-    height: 600,
-    ratio: AspectRatio.ratio16by10,
-  );
-
-  static const varient4 = Breakpoint(
-    index: 12,
-    name: 'VGA Varient 4',
-    width: 960,
-    height: 640,
-    ratio: AspectRatio.ratio3by2,
-  );
-
-  static const wsvga = Breakpoint(
-    index: 13,
-    name: 'WSVGA',
-    width: 1024,
-    height: 600,
-    ratio: AspectRatio.ratio5by3,
-  );
-
-  static const varient5 = Breakpoint(
-    index: 14,
-    name: 'VGA Varient 5',
-    width: 1024,
-    height: 720,
-    ratio: AspectRatio.ratio7by5,
-  );
-
-  static const xga = Breakpoint(
-    index: 15,
-    name: 'XGA',
-    width: 1024,
-    height: 768,
-    ratio: AspectRatio.ratio4by3,
-  );
-
-  static const varient6 = Breakpoint(
-    index: 16,
-    name: 'VGA Varient 6',
-    width: 1152,
-    height: 720,
-    ratio: AspectRatio.ratio16by10,
-  );
-
-  static const varient7 = Breakpoint(
-    index: 17,
-    name: 'VGA Varient 7',
-    width: 1125,
-    height: 768,
-    ratio: AspectRatio.ratio3by2,
-  );
-
-  static const hd720 = Breakpoint(
-    index: 18,
-    name: 'HD 720',
-    width: 1280,
-    height: 720,
-    ratio: AspectRatio.ratio16by9,
-  );
-
-  static const wxga = Breakpoint(
-    index: 19,
-    name: 'WXGA',
-    width: 1280,
-    height: 768,
-    ratio: AspectRatio.ratio5by3,
-  );
-
-  static const varient8 = Breakpoint(
-    index: 20,
-    name: 'VGA Varient 8',
-    width: 1280,
-    height: 800,
-    ratio: AspectRatio.ratio16by10,
-  );
-
-  static const varient9 = Breakpoint(
-    index: 21,
-    name: 'VGA Varient 9',
-    width: 1280,
-    height: 854,
-    ratio: AspectRatio.ratio3by2,
-  );
-
-  static const varient10 = Breakpoint(
-    index: 22,
-    name: 'VGA Varient 10',
-    width: 1280,
-    height: 900,
-    ratio: AspectRatio.ratio7by5,
-  );
-
-  static const varient11 = Breakpoint(
-    index: 23,
-    name: 'VGA Varient 11',
-    width: 1280,
-    height: 960,
-    ratio: AspectRatio.ratio4by3,
-  );
-
-  static const sxga = Breakpoint(
-    index: 24,
-    name: 'SXGA',
-    width: 1280,
-    height: 1024,
-    ratio: AspectRatio.ratio5by4,
-  );
-
-  static const varient12 = Breakpoint(
-    index: 25,
-    name: 'VGA Varient 12',
-    width: 1366,
-    height: 768,
-    ratio: AspectRatio.ratio16by9,
-  );
-
-  static const varient13 = Breakpoint(
-    index: 26,
-    name: 'VGA Varient 13',
-    width: 1400,
-    height: 900,
-    ratio: AspectRatio.ratio14by9,
-  );
-
-  static const varient14 = Breakpoint(
-    index: 27,
-    name: 'VGA Varient 14',
-    width: 1400,
-    height: 960,
-    ratio: AspectRatio.ratio7by5,
-  );
-
-  static const sxgaPlus = Breakpoint(
-    index: 28,
-    name: 'SXGA+',
-    width: 1400,
-    height: 1050,
-    ratio: AspectRatio.ratio4by3,
-  );
-
-  static const varient15 = Breakpoint(
-    index: 29,
-    name: 'VGA Varient 15',
-    width: 1440,
-    height: 900,
-    ratio: AspectRatio.ratio16by10,
-  );
-
-  static const varient16 = Breakpoint(
-    index: 30,
-    name: 'VGA Varient 16',
-    width: 1440,
-    height: 960,
-    ratio: AspectRatio.ratio3by2,
-  );
-
-  static const varient17 = Breakpoint(
-    index: 31,
-    name: 'VGA Varient 17',
-    width: 1600,
-    height: 1050,
-    ratio: AspectRatio.ratio7by5,
-  );
-
-  static const varient18 = Breakpoint(
-    index: 32,
-    name: 'VGA Varient 18',
-    width: 1600,
-    height: 1080,
-    ratio: AspectRatio.ratio5by3,
-  );
-
-  static const usxga = Breakpoint(
-    index: 33,
-    name: 'UXGA',
-    width: 1600,
-    height: 1200,
-    ratio: AspectRatio.ratio4by3,
-  );
-
-  static const wsxgaPlus = Breakpoint(
-    index: 34,
-    name: 'WSXGA+',
-    width: 1680,
-    height: 1050,
-    ratio: AspectRatio.ratio16by10,
-  );
-
-  static const hd1080 = Breakpoint(
-    index: 35,
-    name: 'HD 1080',
-    width: 1920,
-    height: 1080,
-    ratio: AspectRatio.ratio16by9,
-  );
-
-  static const wuxga = Breakpoint(
-    index: 36,
-    name: 'WUXGA',
-    width: 1920,
-    height: 1200,
-    ratio: AspectRatio.ratio16by10,
-  );
-
-  static const hd2k = Breakpoint(
-    index: 37,
-    name: '2K',
-    width: 2048,
-    height: 1080,
-    ratio: AspectRatio.ratio17by9,
-  );
-
-  static const qxga = Breakpoint(
-    index: 38,
-    name: 'QXGA',
-    width: 2048,
-    height: 1536,
-    ratio: AspectRatio.ratio4by3,
-  );
-
-  static const wqxga = Breakpoint(
-    index: 39,
-    name: 'WQXGA',
-    width: 2560,
-    height: 1600,
-    ratio: AspectRatio.ratio16by10,
-  );
-
-  static const qsxga = Breakpoint(
-    index: 40,
-    name: 'QSQGA',
-    width: 2560,
-    height: 2048,
-    ratio: AspectRatio.ratio5by4,
-  );
+  final double aspectRatio;
 }

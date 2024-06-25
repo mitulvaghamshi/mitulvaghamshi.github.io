@@ -1,6 +1,6 @@
+/// Example:
+/// 
 /// ```dart
-/// // Example:
-///
 /// import 'package:theme_extension/theme_extension.dart';
 ///
 /// part 'app_colors.g.dart';
