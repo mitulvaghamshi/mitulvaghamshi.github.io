@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/github/github_repo.dart';
 import 'package:portfolio/state/app_scope.dart';
 import 'package:portfolio/theme/app_colors.dart';
-import 'package:portfolio/widgets/frame.dart';
+import 'package:portfolio/frame.dart';
 
 @immutable
 class RepoCard extends StatelessWidget {
@@ -11,22 +11,21 @@ class RepoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final github = AppScope.of(context).githubApiService;
-    final layout = context.layout.data;
-    final colors = context.colors;
-    final width = context.width;
-    final count = (width / 500).round();
-    final size = Size(width / count - layout.dp * 1.5, layout.dp * 14);
+    final count = (context.width / 500).round();
+    final size = Size(context.width / count - context.layout.dp * 1.5,
+        context.layout.dp * 14);
+
     return AnimatedBuilder(
       animation: github,
       builder: (context, child) => Frame.container(
-        color: colors.repoContainer,
-        child: context.layout.build(
+        color: context.colors.repoContainer,
+        child: context.config.build(
           mobileSmall290: Column(children: [
             Wrap(
               alignment: WrapAlignment.center,
               runAlignment: WrapAlignment.center,
               children: github.repos(count * 2).map((e) {
-                return SizedBox.fromSize(size: size, child: RepoItem(repo: e));
+                return SizedBox.fromSize(size: size, child: _RepoItem(repo: e));
               }).toList(),
             ),
             TextButton(
@@ -34,8 +33,8 @@ class RepoCard extends StatelessWidget {
               child: Text(
                 github.buttonLabel,
                 style: TextStyle(
-                  color: colors.repoTitle,
-                  fontSize: layout.dp,
+                  color: context.colors.repoTitle,
+                  fontSize: context.layout.dp,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -48,49 +47,48 @@ class RepoCard extends StatelessWidget {
 }
 
 @immutable
-class RepoItem extends StatelessWidget {
-  const RepoItem({super.key, required this.repo});
+class _RepoItem extends StatelessWidget {
+  const _RepoItem({required this.repo});
 
   final GitHubRepo repo;
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.colors;
-    final layout = context.layout.data;
-    final space = SizedBox(height: layout.dp / 2);
-    final style = TextStyle(
-      fontSize: layout.dp,
-      fontWeight: FontWeight.bold,
-    );
     return Frame.link(
       url: repo.htmlUrl,
-      color: colors.repoCard,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            repo.name,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: style.copyWith(
-              color: colors.repoTitle,
-              fontSize: layout.dp * 1.5,
-            ),
+      color: context.colors.repoCard,
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Text(
+          repo.name,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            color: context.colors.repoTitle,
+            fontSize: context.layout.dp * 1.5,
+            fontWeight: FontWeight.bold,
           ),
-          space,
-          Text(
-            repo.language,
-            style: style.copyWith(color: colors.repoSubtitle),
+        ),
+        SizedBox(height: context.layout.dp / 2),
+        Text(
+          repo.language,
+          style: TextStyle(
+            color: context.colors.repoSubtitle,
+            fontSize: context.layout.dp,
+            fontWeight: FontWeight.bold,
           ),
-          space,
-          Text(
-            repo.description,
-            maxLines: 4,
-            overflow: TextOverflow.ellipsis,
-            style: style.copyWith(color: colors.repoText),
+        ),
+        SizedBox(height: context.layout.dp / 2),
+        Text(
+          repo.description,
+          maxLines: 4,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            color: context.colors.repoText,
+            fontSize: context.layout.dp,
+            fontWeight: FontWeight.bold,
           ),
-        ],
-      ),
+        ),
+      ]),
     );
   }
 }

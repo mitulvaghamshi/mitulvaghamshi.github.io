@@ -1,33 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:portfolio/state/app_scope.dart';
-import 'package:portfolio/theme/app_colors.dart';
-import 'package:portfolio/utils/app_data.dart';
-import 'package:portfolio/widgets/frame.dart';
-import 'package:url_launcher/link.dart';
-
-@immutable
-class ThemeButton extends StatelessWidget {
-  const ThemeButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = AppScope.of(context).themeController;
-    return Frame.card(
-      onTap: theme.toggleTheme,
-      color: context.colors.themeButton,
-      child: Icon(
-        switch (theme.themeMode) {
-          ThemeMode.dark => Icons.light_mode,
-          ThemeMode.light => Icons.dark_mode,
-          ThemeMode.system => Icons.brightness_4,
-        },
-        color: const Color(0xffffffff),
-        size: context.layout.data.dp * 1.5,
-      ),
-    );
-  }
-}
+part of 'intro_card.dart';
 
 @immutable
 class FullName extends StatelessWidget {
@@ -35,17 +6,14 @@ class FullName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final layout = context.layout.data;
-    final colors = context.colors;
-
     final style = TextStyle(
-      color: colors.introText,
-      fontSize: layout.dp,
+      color: context.colors.introText,
+      fontSize: context.layout.dp,
       fontWeight: FontWeight.bold,
     );
 
     return Frame.card(
-      color: colors.introCard,
+      color: context.colors.introCard,
       child: Text.rich(
         TextSpan(
           text: 'Software Developer\n',
@@ -53,11 +21,11 @@ class FullName extends StatelessWidget {
           children: [
             TextSpan(
               text: 'Mitul Vaghamshi',
-              style: style.copyWith(fontSize: layout.dp * 2),
+              style: style.copyWith(fontSize: context.layout.dp * 2),
               children: [
                 TextSpan(
                   text: '_',
-                  style: TextStyle(color: colors.themeButton),
+                  style: TextStyle(color: context.colors.themeButton),
                 ),
               ],
             ),
@@ -82,8 +50,8 @@ class ProfilePicture extends StatelessWidget {
       colorBlendMode: BlendMode.color,
       color: context.colors.imageBlend,
       frameBuilder: (p1, child, frame, p4) => Frame(
+        margin: EdgeInsets.all(context.layout.dp / 2),
         animate: true,
-        margin: EdgeInsets.all(context.layout.data.dp / 2),
         child: child,
       ),
     );
@@ -96,15 +64,13 @@ class Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.colors;
-
     return Frame.card(
-      color: colors.introCard,
+      color: context.colors.introCard,
       child: Text(
         AppData.introText,
         style: TextStyle(
-          color: colors.introText,
-          fontSize: context.layout.data.dp,
+          color: context.colors.introText,
+          fontSize: context.layout.dp,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -120,7 +86,7 @@ class SocialButtonBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Frame.card(
       color: context.colors.introCard,
-      child: context.layout.build(
+      child: context.config.build(
         mobileSmall290: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: AppData.socialLinks.map(SocialButton.entry).toList(),
@@ -138,17 +104,17 @@ class SocialButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = context.layout.data.dp * 2;
-    final svg = AppData.buildSVG(
+    final size = context.layout.dp * 2;
+    final svgString = AppData.buildSVG(
         color: context.colors.introText!, pathData: link.value);
     return Link(
       uri: Uri.parse(link.url),
       target: LinkTarget.blank,
-      builder: (context, followLink) => Frame(
+      builder: (_, followLink) => Frame(
         onTap: followLink,
         color: Colors.transparent,
         padding: const EdgeInsets.all(2),
-        child: SvgPicture.string(svg, width: size, height: size),
+        child: SvgPicture.string(svgString, width: size, height: size),
       ),
     );
   }

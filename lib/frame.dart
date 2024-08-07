@@ -44,6 +44,7 @@ class Frame extends StatelessWidget {
     Widget widget = child;
     if (padding != null) widget = Padding(padding: padding!, child: widget);
     if (onTap != null) widget = InkWell(onTap: onTap, child: widget);
+
     widget = Card(
       elevation: 0,
       color: color,
@@ -51,12 +52,14 @@ class Frame extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       child: widget,
     );
+
     if (animate) {
       widget = AnimatedSize(
         duration: const Duration(seconds: 1),
         child: widget,
       );
     }
+
     return widget;
   }
 }
@@ -96,14 +99,12 @@ class _FrameCard extends Frame {
 
   @override
   Widget build(BuildContext context) {
-    final layout = context.layout.data;
-
     return Frame(
       onTap: onTap,
       color: color,
       animate: animate,
-      padding: EdgeInsets.all(layout.dp),
-      margin: EdgeInsets.all(layout.dp / 2),
+      padding: EdgeInsets.all(context.layout.dp),
+      margin: EdgeInsets.all(context.layout.dp / 2),
       child: child,
     );
   }
@@ -115,15 +116,13 @@ class _FrameContainer extends Frame {
 
   @override
   Widget build(BuildContext context) {
-    final layout = context.layout.data;
-
     return Frame(
       color: color,
       animate: true,
-      padding: EdgeInsets.all(layout.dp / 2),
+      padding: EdgeInsets.all(context.layout.dp / 2),
       margin: EdgeInsets.symmetric(
-        vertical: layout.dp / 2,
-        horizontal: layout.dp,
+        vertical: context.layout.dp / 2,
+        horizontal: context.layout.dp,
       ),
       child: child,
     );

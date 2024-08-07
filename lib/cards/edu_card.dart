@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/state/app_scope.dart';
 import 'package:portfolio/theme/app_colors.dart';
 import 'package:portfolio/utils/app_data.dart';
-import 'package:portfolio/widgets/frame.dart';
+import 'package:portfolio/frame.dart';
 
 @immutable
 class EduCard extends StatelessWidget {
@@ -10,20 +10,21 @@ class EduCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final layout = context.layout.data;
-    final width = context.width;
-    final size =
-        Size(width / (width >= 940 ? 2 : 1) - layout.dp * 1.5, layout.dp * 15);
-    final children = AppData.educationLinks
-        .map((e) => SizedBox.fromSize(size: size, child: EduItem(college: e)))
-        .toList();
+    final size = Size(
+      context.width / (context.width >= 940 ? 2 : 1) - context.layout.dp * 1.5,
+      context.layout.dp * 15,
+    );
+    final children = AppData.educationLinks.map((e) {
+      return SizedBox.fromSize(size: size, child: EduItem(college: e));
+    });
+
     return Frame.container(
       color: context.colors.eduContainer,
-      child: context.layout.build(
-        mobileSmall290: Column(children: children),
+      child: context.config.build(
+        mobileSmall290: Column(children: children.toList()),
         laptopSmall940: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: children,
+          children: children.toList(),
         ),
       ),
     );
@@ -38,43 +39,46 @@ class EduItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.colors;
-    final layout = context.layout.data;
-    final space = SizedBox(height: layout.dp / 2);
-    final style = TextStyle(
-      fontSize: layout.dp,
-      fontWeight: FontWeight.bold,
-    );
     return Frame.link(
       url: college.url,
-      color: colors.eduCard,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            college.year,
-            style: style.copyWith(
-              color: colors.eduTitle,
-              fontSize: layout.dp * 1.5,
-            ),
+      color: context.colors.eduCard,
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Text(
+          college.year,
+          style: TextStyle(
+            color: context.colors.eduTitle,
+            fontSize: context.layout.dp * 1.5,
+            fontWeight: FontWeight.bold,
           ),
-          space,
-          Text(
-            college.major,
-            style: style.copyWith(color: colors.eduSubtitle),
+        ),
+        SizedBox(height: context.layout.dp / 2),
+        Text(
+          college.major,
+          style: TextStyle(
+            color: context.colors.eduSubtitle,
+            fontSize: context.layout.dp,
+            fontWeight: FontWeight.bold,
           ),
-          space,
-          Text(
-            college.name,
-            style: style.copyWith(color: colors.eduText),
+        ),
+        SizedBox(height: context.layout.dp / 2),
+        Text(
+          college.name,
+          style: TextStyle(
+            color: context.colors.eduText,
+            fontSize: context.layout.dp,
+            fontWeight: FontWeight.bold,
           ),
-          space,
-          Text(
-            college.address,
-            style: style.copyWith(color: colors.eduText),
+        ),
+        SizedBox(height: context.layout.dp / 2),
+        Text(
+          college.address,
+          style: TextStyle(
+            color: context.colors.eduText,
+            fontSize: context.layout.dp,
+            fontWeight: FontWeight.bold,
           ),
-        ],
-      ),
+        ),
+      ]),
     );
   }
 }

@@ -2,35 +2,31 @@
 
 # Recursively visit all items in the given directory
 function visit {
+    echo "> Visiting $item directory..."
     local item
     for item in "$1"/*; do
-        if [ -d "$item" ]; then
-            # If it's a directory, visit its contents
-            echo "Visiting $item directory..."
+        if [ -d "$item" ]; then # If it's a directory, visit its contents
             visit "$item"
-        elif [ -f "$item" ]; then
-            # Check the item if it's a regular file
-            echo "> Checking file: $item"
+        elif [ -f "$item" ]; then # Check the item if it's a regular file
             minify "$item"
         fi
     done
 }
 
-# Minify .html and .json files by removing unnecessary whitespace
+# Minify source files by removing unnecessary whitespace and newlines
 function minify {
     case "$1" in
-        *.html | *.json)
+        *.html | *.css | *.js | *.json)
             # Use a temporary file in the same directory
             TMP_FILE=$(mktemp "$1.XXXXXX")
             tr -d '\n\r' < "$1" > "$TMP_FILE"
             mv -f "$TMP_FILE" "$1"
-            echo ">> Minified file: $1"
+            echo ">>> Minified file: $1"
             ;;
     esac
 }
 
 # Visit all items in the "web" directory
-echo "Visiting web directory..."
 visit "web"
 
 # Remove the line containing "assets/repos.json" from pubspec.yaml

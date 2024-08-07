@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/state/app_scope.dart';
 import 'package:portfolio/theme/app_colors.dart';
 import 'package:portfolio/utils/app_data.dart';
-import 'package:portfolio/widgets/frame.dart';
+import 'package:portfolio/frame.dart';
 
 @immutable
 class AboutCard extends StatelessWidget {
@@ -10,38 +10,37 @@ class AboutCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final layout = context.layout.data;
-    final colors = context.colors;
     final style = TextStyle(
-      color: colors.aboutText,
-      fontSize: layout.dp,
+      color: context.colors.aboutText,
+      fontSize: context.layout.dp,
       fontWeight: FontWeight.bold,
     );
-    final space = SizedBox.square(dimension: layout.dp);
+
     final items = [
       Padding(
-        padding: EdgeInsets.all(layout.dp / 2),
+        padding: EdgeInsets.all(context.layout.dp / 2),
         child: Image.asset('assets/icon.webp'),
       ),
-      space,
+      SizedBox.square(dimension: context.layout.dp),
       Text('© ${DateTime.now().year} Portfolio App. ', style: style),
       Text('All Rights Reserved. ', style: style),
       Text('Developed by Mitul Vaghamshi.', style: style),
     ];
+
     return Padding(
-      padding: EdgeInsets.only(bottom: layout.dp / 2),
+      padding: EdgeInsets.only(bottom: context.layout.dp / 2),
       child: Frame.container(
-        color: colors.aboutContainer,
-        child: context.layout.build(
-          mobileSmall290: Column(
-            children: [...items, space, const AboutButtons()],
-          ),
-          tabletLarge760: Column(
-            children: [
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: items),
-              const AboutButtons()
-            ],
-          ),
+        color: context.colors.aboutContainer,
+        child: context.config.build(
+          mobileSmall290: Column(children: [
+            ...items,
+            SizedBox.square(dimension: context.layout.dp),
+            const _AboutButtons()
+          ]),
+          tabletLarge760: Column(children: [
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: items),
+            const _AboutButtons()
+          ]),
         ),
       ),
     );
@@ -49,42 +48,45 @@ class AboutCard extends StatelessWidget {
 }
 
 @immutable
-class AboutButtons extends StatelessWidget {
-  const AboutButtons({super.key});
+class _AboutButtons extends StatelessWidget {
+  const _AboutButtons();
 
   @override
   Widget build(BuildContext context) {
-    final layout = context.layout.data;
-    final colors = context.colors;
-    final width = context.width;
-    final buttonWidth =
-        width / (width < 420 ? 1 : (width < 940 ? 2 : 4)) - layout.dp * 1.5;
-    final style = TextStyle(
-      color: colors.aboutText,
-      fontSize: layout.dp,
+    final width = context.width /
+            (context.width < 420 ? 1 : (context.width < 940 ? 2 : 4)) -
+        context.layout.dp * 1.5;
+
+    final textStyle = TextStyle(
+      color: context.colors.aboutText,
+      fontSize: context.layout.dp,
       fontWeight: FontWeight.bold,
     );
+
     return Wrap(children: [
-      ...AppData.footerLinks.map((link) => SizedBox(
-          width: buttonWidth,
+      ...AppData.footerLinks.map((link) {
+        return SizedBox(
+          width: width,
           child: Frame.link(
             url: link.url,
-            color: colors.aboutCard,
+            color: context.colors.aboutCard,
             child: Text(
               link.value,
-              style: style,
+              style: textStyle,
               textAlign: TextAlign.center,
             ),
-          ))),
+          ),
+        );
+      }),
       SizedBox(
-        width: buttonWidth,
+        width: width,
         child: Frame.card(
           onTap: () => showLicensePage(context: context),
-          color: colors.aboutCard,
+          color: context.colors.aboutCard,
           child: Text(
             'See Licenses',
             textAlign: TextAlign.center,
-            style: style,
+            style: textStyle,
           ),
         ),
       ),
