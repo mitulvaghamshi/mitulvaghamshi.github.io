@@ -6,28 +6,28 @@ class FullName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final style = TextStyle(
-      color: context.colors.introText,
-      fontSize: context.layout.dp,
-      fontWeight: FontWeight.bold,
-    );
-
+    final style = Theme.of(context).textTheme.apply(
+          bodyColor: context.colors.introText,
+          displayColor: context.colors.introText,
+        );
     return Frame.card(
       color: context.colors.introCard,
       child: Text.rich(
         TextSpan(
           text: 'Software Developer\n',
-          style: style,
+          style: style.titleMedium,
           children: [
             TextSpan(
               text: 'Mitul Vaghamshi',
-              style: style.copyWith(fontSize: context.layout.dp * 2),
-              children: [
-                TextSpan(
-                  text: '_',
-                  style: TextStyle(color: context.colors.themeButton),
-                ),
-              ],
+              style: style.headlineLarge!.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            TextSpan(
+              text: '_',
+              style: style.headlineLarge!.copyWith(
+                color: context.colors.themeButton,
+              ),
             ),
           ],
         ),
@@ -49,8 +49,8 @@ class ProfilePicture extends StatelessWidget {
       fit: BoxFit.contain,
       colorBlendMode: BlendMode.color,
       color: context.colors.imageBlend,
-      frameBuilder: (p1, child, frame, p4) => Frame(
-        margin: EdgeInsets.all(context.layout.dp / 2),
+      frameBuilder: (_, child, __, ___) => Frame(
+        margin: const EdgeInsets.all(8),
         animate: true,
         child: child,
       ),
@@ -64,16 +64,13 @@ class Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final style = Theme.of(context).textTheme.apply(
+          bodyColor: context.colors.introText,
+          displayColor: context.colors.introText,
+        );
     return Frame.card(
       color: context.colors.introCard,
-      child: Text(
-        AppData.introText,
-        style: TextStyle(
-          color: context.colors.introText,
-          fontSize: context.layout.dp,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
+      child: Text(AppData.introText, style: style.bodyLarge),
     );
   }
 }
@@ -84,12 +81,18 @@ class SocialButtonBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final items = AppData.socialLinks.map(SocialButton.new).toList();
     return Frame.card(
       color: context.colors.introCard,
       child: context.config.build(
         mobileSmall290: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: AppData.socialLinks.map(SocialButton.entry).toList(),
+          children: items,
+        ),
+        laptopSmall940: Column(children: items),
+        desktop2k1440: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: items,
         ),
       ),
     );
@@ -98,17 +101,13 @@ class SocialButtonBar extends StatelessWidget {
 
 @immutable
 class SocialButton extends StatelessWidget {
-  const SocialButton.entry(this.link, {super.key});
+  const SocialButton(this.link, {super.key});
 
   final Deux link;
 
   @override
   Widget build(BuildContext context) {
-    final size = context.layout.dp * 2;
-    final svg = AppData.buildSVG(
-      color: context.colors.introText!,
-      pathData: link.value,
-    );
+    final size = context.width > 420 ? 32.0 : 24.0;
     return Link(
       uri: Uri.parse(link.url),
       target: LinkTarget.blank,
@@ -117,7 +116,11 @@ class SocialButton extends StatelessWidget {
         color: Colors.transparent,
         margin: EdgeInsets.zero,
         padding: const EdgeInsets.all(8),
-        child: SvgPicture.string(svg, width: size, height: size),
+        child: SvgPicture.string(
+          AppData.colorSvg(color: context.colors.introText!, data: link.value),
+          width: size,
+          height: size,
+        ),
       ),
     );
   }

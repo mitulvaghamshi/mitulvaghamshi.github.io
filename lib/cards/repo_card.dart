@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/frame.dart';
+import 'package:portfolio/github/github_api.dart';
 import 'package:portfolio/github/github_repo.dart';
 import 'package:portfolio/state/app_scope.dart';
 import 'package:portfolio/theme/app_colors.dart';
@@ -10,37 +11,32 @@ class RepoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final github = AppScope.of(context).githubApiService;
+    final apiService = AppScope.of(context).githubApiService;
     final count = (context.width / 500).round();
-    final size = Size(context.width / count - context.layout.dp * 1.5,
-        context.layout.dp * 14);
-
-    return AnimatedBuilder(
-      animation: github,
-      builder: (context, child) => Frame.container(
-        color: context.colors.repoContainer,
-        child: context.config.build(
-          mobileSmall290: Column(children: [
-            Wrap(
+    return Frame.container(
+      color: context.colors.repoContainer,
+      child: ListenableBuilder(
+        listenable: apiService,
+        builder: (context, child) => Column(children: [
+          context.config.build(
+            mobileSmall290: Wrap(
               alignment: WrapAlignment.center,
               runAlignment: WrapAlignment.center,
-              children: github.repos(count * 2).map((e) {
-                return SizedBox.fromSize(size: size, child: _RepoItem(repo: e));
+              children: apiService.items(count * 2).map((e) {
+                return SizedBox(
+                  width: context.width / count - 32,
+                  height: context.width > 420 ? 200 : 220,
+                  child: _RepoItem(repo: e),
+                );
               }).toList(),
             ),
-            TextButton(
-              onPressed: github.toggleShowAll,
-              child: Text(
-                github.buttonLabel,
-                style: TextStyle(
-                  color: context.colors.repoTitle,
-                  fontSize: context.layout.dp,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ]),
-        ),
+          ),
+          Frame.card(
+            onTap: apiService.toggleShowAll,
+            color: context.colors.repoContainer,
+            child: Text(apiService.buttonLabel),
+          ),
+        ]),
       ),
     );
   }
@@ -54,39 +50,35 @@ class _RepoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).textTheme.apply(
+          bodyColor: context.colors.repoText,
+          displayColor: context.colors.repoText,
+        );
     return Frame.link(
-      url: repo.htmlUrl,
+      url: repo.url,
       color: context.colors.repoCard,
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(
           repo.name,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: TextStyle(
+          style: theme.headlineSmall!.copyWith(
             color: context.colors.repoTitle,
-            fontSize: context.layout.dp * 1.5,
-            fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: context.layout.dp / 2),
+        const SizedBox(height: 16),
         Text(
-          repo.language,
-          style: TextStyle(
+          repo.subTitle,
+          style: theme.titleMedium!.copyWith(
             color: context.colors.repoSubtitle,
-            fontSize: context.layout.dp,
-            fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: context.layout.dp / 2),
+        const SizedBox(height: 8),
         Text(
-          repo.description,
-          maxLines: 4,
+          repo.desc,
+          maxLines: 3,
           overflow: TextOverflow.ellipsis,
-          style: TextStyle(
-            color: context.colors.repoText,
-            fontSize: context.layout.dp,
-            fontWeight: FontWeight.bold,
-          ),
+          style: theme.bodyMedium!.copyWith(color: context.colors.repoText),
         ),
       ]),
     );

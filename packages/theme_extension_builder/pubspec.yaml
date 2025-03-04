@@ -9,12 +9,12 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  analyzer: ^6.2.0
+  analyzer: ^7.3.0
   build: ^2.4.1
   build_config: ^1.1.1
   flutter:
     sdk: flutter
-  source_gen: ^1.4.0
+  source_gen: ^2.0.0
   theme_extension:
     path: ../theme_extension
 
