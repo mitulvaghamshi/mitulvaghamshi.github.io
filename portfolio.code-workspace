@@ -4,19 +4,12 @@
       "path": "."
     },
   ],
+  "settings": {
+    "editor.foldingImportsByDefault": true
+  },
   "tasks": {
     "version": "2.0.0",
     "tasks": [
-      {
-        "type": "shell",
-        "label": "firebase: start emulators --hosting",
-        "command": "firebase emulators:start --project=portfolio",
-      },
-      {
-        "type": "shell",
-        "label": "flutter build web",
-        "command": "flutter build web",
-      },
       {
         "type": "shell",
         "label": "build_runner build -d",
@@ -27,7 +20,4 @@
       }
     ],
   },
-  "settings": {
-    "editor.foldingImportsByDefault": true
-  }
 }

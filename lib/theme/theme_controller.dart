@@ -2,20 +2,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 /// Controls the app's theme mode.
-class ThemeController extends ChangeNotifier {
-  ThemeController._();
-
-  /// Singleton instance of the theme controller.
-  static final _instance = ThemeController._();
-  static ThemeController get instance => _instance;
-
+interface class ThemeController {
   /// Current theme mode of the app.
-  ThemeMode _themeMode = ThemeMode.system;
-  ThemeMode get themeMode => _themeMode;
+  final themeMode = ValueNotifier(ThemeMode.system);
 
   /// Toggles the theme mode between light and dark.
   void toggleTheme() {
-    _themeMode = switch (_themeMode) {
+    themeMode.value = switch (themeMode.value) {
       ThemeMode.dark => ThemeMode.light,
       ThemeMode.light => ThemeMode.dark,
       ThemeMode.system =>
@@ -23,6 +16,5 @@ class ThemeController extends ChangeNotifier {
             ? ThemeMode.light
             : ThemeMode.dark,
     };
-    notifyListeners();
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/state/app_scope.dart';
 import 'package:url_launcher/link.dart';
 
 @immutable
@@ -98,8 +97,8 @@ class _FrameCard extends Frame {
       onTap: onTap,
       color: color,
       animate: animate,
-      padding: EdgeInsets.all(context.layout.dp),
-      margin: EdgeInsets.all(context.layout.dp / 2),
+      margin: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(16),
       child: child,
     );
   }
@@ -114,11 +113,8 @@ class _FrameContainer extends Frame {
     return Frame(
       color: color,
       animate: true,
-      padding: EdgeInsets.all(context.layout.dp / 2),
-      margin: EdgeInsets.symmetric(
-        vertical: context.layout.dp / 2,
-        horizontal: context.layout.dp,
-      ),
+      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       child: child,
     );
   }

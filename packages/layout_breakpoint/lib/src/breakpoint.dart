@@ -262,7 +262,8 @@ enum AspectRatio {
   ratio14by9(14 / 9),
   ratio16by9(16 / 9),
   ratio16by10(16 / 10),
-  ratio17by9(17 / 9);
+  ratio17by9(17 / 9),
+  ;
 
   const AspectRatio(this.ratio);
 
