@@ -16,8 +16,8 @@ class AppState {
 
   // Factory constructor to create an AppState instance.
   AppState.create({required this.width})
-      : themeController = ThemeController.instance,
-        githubApiService = GitHubApiService.instance..fetchAsync(),
+      : themeController = ThemeController(),
+        githubApiService = GitHubApiService()..fetchAsync(),
         layoutConfig = LayoutConfig.from(width);
 
   // The width of the screen.
@@ -28,28 +28,20 @@ class AppState {
   final GitHubApiService githubApiService;
   // The configuration for the layout.
   final LayoutConfig layoutConfig;
+}
 
+extension Utils on AppState {
   // Updates the app state based on the new width.
-  AppState update(final double width) =>
-      layoutConfig.data.isWithin(width) ? setWidth(width) : setConfigFor(width);
-
-  // Sets the width of the app state.
-  AppState setWidth(final double width) => copyWith(width: width);
-
-  // Sets the layout configuration for the app state based on the new width.
-  AppState setConfigFor(final double width) {
-    return copyWith(
-      width: width,
-      layoutConfig: LayoutConfig.from(width),
-    );
-  }
+  AppState update(double width) => layoutConfig.data.isWithin(width)
+      ? copyWith(width: width)
+      : copyWith(width: width, layoutConfig: LayoutConfig.from(width));
 
   // Creates a copy of the app state with the given parameters.
   AppState copyWith({
-    final double? width,
-    final ThemeController? themeController,
-    final GitHubApiService? githubApiService,
-    final LayoutConfig? layoutConfig,
+    double? width,
+    ThemeController? themeController,
+    GitHubApiService? githubApiService,
+    LayoutConfig? layoutConfig,
   }) {
     return AppState(
       width: width ?? this.width,

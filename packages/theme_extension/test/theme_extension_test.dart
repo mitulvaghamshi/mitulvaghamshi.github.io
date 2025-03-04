@@ -9,7 +9,7 @@ void main() {
   });
 }
 
-@colorConfig
+@colorconfig
 class TestColors {
   static const color1 = (Color(0xFFFFFFFF), Color(0xFF000000));
 }

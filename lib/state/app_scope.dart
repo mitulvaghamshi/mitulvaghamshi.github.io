@@ -21,7 +21,7 @@ class AppScope extends InheritedWidget {
 }
 
 // Extension on BuildContext to provide easy access to app state properties
-extension AppScopeExtension on BuildContext {
+extension Utils on BuildContext {
   // Get the layout config from the app state
   LayoutConfig get config => AppScope.of(this).layoutConfig;
   // Get the layout data from the app state

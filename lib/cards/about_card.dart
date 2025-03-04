@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/frame.dart';
 import 'package:portfolio/state/app_scope.dart';
 import 'package:portfolio/theme/app_colors.dart';
 import 'package:portfolio/utils/app_data.dart';
-import 'package:portfolio/frame.dart';
 
 @immutable
 class AboutCard extends StatelessWidget {
@@ -10,31 +10,31 @@ class AboutCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final style = TextStyle(
-      color: context.colors.aboutText,
-      fontSize: context.layout.dp,
-      fontWeight: FontWeight.bold,
-    );
-
+    final theme = Theme.of(context).textTheme.apply(
+          bodyColor: context.colors.aboutText,
+          displayColor: context.colors.aboutText,
+        );
     final items = [
       Padding(
-        padding: EdgeInsets.all(context.layout.dp / 2),
+        padding: const EdgeInsets.all(16),
         child: Image.asset('assets/icon.webp'),
       ),
-      SizedBox.square(dimension: context.layout.dp),
-      Text('© ${DateTime.now().year} Portfolio App. ', style: style),
-      Text('All Rights Reserved. ', style: style),
-      Text('Developed by Mitul Vaghamshi.', style: style),
+      const SizedBox.square(dimension: 16),
+      Text(
+        '© ${DateTime.now().year} Portfolio App. ',
+        style: theme.titleMedium,
+      ),
+      Text('All Rights Reserved. ', style: theme.titleMedium),
+      Text('Developed by Mitul Vaghamshi.', style: theme.titleMedium),
     ];
-
     return Padding(
-      padding: EdgeInsets.only(bottom: context.layout.dp / 2),
+      padding: const EdgeInsets.only(bottom: 8),
       child: Frame.container(
         color: context.colors.aboutContainer,
         child: context.config.build(
           mobileSmall290: Column(children: [
             ...items,
-            SizedBox.square(dimension: context.layout.dp),
+            const SizedBox.square(dimension: 16),
             const _AboutButtons()
           ]),
           tabletLarge760: Column(children: [
@@ -53,40 +53,34 @@ class _AboutButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = context.width /
-            (context.width < 420 ? 1 : (context.width < 940 ? 2 : 4)) -
-        context.layout.dp * 1.5;
-
-    final textStyle = TextStyle(
-      color: context.colors.aboutText,
-      fontSize: context.layout.dp,
-      fontWeight: FontWeight.bold,
-    );
-
-    return Wrap(children: [
+    final theme = Theme.of(context).textTheme.apply(
+          bodyColor: context.colors.aboutText,
+          displayColor: context.colors.aboutText,
+        );
+    return Wrap(alignment: WrapAlignment.center, children: [
       ...AppData.footerLinks.map((link) {
         return SizedBox(
-          width: width,
+          width: 250,
           child: Frame.link(
             url: link.url,
             color: context.colors.aboutCard,
             child: Text(
               link.value,
-              style: textStyle,
+              style: theme.titleMedium,
               textAlign: TextAlign.center,
             ),
           ),
         );
       }),
       SizedBox(
-        width: width,
+        width: 250,
         child: Frame.card(
           onTap: () => showLicensePage(context: context),
           color: context.colors.aboutCard,
           child: Text(
-            'See Licenses',
+            'See licenses',
+            style: theme.titleMedium,
             textAlign: TextAlign.center,
-            style: textStyle,
           ),
         ),
       ),

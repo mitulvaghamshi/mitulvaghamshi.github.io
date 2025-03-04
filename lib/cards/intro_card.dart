@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:portfolio/cards/about_card.dart';
 import 'package:portfolio/frame.dart';
 import 'package:portfolio/state/app_scope.dart';
 import 'package:portfolio/theme/app_colors.dart';
@@ -16,7 +17,7 @@ class IntroCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: context.layout.dp / 2),
+      padding: const EdgeInsets.only(top: 16),
       child: Frame.container(
         color: context.colors.introContainer,
         child: context.config.build(
@@ -24,6 +25,7 @@ class IntroCard extends StatelessWidget {
           tabletMedium640: const _Widget640(),
           tabletLarge760: const _Widget760(),
           laptopSmall940: const _Widget940(),
+          desktop2k1440: const _Widget1440(),
         ),
       ),
     );

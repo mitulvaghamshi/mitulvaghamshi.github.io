@@ -21,14 +21,10 @@ mixin AppData {
   static Iterable<Deux> get footerLinks => _footerLinks;
   static Iterable<Cinq> get educationLinks => _educationLinks;
 
-  static String buildSVG({
-    required final Color color,
-    required final String pathData,
-  }) {
+  static String colorSvg({required Color color, required String data}) {
     final hexColor = color.value.toRadixString(16).substring(2);
-
     return '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">'
-        '<path fill="#$hexColor" d="$pathData"/></svg>';
+        '<path fill="#$hexColor" d="$data"/></svg>';
   }
 }
 
@@ -40,12 +36,8 @@ const _wesBadgeUrl =
 const _wesReportUrl =
     'https://badges.wes.org/Evidence?type=ca&i=3794f10a-19b3-47f0-82bd-393315bc6584';
 
-// Seeking a challenging role in a growth-oriented environment to leverage my expertise in Computer Programming, Data Analysis, and Project Management.  Eager to learn, adaptable, and a proven problem-solver.
-const _introText = '''
-Software developer with expertise in CS and software engineering principles.
-Proficient in various programming languages and committed to writing clean, well-documented code.
-Passionate about staying current with industry trends and driving innovation.
-Eager to collaborate and contribute to successful projects.''';
+const _introText =
+    '''Software developer with expertise in Computer Science and Software Engineering principles. Proficient in various programming languages and committed to writing clean, well-documented code. Passionate about staying current with industry trends and driving innovation. Seeking a role in a growth-oriented environment to leverage my expertise in Computer Programming.''';
 
 const _socialLinks = [
   (
@@ -78,24 +70,24 @@ const _socialLinks = [
 const _resume = 'https://mitulvaghamshi.github.io/resume';
 
 const _footerLinks = [
-  (url: '$_resume/resume.pdf', value: 'Download Resume'),
-  (url: _resume, value: 'See Html Version'),
-  (url: '$_resume/policy.html', value: 'Privacy Policy'),
+  (url: '$_resume/resume.pdf', value: 'Download resume'),
+  (url: _resume, value: 'Html version'),
+  (url: '$_resume/policy.html', value: 'Privacy policy'),
 ];
 
 const _educationLinks = [
   (
     url: 'https://www.mohawkcollege.ca',
-    name: 'Mohawk College of Applied Arts & Technology',
+    name: 'Mohawk College',
     year: 'Jan 2020 - Dec 2021 - (2yr)',
-    major: 'Post Secondary Diploma in Software Support',
+    major: 'Computer System Technician',
     address: 'Hamilton, Ontario, Canada',
   ),
   (
     url: 'https://www.aij.ind.in',
-    name: 'Amrut Institute of Science & Engineering',
+    name: 'Amrut Institute',
     year: 'Jun 2014 - May 2017 - (3yr)',
-    major: 'Advanced Diploma in Computer Engineering',
+    major: 'Diploma in Computer Engineering',
     address: 'Junagadh, Gujarat, India',
   )
 ];
