@@ -10,21 +10,22 @@ class EduCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Size(
-      context.width / (context.width >= 940 ? 2 : 1) - context.layout.dp * 1.5,
-      context.layout.dp * 15,
-    );
-    final children = AppData.educationLinks.map((e) {
-      return SizedBox.fromSize(size: size, child: _EduItem(college: e));
-    });
-
     return Frame.container(
       color: context.colors.eduContainer,
       child: context.config.build(
-        mobileSmall290: Column(children: children.toList()),
-        laptopSmall940: Row(
+        mobileSmall290: Column(
+          children: AppData.educationLinks.map((e) {
+            return SizedBox(width: context.width, child: _EduItem(college: e));
+          }).toList(),
+        ),
+        tabletLarge760: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: children.toList(),
+          children: AppData.educationLinks.map((e) {
+            return SizedBox(
+              width: context.width / 2 - 32,
+              child: _EduItem(college: e),
+            );
+          }).toList(),
         ),
       ),
     );
@@ -39,45 +40,28 @@ class _EduItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).textTheme.apply(
+          bodyColor: context.colors.eduText,
+          displayColor: context.colors.eduText,
+        );
     return Frame.link(
       url: college.url,
       color: context.colors.eduCard,
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(
-          college.year,
-          style: TextStyle(
-            color: context.colors.eduTitle,
-            fontSize: context.layout.dp * 1.3,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        SizedBox(height: context.layout.dp / 2),
-        Text(
           college.major,
-          style: TextStyle(
-            color: context.colors.eduSubtitle,
-            fontSize: context.layout.dp,
-            fontWeight: FontWeight.bold,
-          ),
+          overflow: TextOverflow.ellipsis,
+          style: theme.headlineSmall!.copyWith(color: context.colors.eduTitle),
         ),
-        SizedBox(height: context.layout.dp / 2),
+        const SizedBox(height: 16),
         Text(
           college.name,
-          style: TextStyle(
-            color: context.colors.eduText,
-            fontSize: context.layout.dp,
-            fontWeight: FontWeight.bold,
-          ),
+          style: theme.titleMedium!.copyWith(color: context.colors.eduSubtitle),
         ),
-        SizedBox(height: context.layout.dp / 2),
-        Text(
-          college.address,
-          style: TextStyle(
-            color: context.colors.eduText,
-            fontSize: context.layout.dp,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        const SizedBox(height: 8),
+        Text(college.year, style: theme.bodyMedium),
+        const SizedBox(height: 8),
+        Text(college.address, style: theme.bodyMedium),
       ]),
     );
   }

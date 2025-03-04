@@ -5,7 +5,7 @@ publish_to: none
 homepage: https://mitulvaghamshi.github.io/
 
 environment:
-  sdk: ^3.4.0
+  sdk: ^3.10.1
 
 dependencies:
   cupertino_icons: ^1.0.4
@@ -21,7 +21,7 @@ dependencies:
 
 dev_dependencies:
   build_runner: ^2.4.6
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
   theme_extension_builder:
     path: packages/theme_extension_builder
 

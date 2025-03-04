@@ -1,5 +1,4 @@
 # This workflow builds and deploys a portfolio app to GitHub Pages.
-
 name: Build and deploy portfolio app.
 
 # Trigger the workflow on push to the main branch or on manual dispatch.
@@ -7,6 +6,7 @@ on:
   push:
     branches: [ "main" ]
 
+  # Manually trigger workflow from github
   workflow_dispatch:
 
 # Permissions required by the workflow.
@@ -40,7 +40,7 @@ jobs:
       # Minify and remove repos.json file.
       - name: Minify and remove repos.json
         shell: bash
-        run: bash .github/workflows/script.sh
+        run: bash ".github/script.sh"
 
       # Set up the Flutter environment.
       - uses: subosito/flutter-action@v2.16.0

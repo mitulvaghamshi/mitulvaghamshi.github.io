@@ -9,22 +9,24 @@ import 'package:portfolio/state/app_scope.dart';
 import 'package:portfolio/theme/app_colors.dart';
 
 @immutable
-class Home extends StatelessWidget {
-  const Home({super.key});
+class HomeWidget extends StatelessWidget {
+  const HomeWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final cards = [
+      IntroCard.new,
+      EduCard.new,
+      RepoCard.new,
+      WesCard.new,
+      if (context.width < 1440) AboutCard.new,
+    ];
     return Scaffold(
       floatingActionButton: const _ThemeButton(),
-      body: CustomScrollView(slivers: [
-        SliverList.list(children: const [
-          IntroCard(),
-          EduCard(),
-          RepoCard(),
-          WesCard(),
-          AboutCard(),
-        ]),
-      ]),
+      body: ListView.builder(
+        itemCount: cards.length,
+        itemBuilder: (_, index) => cards[index](),
+      ),
     );
   }
 }
@@ -35,19 +37,17 @@ class _ThemeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = AppScope.of(context).themeController;
-
+    final ctrl = AppScope.of(context).themeController;
     return Frame.card(
-      onTap: controller.toggleTheme,
+      onTap: ctrl.toggleTheme,
       color: context.colors.themeButton,
       child: Icon(
-        switch (controller.themeMode) {
+        switch (ctrl.themeMode.value) {
           ThemeMode.dark => Icons.light_mode,
           ThemeMode.light => Icons.dark_mode,
           ThemeMode.system => Icons.brightness_4,
         },
         color: const Color(0xffffffff),
-        size: context.layout.dp * 1.5,
       ),
     );
   }

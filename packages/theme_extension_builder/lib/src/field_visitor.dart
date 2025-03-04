@@ -1,7 +1,7 @@
 import 'package:analyzer/dart/element/element.dart';
-import 'package:analyzer/dart/element/visitor.dart';
+import 'package:analyzer/dart/element/visitor2.dart';
 
-class FieldVisitor extends SimpleElementVisitor {
+class FieldVisitor extends SimpleElementVisitor2 {
   FieldVisitor({required this.className});
 
   final String className;

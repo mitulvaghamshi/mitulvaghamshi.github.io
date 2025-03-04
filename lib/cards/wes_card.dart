@@ -28,16 +28,15 @@ class _WesLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = context.width < 860 ? 250 : context.layout.dp * 11;
-
     return Frame.card(
       animate: true,
       color: context.colors.wesCard,
       child: Image.asset(
         'assets/wes.webp',
-        cacheWidth: width.toInt(),
-        frameBuilder: (p1, child, frame, p4) =>
-            frame == null ? SizedBox(width: width.toDouble()) : child,
+        cacheWidth: 200,
+        frameBuilder: (_, child, frame, _) => frame == null //
+            ? const SizedBox(width: 200)
+            : child,
       ),
     );
   }
@@ -49,41 +48,28 @@ class _WesContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).textTheme.apply(
+          bodyColor: context.colors.wesText,
+          displayColor: context.colors.wesText,
+        );
     return Frame.card(
       color: context.colors.wesCard,
       child: Column(children: [
         Text(
           'Verified International Academic Qualifications',
           textAlign: TextAlign.center,
-          style: TextStyle(
-            color: context.colors.wesText,
-            fontSize: context.layout.dp * 1.5,
-            fontWeight: FontWeight.bold,
-          ),
+          style: theme.headlineMedium,
         ),
+        const SizedBox(height: 16),
         Frame.link(
           url: AppData.wesBadgeUrl,
           color: context.colors.wesTitle,
-          child: Text(
-            'See badge @(credly.com)',
-            style: TextStyle(
-              color: context.colors.wesText,
-              fontSize: context.layout.dp,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          child: Text('See badge @(credly.com)', style: theme.titleMedium),
         ),
         Frame.link(
           url: AppData.wesReportUrl,
           color: context.colors.wesTitle,
-          child: Text(
-            'See evaluation @(wes.org)',
-            style: TextStyle(
-              color: context.colors.wesText,
-              fontSize: context.layout.dp,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          child: Text('See evaluation @(wes.org)', style: theme.titleMedium),
         ),
       ]),
     );
