@@ -29,15 +29,16 @@ enum LayoutConfig {
 
   final LayoutData data;
 
-  static LayoutConfig from(final double width) =>
-      values.firstWhere((final layout) => layout.data.isWithin(width),
-          orElse: () => mobileTiny);
+  static LayoutConfig from(double width) => values.firstWhere(
+    (layout) => layout.data.canHold(width),
+    orElse: () => mobileTiny,
+  );
 
   // Widget build2({
-  //   final Widget? mobile,
-  //   final Widget? tablet,
-  //   final Widget? laptop,
-  //   final Widget? desktop,
+  //   Widget? mobile,
+  //   Widget? tablet,
+  //   Widget? laptop,
+  //   Widget? desktop,
   // }) {
   //   return switch (this) {
   //     LayoutConfig.mobile => mobile ?? _placeholder,
@@ -80,96 +81,107 @@ enum LayoutConfig {
   /// }
   /// ```
   Widget build({
-    final Widget? mobileSmall290,
-    final Widget? mobileMedium320,
-    final Widget? mobileLarge420,
-    final Widget? tabletSmall560,
-    final Widget? tabletMedium640,
-    final Widget? tabletLarge760,
-    final Widget? laptopSmall940,
-    final Widget? laptopMedium1080,
-    final Widget? laptopLarge1280,
-    final Widget? desktop2k1440,
-    final Widget? desktop4k1920,
+    Widget? mobileSmall290,
+    Widget? mobileMedium320,
+    Widget? mobileLarge420,
+    Widget? tabletSmall560,
+    Widget? tabletMedium640,
+    Widget? tabletLarge760,
+    Widget? laptopSmall940,
+    Widget? laptopMedium1080,
+    Widget? laptopLarge1280,
+    Widget? desktop2k1440,
+    Widget? desktop4k1920,
   }) {
     return switch (this) {
-      mobileSmall => mobileSmall290 ?? //
-          _placeholder,
-      mobileMedium => mobileMedium320 ?? //
-          mobileSmall290 ?? //
-          _placeholder,
-      mobileLarge => mobileLarge420 ?? //
-          mobileMedium320 ?? //
-          mobileSmall290 ?? //
-          _placeholder,
-      tabletSmall => tabletSmall560 ??
-          mobileLarge420 ??
-          mobileMedium320 ??
-          mobileSmall290 ??
-          _placeholder,
-      tabletMedium => tabletMedium640 ??
-          tabletSmall560 ??
-          mobileLarge420 ??
-          mobileMedium320 ??
-          mobileSmall290 ??
-          _placeholder,
-      tabletLarge => tabletLarge760 ??
-          tabletMedium640 ??
-          tabletSmall560 ??
-          mobileLarge420 ??
-          mobileMedium320 ??
-          mobileSmall290 ??
-          _placeholder,
-      laptopSmall => laptopSmall940 ??
-          tabletLarge760 ??
-          tabletMedium640 ??
-          tabletSmall560 ??
-          mobileLarge420 ??
-          mobileMedium320 ??
-          mobileSmall290 ??
-          _placeholder,
-      laptopMedium => laptopMedium1080 ??
-          laptopSmall940 ??
-          tabletLarge760 ??
-          tabletMedium640 ??
-          tabletSmall560 ??
-          mobileLarge420 ??
-          mobileMedium320 ??
-          mobileSmall290 ??
-          _placeholder,
-      laptopLarge => laptopLarge1280 ??
-          laptopMedium1080 ??
-          laptopSmall940 ??
-          tabletLarge760 ??
-          tabletMedium640 ??
-          tabletSmall560 ??
-          mobileLarge420 ??
-          mobileMedium320 ??
-          mobileSmall290 ??
-          _placeholder,
-      desktop2k => desktop2k1440 ??
-          laptopLarge1280 ??
-          laptopMedium1080 ??
-          laptopSmall940 ??
-          tabletLarge760 ??
-          tabletMedium640 ??
-          tabletSmall560 ??
-          mobileLarge420 ??
-          mobileMedium320 ??
-          mobileSmall290 ??
-          _placeholder,
-      desktop4k => desktop4k1920 ??
-          desktop2k1440 ??
-          laptopLarge1280 ??
-          laptopMedium1080 ??
-          laptopSmall940 ??
-          tabletLarge760 ??
-          tabletMedium640 ??
-          tabletSmall560 ??
-          mobileLarge420 ??
-          mobileMedium320 ??
-          mobileSmall290 ??
-          _placeholder,
+      mobileSmall =>
+        mobileSmall290 ?? //
+            _placeholder,
+      mobileMedium =>
+        mobileMedium320 ?? //
+            mobileSmall290 ?? //
+            _placeholder,
+      mobileLarge =>
+        mobileLarge420 ?? //
+            mobileMedium320 ?? //
+            mobileSmall290 ?? //
+            _placeholder,
+      tabletSmall =>
+        tabletSmall560 ??
+            mobileLarge420 ??
+            mobileMedium320 ??
+            mobileSmall290 ??
+            _placeholder,
+      tabletMedium =>
+        tabletMedium640 ??
+            tabletSmall560 ??
+            mobileLarge420 ??
+            mobileMedium320 ??
+            mobileSmall290 ??
+            _placeholder,
+      tabletLarge =>
+        tabletLarge760 ??
+            tabletMedium640 ??
+            tabletSmall560 ??
+            mobileLarge420 ??
+            mobileMedium320 ??
+            mobileSmall290 ??
+            _placeholder,
+      laptopSmall =>
+        laptopSmall940 ??
+            tabletLarge760 ??
+            tabletMedium640 ??
+            tabletSmall560 ??
+            mobileLarge420 ??
+            mobileMedium320 ??
+            mobileSmall290 ??
+            _placeholder,
+      laptopMedium =>
+        laptopMedium1080 ??
+            laptopSmall940 ??
+            tabletLarge760 ??
+            tabletMedium640 ??
+            tabletSmall560 ??
+            mobileLarge420 ??
+            mobileMedium320 ??
+            mobileSmall290 ??
+            _placeholder,
+      laptopLarge =>
+        laptopLarge1280 ??
+            laptopMedium1080 ??
+            laptopSmall940 ??
+            tabletLarge760 ??
+            tabletMedium640 ??
+            tabletSmall560 ??
+            mobileLarge420 ??
+            mobileMedium320 ??
+            mobileSmall290 ??
+            _placeholder,
+      desktop2k =>
+        desktop2k1440 ??
+            laptopLarge1280 ??
+            laptopMedium1080 ??
+            laptopSmall940 ??
+            tabletLarge760 ??
+            tabletMedium640 ??
+            tabletSmall560 ??
+            mobileLarge420 ??
+            mobileMedium320 ??
+            mobileSmall290 ??
+            _placeholder,
+      desktop4k =>
+        desktop4k1920 ??
+            desktop2k1440 ??
+            laptopLarge1280 ??
+            laptopMedium1080 ??
+            laptopSmall940 ??
+            tabletLarge760 ??
+            tabletMedium640 ??
+            tabletSmall560 ??
+            mobileLarge420 ??
+            mobileMedium320 ??
+            mobileSmall290 ??
+            _placeholder,
       _ => _placeholder,
     };
   }

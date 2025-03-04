@@ -14,9 +14,10 @@ class ThemeExtensionGenerator extends GeneratorForAnnotation<ColorConfig> {
     ConstantReader annotation,
     BuildStep buildStep,
   ) {
-    final visitor = FieldVisitor(className: element.displayName);
-    final template = ThemeTemplate(element: element, visitor: visitor)..visit();
-
+    final template = ThemeTemplate(
+      element: element,
+      visitor: FieldVisitor(className: element.displayName),
+    )..visit();
     return template.toString();
   }
 }
