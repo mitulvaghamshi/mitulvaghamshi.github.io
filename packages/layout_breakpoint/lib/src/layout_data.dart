@@ -7,9 +7,7 @@ class LayoutData {
   final double minWidth;
   final double maxWidth;
 
-  bool isWithin(double width) => width >= minWidth && width < maxWidth;
-
-  // bool isWithin2(double width) => width >= minWidth && width <= maxWidth;
+  bool canHold(double width) => width >= minWidth && width < maxWidth;
 }
 
 // const mobileData = LayoutData(dp: 12, minWidth: 0, maxWidth: 480);

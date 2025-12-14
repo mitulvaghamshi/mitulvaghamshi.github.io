@@ -50,10 +50,12 @@ jobs:
       # Install project dependencies.
       - name: Install dependencies
         run: flutter pub get
+        working-directory: portfolio
 
       # Build the web application.
       - name: Build web
         run: flutter build web
+        working-directory: portfolio
 
       # Configure GitHub Pages for deployment.
       - name: Configure GitHub pages
@@ -63,7 +65,7 @@ jobs:
       - name: Upload GitHub pages artifact
         uses: actions/upload-pages-artifact@v3.0.1
         with:
-          path: 'build/web' # Path to the built web application.
+          path: 'portfolio/build/web' # Path to the built web application.
 
       # Deploy to GitHub pages
       - name: Deploy to GitHub pages

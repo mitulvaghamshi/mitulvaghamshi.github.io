@@ -59,27 +59,17 @@ class Frame extends StatelessWidget {
 }
 
 @immutable
-class _FrameLink extends _FrameCard {
-  const _FrameLink({
-    super.color,
-    required this.url,
-    required super.child,
-  });
-
-  final String url;
+class _FrameContainer extends Frame {
+  const _FrameContainer({super.color, required super.child});
 
   @override
-  Widget build(BuildContext context) {
-    return Link(
-      uri: Uri.parse(url),
-      target: LinkTarget.blank,
-      builder: (_, followLink) => _FrameCard(
-        onTap: followLink,
-        color: color,
-        child: child,
-      ),
-    );
-  }
+  Widget build(BuildContext context) => Frame(
+    color: color,
+    animate: true,
+    padding: const EdgeInsets.all(16),
+    margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+    child: child,
+  );
 }
 
 @immutable
@@ -92,30 +82,26 @@ class _FrameCard extends Frame {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Frame(
-      onTap: onTap,
-      color: color,
-      animate: animate,
-      margin: const EdgeInsets.all(8),
-      padding: const EdgeInsets.all(16),
-      child: child,
-    );
-  }
+  Widget build(BuildContext context) => Frame(
+    onTap: onTap,
+    color: color,
+    animate: animate,
+    margin: const EdgeInsets.all(8),
+    padding: const EdgeInsets.all(16),
+    child: child,
+  );
 }
 
 @immutable
-class _FrameContainer extends Frame {
-  const _FrameContainer({super.color, required super.child});
+class _FrameLink extends _FrameCard {
+  const _FrameLink({super.color, required this.url, required super.child});
+
+  final String url;
 
   @override
-  Widget build(BuildContext context) {
-    return Frame(
-      color: color,
-      animate: true,
-      padding: const EdgeInsets.all(16),
-      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      child: child,
-    );
-  }
+  Widget build(BuildContext context) => Link(
+    uri: Uri.parse(url),
+    target: LinkTarget.blank,
+    builder: (_, link) => _FrameCard(onTap: link, color: color, child: child),
+  );
 }

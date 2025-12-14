@@ -16,38 +16,39 @@ class AppState {
 
   // Factory constructor to create an AppState instance.
   AppState.create({required this.width})
-      : themeController = ThemeController(),
-        githubApiService = GitHubApiService()..fetchAsync(),
-        layoutConfig = LayoutConfig.from(width);
+    : themeController = ThemeController(),
+      githubApiService = GitHubApiService()..fetchAsync(),
+      layoutConfig = LayoutConfig.from(width);
 
   // The width of the screen.
   final double width;
+
   // The controller for the application's theme.
   final ThemeController themeController;
+
   // The service for interacting with the GitHub API.
   final GitHubApiService githubApiService;
+
   // The configuration for the layout.
   final LayoutConfig layoutConfig;
 }
 
 extension Utils on AppState {
   // Updates the app state based on the new width.
-  AppState update(double width) => layoutConfig.data.isWithin(width)
+  AppState update(final double width) => layoutConfig.data.canHold(width)
       ? copyWith(width: width)
       : copyWith(width: width, layoutConfig: LayoutConfig.from(width));
 
   // Creates a copy of the app state with the given parameters.
   AppState copyWith({
-    double? width,
-    ThemeController? themeController,
-    GitHubApiService? githubApiService,
-    LayoutConfig? layoutConfig,
-  }) {
-    return AppState(
-      width: width ?? this.width,
-      themeController: themeController ?? this.themeController,
-      githubApiService: githubApiService ?? this.githubApiService,
-      layoutConfig: layoutConfig ?? this.layoutConfig,
-    );
-  }
+    final double? width,
+    final ThemeController? themeController,
+    final GitHubApiService? githubApiService,
+    final LayoutConfig? layoutConfig,
+  }) => AppState(
+    width: width ?? this.width,
+    themeController: themeController ?? this.themeController,
+    githubApiService: githubApiService ?? this.githubApiService,
+    layoutConfig: layoutConfig ?? this.layoutConfig,
+  );
 }

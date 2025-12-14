@@ -11,8 +11,10 @@ class AppScope extends InheritedWidget {
   final AppState data;
 
   // Access the app state from a BuildContext
-  static AppState of(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<AppScope>()!.data;
+  static AppState of(BuildContext context) {
+    final scope = context.dependOnInheritedWidgetOfExactType<AppScope>();
+    return ArgumentError.checkNotNull(scope).data;
+  }
 
   // Update should notify if the width of the app state changes
   @override
@@ -24,8 +26,10 @@ class AppScope extends InheritedWidget {
 extension Utils on BuildContext {
   // Get the layout config from the app state
   LayoutConfig get config => AppScope.of(this).layoutConfig;
+
   // Get the layout data from the app state
   LayoutData get layout => AppScope.of(this).layoutConfig.data;
+
   // Get the width from the app state
   double get width => AppScope.of(this).width;
 }

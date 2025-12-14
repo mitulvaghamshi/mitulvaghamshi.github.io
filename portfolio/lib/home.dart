@@ -12,20 +12,21 @@ import 'package:portfolio/theme/app_colors.dart';
 class HomeWidget extends StatelessWidget {
   const HomeWidget({super.key});
 
+  static final _cards = [
+    IntroCard.new,
+    EduCard.new,
+    RepoCard.new,
+    WesCard.new,
+    AboutCard.new,
+  ];
+
   @override
   Widget build(BuildContext context) {
-    final cards = [
-      IntroCard.new,
-      EduCard.new,
-      RepoCard.new,
-      WesCard.new,
-      if (context.width < 1440) AboutCard.new,
-    ];
     return Scaffold(
       floatingActionButton: const _ThemeButton(),
       body: ListView.builder(
-        itemCount: cards.length,
-        itemBuilder: (_, index) => cards[index](),
+        itemCount: _cards.length,
+        itemBuilder: (_, index) => _cards[index](),
       ),
     );
   }
@@ -41,14 +42,11 @@ class _ThemeButton extends StatelessWidget {
     return Frame.card(
       onTap: ctrl.toggleTheme,
       color: context.colors.themeButton,
-      child: Icon(
-        switch (ctrl.themeMode.value) {
-          ThemeMode.dark => Icons.light_mode,
-          ThemeMode.light => Icons.dark_mode,
-          ThemeMode.system => Icons.brightness_4,
-        },
-        color: const Color(0xffffffff),
-      ),
+      child: Icon(switch (ctrl.themeMode.value) {
+        ThemeMode.dark => Icons.light_mode,
+        ThemeMode.light => Icons.dark_mode,
+        ThemeMode.system => Icons.brightness_4,
+      }, color: const Color(0xffffffff)),
     );
   }
 }

@@ -15,18 +15,17 @@ class GitHubRepo {
   });
 
   // Factory constructor to create a GitHubRepo from a JSON map
-  factory GitHubRepo.fromJson(Map<String, dynamic> json) {
+  factory GitHubRepo.fromJson(final Map<String, dynamic> json) {
     // Pattern matching to extract data from the json data
-    if (json
-        case {
-          'name': String name,
-          'html_url': String url,
-          'language': String? lang,
-          'description': String? desc,
-          'size': int size,
-          'stargazers_count': int stars,
-          'forks_count': int forks,
-        }) {
+    if (json case {
+      'name': String name,
+      'html_url': String url,
+      'language': String? lang,
+      'description': String? desc,
+      'size': int size,
+      'stargazers_count': int stars,
+      'forks_count': int forks,
+    }) {
       // Create a GitHubRepo instance using the extracted data
       return GitHubRepo._(
         name: name,
@@ -54,6 +53,7 @@ class GitHubRepo {
 extension Utils on GitHubRepo {
   String get subTitle => '$lang ($repoSize) - $stars Stars - $forks Forks';
 
-  String get repoSize =>
-      size ~/ 1024 <= 0 ? '$size KB' : '${(size / 1024).toStringAsFixed(2)} MB';
+  String get repoSize => size ~/ 1024 <= 0
+      ? '$size KB' //
+      : '${(size / 1024).toStringAsFixed(2)} MB';
 }

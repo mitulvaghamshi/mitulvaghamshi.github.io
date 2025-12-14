@@ -11,9 +11,9 @@ class AboutCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme.apply(
-          bodyColor: context.colors.aboutText,
-          displayColor: context.colors.aboutText,
-        );
+      bodyColor: context.colors.aboutText,
+      displayColor: context.colors.aboutText,
+    );
     final items = [
       Padding(
         padding: const EdgeInsets.all(16),
@@ -32,15 +32,19 @@ class AboutCard extends StatelessWidget {
       child: Frame.container(
         color: context.colors.aboutContainer,
         child: context.config.build(
-          mobileSmall290: Column(children: [
-            ...items,
-            const SizedBox.square(dimension: 16),
-            const _AboutButtons()
-          ]),
-          tabletLarge760: Column(children: [
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: items),
-            const _AboutButtons()
-          ]),
+          mobileSmall290: Column(
+            children: [
+              ...items,
+              const SizedBox.square(dimension: 16),
+              const _AboutButtons(),
+            ],
+          ),
+          tabletLarge760: Column(
+            children: [
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: items),
+              const _AboutButtons(),
+            ],
+          ),
         ),
       ),
     );
@@ -54,36 +58,39 @@ class _AboutButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme.apply(
-          bodyColor: context.colors.aboutText,
-          displayColor: context.colors.aboutText,
-        );
-    return Wrap(alignment: WrapAlignment.center, children: [
-      ...AppData.footerLinks.map((link) {
-        return SizedBox(
+      bodyColor: context.colors.aboutText,
+      displayColor: context.colors.aboutText,
+    );
+    return Wrap(
+      alignment: WrapAlignment.center,
+      children: [
+        ...AppData.footerLinks.map(
+          (link) => SizedBox(
+            width: 250,
+            child: Frame.link(
+              url: link.url,
+              color: context.colors.aboutCard,
+              child: Text(
+                link.value,
+                style: theme.titleMedium,
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
           width: 250,
-          child: Frame.link(
-            url: link.url,
+          child: Frame.card(
+            onTap: () => showLicensePage(context: context),
             color: context.colors.aboutCard,
             child: Text(
-              link.value,
+              'See licenses',
               style: theme.titleMedium,
               textAlign: TextAlign.center,
             ),
           ),
-        );
-      }),
-      SizedBox(
-        width: 250,
-        child: Frame.card(
-          onTap: () => showLicensePage(context: context),
-          color: context.colors.aboutCard,
-          child: Text(
-            'See licenses',
-            style: theme.titleMedium,
-            textAlign: TextAlign.center,
-          ),
         ),
-      ),
-    ]);
+      ],
+    );
   }
 }

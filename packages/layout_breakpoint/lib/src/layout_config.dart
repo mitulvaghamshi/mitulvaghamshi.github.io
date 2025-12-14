@@ -30,7 +30,7 @@ enum LayoutConfig {
   final LayoutData data;
 
   static LayoutConfig from(double width) =>
-      values.firstWhere((layout) => layout.data.isWithin(width),
+      values.firstWhere((layout) => layout.data.canHold(width),
           orElse: () => mobileTiny);
 
   // Widget build2({

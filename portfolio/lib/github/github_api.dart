@@ -11,7 +11,7 @@ typedef RepoList = Iterable<GitHubRepo>;
 
 class GitHubApiService extends ChangeNotifier {
   // List of fetched repositories
-  RepoList _repos = List.empty();
+  RepoList _repos = [];
 
   // Flag to control whether to show all repositories or a limited number
   bool _showAll = false;
@@ -44,20 +44,21 @@ extension Utils on GitHubApiService {
 
   // Label for a button that toggles between showing all or few repositories
   String get buttonLabel => _repos.isEmpty
-      ? _status
+      ? _status //
       : 'View ${_showAll ? 'few' : 'all'} repositories';
 }
 
 extension on GitHubApiService {
   // Decode the JSON string and map it to a list of GitHubRepo objects
   RepoList _parser(String content) =>
-      List<Map<String, dynamic>>.from(jsonDecode(content))
+      List<Map<String, dynamic>> //
+          .from(jsonDecode(content))
           .map(GitHubRepo.fromJson);
 
   Future<void> get _fetchDebug async {
     // Load repos from local asset file and parse into list it GitHubRepo
     _repos = _parser(await rootBundle.loadString('assets/repos.json'));
-    // Add 2 second delay
+    // Add 2 second delay for network request simulation
     await Future<void>.delayed(const Duration(seconds: 2));
   }
 
