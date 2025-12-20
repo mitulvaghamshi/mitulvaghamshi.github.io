@@ -12,7 +12,8 @@ class ThemeTemplate {
   void visit() => element.visitChildren(visitor);
 
   @override
-  String toString() => '''
+  String toString() =>
+      '''
   @immutable
   class \$$className extends ThemeExtension<\$$className> {
   const \$$className._({${visitor.constructorBuffer}});

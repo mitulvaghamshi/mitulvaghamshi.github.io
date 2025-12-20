@@ -29,9 +29,10 @@ enum LayoutConfig {
 
   final LayoutData data;
 
-  static LayoutConfig from(double width) =>
-      values.firstWhere((layout) => layout.data.canHold(width),
-          orElse: () => mobileTiny);
+  static LayoutConfig from(double width) => values.firstWhere(
+    (layout) => layout.data.canHold(width),
+    orElse: () => mobileTiny,
+  );
 
   // Widget build2({
   //   Widget? mobile,
@@ -93,83 +94,94 @@ enum LayoutConfig {
     Widget? desktop4k1920,
   }) {
     return switch (this) {
-      mobileSmall => mobileSmall290 ?? //
-          _placeholder,
-      mobileMedium => mobileMedium320 ?? //
-          mobileSmall290 ?? //
-          _placeholder,
-      mobileLarge => mobileLarge420 ?? //
-          mobileMedium320 ?? //
-          mobileSmall290 ?? //
-          _placeholder,
-      tabletSmall => tabletSmall560 ??
-          mobileLarge420 ??
-          mobileMedium320 ??
-          mobileSmall290 ??
-          _placeholder,
-      tabletMedium => tabletMedium640 ??
-          tabletSmall560 ??
-          mobileLarge420 ??
-          mobileMedium320 ??
-          mobileSmall290 ??
-          _placeholder,
-      tabletLarge => tabletLarge760 ??
-          tabletMedium640 ??
-          tabletSmall560 ??
-          mobileLarge420 ??
-          mobileMedium320 ??
-          mobileSmall290 ??
-          _placeholder,
-      laptopSmall => laptopSmall940 ??
-          tabletLarge760 ??
-          tabletMedium640 ??
-          tabletSmall560 ??
-          mobileLarge420 ??
-          mobileMedium320 ??
-          mobileSmall290 ??
-          _placeholder,
-      laptopMedium => laptopMedium1080 ??
-          laptopSmall940 ??
-          tabletLarge760 ??
-          tabletMedium640 ??
-          tabletSmall560 ??
-          mobileLarge420 ??
-          mobileMedium320 ??
-          mobileSmall290 ??
-          _placeholder,
-      laptopLarge => laptopLarge1280 ??
-          laptopMedium1080 ??
-          laptopSmall940 ??
-          tabletLarge760 ??
-          tabletMedium640 ??
-          tabletSmall560 ??
-          mobileLarge420 ??
-          mobileMedium320 ??
-          mobileSmall290 ??
-          _placeholder,
-      desktop2k => desktop2k1440 ??
-          laptopLarge1280 ??
-          laptopMedium1080 ??
-          laptopSmall940 ??
-          tabletLarge760 ??
-          tabletMedium640 ??
-          tabletSmall560 ??
-          mobileLarge420 ??
-          mobileMedium320 ??
-          mobileSmall290 ??
-          _placeholder,
-      desktop4k => desktop4k1920 ??
-          desktop2k1440 ??
-          laptopLarge1280 ??
-          laptopMedium1080 ??
-          laptopSmall940 ??
-          tabletLarge760 ??
-          tabletMedium640 ??
-          tabletSmall560 ??
-          mobileLarge420 ??
-          mobileMedium320 ??
-          mobileSmall290 ??
-          _placeholder,
+      mobileSmall =>
+        mobileSmall290 ?? //
+            _placeholder,
+      mobileMedium =>
+        mobileMedium320 ?? //
+            mobileSmall290 ?? //
+            _placeholder,
+      mobileLarge =>
+        mobileLarge420 ?? //
+            mobileMedium320 ?? //
+            mobileSmall290 ?? //
+            _placeholder,
+      tabletSmall =>
+        tabletSmall560 ??
+            mobileLarge420 ??
+            mobileMedium320 ??
+            mobileSmall290 ??
+            _placeholder,
+      tabletMedium =>
+        tabletMedium640 ??
+            tabletSmall560 ??
+            mobileLarge420 ??
+            mobileMedium320 ??
+            mobileSmall290 ??
+            _placeholder,
+      tabletLarge =>
+        tabletLarge760 ??
+            tabletMedium640 ??
+            tabletSmall560 ??
+            mobileLarge420 ??
+            mobileMedium320 ??
+            mobileSmall290 ??
+            _placeholder,
+      laptopSmall =>
+        laptopSmall940 ??
+            tabletLarge760 ??
+            tabletMedium640 ??
+            tabletSmall560 ??
+            mobileLarge420 ??
+            mobileMedium320 ??
+            mobileSmall290 ??
+            _placeholder,
+      laptopMedium =>
+        laptopMedium1080 ??
+            laptopSmall940 ??
+            tabletLarge760 ??
+            tabletMedium640 ??
+            tabletSmall560 ??
+            mobileLarge420 ??
+            mobileMedium320 ??
+            mobileSmall290 ??
+            _placeholder,
+      laptopLarge =>
+        laptopLarge1280 ??
+            laptopMedium1080 ??
+            laptopSmall940 ??
+            tabletLarge760 ??
+            tabletMedium640 ??
+            tabletSmall560 ??
+            mobileLarge420 ??
+            mobileMedium320 ??
+            mobileSmall290 ??
+            _placeholder,
+      desktop2k =>
+        desktop2k1440 ??
+            laptopLarge1280 ??
+            laptopMedium1080 ??
+            laptopSmall940 ??
+            tabletLarge760 ??
+            tabletMedium640 ??
+            tabletSmall560 ??
+            mobileLarge420 ??
+            mobileMedium320 ??
+            mobileSmall290 ??
+            _placeholder,
+      desktop4k =>
+        desktop4k1920 ??
+            desktop2k1440 ??
+            laptopLarge1280 ??
+            laptopMedium1080 ??
+            laptopSmall940 ??
+            tabletLarge760 ??
+            tabletMedium640 ??
+            tabletSmall560 ??
+            mobileLarge420 ??
+            mobileMedium320 ??
+            mobileSmall290 ??
+            _placeholder,
       _ => _placeholder,
     };
   }
