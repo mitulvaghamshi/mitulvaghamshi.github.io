@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/frame.dart';
 import 'package:portfolio/state/app_scope.dart';
-import 'package:portfolio/theme/app_colors.dart';
-import 'package:portfolio/utils/app_data.dart';
+import 'package:portfolio/theme/colors_model.dart';
+import 'package:portfolio/utils/app_content.dart';
 
 @immutable
 class WesCard extends StatelessWidget {
@@ -13,7 +13,7 @@ class WesCard extends StatelessWidget {
     color: context.colors.wesContainer,
     child: context.config.build(
       mobileSmall290: const Wrap(
-        alignment: WrapAlignment.center,
+        alignment: .center,
         children: [_WesLogo(), _WesContent()],
       ),
     ),
@@ -53,17 +53,17 @@ class _WesContent extends StatelessWidget {
         children: [
           Text(
             'Verified International Academic Qualifications',
-            textAlign: TextAlign.center,
             style: theme.headlineMedium,
+            textAlign: .center,
           ),
           const SizedBox(height: 16),
           Frame.link(
-            url: AppData.wesBadgeUrl,
+            url: AppContent.wesBadgeUrl,
             color: context.colors.wesTitle,
             child: Text('See badge @(credly.com)', style: theme.titleMedium),
           ),
           Frame.link(
-            url: AppData.wesReportUrl,
+            url: AppContent.wesReportUrl,
             color: context.colors.wesTitle,
             child: Text('See evaluation @(wes.org)', style: theme.titleMedium),
           ),

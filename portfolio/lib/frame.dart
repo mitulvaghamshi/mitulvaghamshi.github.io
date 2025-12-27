@@ -66,8 +66,8 @@ class _FrameContainer extends Frame {
   Widget build(BuildContext context) => Frame(
     color: color,
     animate: true,
-    padding: const EdgeInsets.all(16),
-    margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+    padding: const .all(16),
+    margin: const .symmetric(vertical: 8, horizontal: 16),
     child: child,
   );
 }
@@ -86,8 +86,8 @@ class _FrameCard extends Frame {
     onTap: onTap,
     color: color,
     animate: animate,
-    margin: const EdgeInsets.all(8),
-    padding: const EdgeInsets.all(16),
+    margin: const .all(8),
+    padding: const .all(16),
     child: child,
   );
 }
@@ -100,8 +100,8 @@ class _FrameLink extends _FrameCard {
 
   @override
   Widget build(BuildContext context) => Link(
-    uri: Uri.parse(url),
-    target: LinkTarget.blank,
+    uri: .parse(url),
+    target: .blank,
     builder: (_, link) => _FrameCard(onTap: link, color: color, child: child),
   );
 }

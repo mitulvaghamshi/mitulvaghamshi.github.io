@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:theme_extension/theme_extension.dart';
 
-part 'app_colors.g.dart';
+part 'colors_model.g.dart';
 
 @immutable
 @colorconfig
-class AppColors {
+class ColorsModel {
+  const ColorsModel();
+
   // Theme Button
   static const themeButton = (Color(0xFF000B37), Color(0xFFFF5500));
 

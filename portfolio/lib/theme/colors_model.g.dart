@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_colors.dart';
+part of 'colors_model.dart';
 
 // **************************************************************************
 // ThemeExtensionGenerator
 // **************************************************************************
 
 @immutable
-class $AppColors extends ThemeExtension<$AppColors> {
-  const $AppColors._({
+class $ColorsModel extends ThemeExtension<$ColorsModel> {
+  const $ColorsModel._({
     required this.themeButton,
     required this.imageBlend,
     required this.introContainer,
@@ -57,7 +57,7 @@ class $AppColors extends ThemeExtension<$AppColors> {
   final Color? aboutText;
 
   @override
-  ThemeExtension<$AppColors> copyWith({
+  ThemeExtension<$ColorsModel> copyWith({
     final Color? themeButton,
     final Color? imageBlend,
     final Color? introContainer,
@@ -81,7 +81,7 @@ class $AppColors extends ThemeExtension<$AppColors> {
     final Color? aboutCard,
     final Color? aboutText,
   }) {
-    return $AppColors._(
+    return $ColorsModel._(
       themeButton: themeButton,
       imageBlend: imageBlend,
       introContainer: introContainer,
@@ -108,12 +108,12 @@ class $AppColors extends ThemeExtension<$AppColors> {
   }
 
   @override
-  ThemeExtension<$AppColors> lerp(
-    covariant ThemeExtension<$AppColors>? other,
+  ThemeExtension<$ColorsModel> lerp(
+    covariant ThemeExtension<$ColorsModel>? other,
     double t,
   ) {
-    if (other is! $AppColors) return this;
-    return $AppColors._(
+    if (other is! $ColorsModel) return this;
+    return $ColorsModel._(
       themeButton: Color.lerp(themeButton, other.themeButton, t),
       imageBlend: Color.lerp(imageBlend, other.imageBlend, t),
       introContainer: Color.lerp(introContainer, other.introContainer, t),
@@ -139,62 +139,62 @@ class $AppColors extends ThemeExtension<$AppColors> {
     );
   }
 
-  static final $AppColors _lightThemeExt = $AppColors._(
-    themeButton: AppColors.themeButton.$1,
-    imageBlend: AppColors.imageBlend.$1,
-    introContainer: AppColors.introContainer.$1,
-    introCard: AppColors.introCard.$1,
-    introText: AppColors.introText.$1,
-    repoContainer: AppColors.repoContainer.$1,
-    repoCard: AppColors.repoCard.$1,
-    repoTitle: AppColors.repoTitle.$1,
-    repoSubtitle: AppColors.repoSubtitle.$1,
-    repoText: AppColors.repoText.$1,
-    eduContainer: AppColors.eduContainer.$1,
-    eduCard: AppColors.eduCard.$1,
-    eduTitle: AppColors.eduTitle.$1,
-    eduSubtitle: AppColors.eduSubtitle.$1,
-    eduText: AppColors.eduText.$1,
-    wesContainer: AppColors.wesContainer.$1,
-    wesCard: AppColors.wesCard.$1,
-    wesTitle: AppColors.wesTitle.$1,
-    wesText: AppColors.wesText.$1,
-    aboutContainer: AppColors.aboutContainer.$1,
-    aboutCard: AppColors.aboutCard.$1,
-    aboutText: AppColors.aboutText.$1,
+  static final $ColorsModel _lightThemeExt = $ColorsModel._(
+    themeButton: ColorsModel.themeButton.$1,
+    imageBlend: ColorsModel.imageBlend.$1,
+    introContainer: ColorsModel.introContainer.$1,
+    introCard: ColorsModel.introCard.$1,
+    introText: ColorsModel.introText.$1,
+    repoContainer: ColorsModel.repoContainer.$1,
+    repoCard: ColorsModel.repoCard.$1,
+    repoTitle: ColorsModel.repoTitle.$1,
+    repoSubtitle: ColorsModel.repoSubtitle.$1,
+    repoText: ColorsModel.repoText.$1,
+    eduContainer: ColorsModel.eduContainer.$1,
+    eduCard: ColorsModel.eduCard.$1,
+    eduTitle: ColorsModel.eduTitle.$1,
+    eduSubtitle: ColorsModel.eduSubtitle.$1,
+    eduText: ColorsModel.eduText.$1,
+    wesContainer: ColorsModel.wesContainer.$1,
+    wesCard: ColorsModel.wesCard.$1,
+    wesTitle: ColorsModel.wesTitle.$1,
+    wesText: ColorsModel.wesText.$1,
+    aboutContainer: ColorsModel.aboutContainer.$1,
+    aboutCard: ColorsModel.aboutCard.$1,
+    aboutText: ColorsModel.aboutText.$1,
   );
 
-  static final $AppColors _darkThemeExt = $AppColors._(
-    themeButton: AppColors.themeButton.$2,
-    imageBlend: AppColors.imageBlend.$2,
-    introContainer: AppColors.introContainer.$2,
-    introCard: AppColors.introCard.$2,
-    introText: AppColors.introText.$2,
-    repoContainer: AppColors.repoContainer.$2,
-    repoCard: AppColors.repoCard.$2,
-    repoTitle: AppColors.repoTitle.$2,
-    repoSubtitle: AppColors.repoSubtitle.$2,
-    repoText: AppColors.repoText.$2,
-    eduContainer: AppColors.eduContainer.$2,
-    eduCard: AppColors.eduCard.$2,
-    eduTitle: AppColors.eduTitle.$2,
-    eduSubtitle: AppColors.eduSubtitle.$2,
-    eduText: AppColors.eduText.$2,
-    wesContainer: AppColors.wesContainer.$2,
-    wesCard: AppColors.wesCard.$2,
-    wesTitle: AppColors.wesTitle.$2,
-    wesText: AppColors.wesText.$2,
-    aboutContainer: AppColors.aboutContainer.$2,
-    aboutCard: AppColors.aboutCard.$2,
-    aboutText: AppColors.aboutText.$2,
+  static final $ColorsModel _darkThemeExt = $ColorsModel._(
+    themeButton: ColorsModel.themeButton.$2,
+    imageBlend: ColorsModel.imageBlend.$2,
+    introContainer: ColorsModel.introContainer.$2,
+    introCard: ColorsModel.introCard.$2,
+    introText: ColorsModel.introText.$2,
+    repoContainer: ColorsModel.repoContainer.$2,
+    repoCard: ColorsModel.repoCard.$2,
+    repoTitle: ColorsModel.repoTitle.$2,
+    repoSubtitle: ColorsModel.repoSubtitle.$2,
+    repoText: ColorsModel.repoText.$2,
+    eduContainer: ColorsModel.eduContainer.$2,
+    eduCard: ColorsModel.eduCard.$2,
+    eduTitle: ColorsModel.eduTitle.$2,
+    eduSubtitle: ColorsModel.eduSubtitle.$2,
+    eduText: ColorsModel.eduText.$2,
+    wesContainer: ColorsModel.wesContainer.$2,
+    wesCard: ColorsModel.wesCard.$2,
+    wesTitle: ColorsModel.wesTitle.$2,
+    wesText: ColorsModel.wesText.$2,
+    aboutContainer: ColorsModel.aboutContainer.$2,
+    aboutCard: ColorsModel.aboutCard.$2,
+    aboutText: ColorsModel.aboutText.$2,
   );
 }
 
-extension AppColorsThemeExtension on AppColors {
-  $AppColors get lightThemeExtension => $AppColors._lightThemeExt;
-  $AppColors get darkThemeExtension => $AppColors._darkThemeExt;
+extension ColorsModelThemeExtension on ColorsModel {
+  $ColorsModel get lightThemeExtension => $ColorsModel._lightThemeExt;
+  $ColorsModel get darkThemeExtension => $ColorsModel._darkThemeExt;
 }
 
-extension $AppColorsExtension on BuildContext {
-  $AppColors get colors => Theme.of(this).extension<$AppColors>()!;
+extension $ColorsModelExtension on BuildContext {
+  $ColorsModel get colors => Theme.of(this).extension<$ColorsModel>()!;
 }

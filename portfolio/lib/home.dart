@@ -6,13 +6,13 @@ import 'package:portfolio/cards/repo_card.dart';
 import 'package:portfolio/cards/wes_card.dart';
 import 'package:portfolio/frame.dart';
 import 'package:portfolio/state/app_scope.dart';
-import 'package:portfolio/theme/app_colors.dart';
+import 'package:portfolio/theme/colors_model.dart';
 
 @immutable
 class HomeWidget extends StatelessWidget {
   const HomeWidget({super.key});
 
-  static final _cards = [
+  static const _cards = [
     IntroCard.new,
     EduCard.new,
     RepoCard.new,
@@ -21,15 +21,13 @@ class HomeWidget extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: const _ThemeButton(),
-      body: ListView.builder(
-        itemCount: _cards.length,
-        itemBuilder: (_, index) => _cards[index](),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => Scaffold(
+    floatingActionButton: const _ThemeButton(),
+    body: ListView.builder(
+      itemCount: _cards.length,
+      itemBuilder: (_, index) => _cards[index](),
+    ),
+  );
 }
 
 @immutable
@@ -40,12 +38,12 @@ class _ThemeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final ctrl = AppScope.of(context).themeController;
     return Frame.card(
-      onTap: ctrl.toggleTheme,
+      onTap: ctrl.toggle,
       color: context.colors.themeButton,
       child: Icon(switch (ctrl.themeMode.value) {
-        ThemeMode.dark => Icons.light_mode,
-        ThemeMode.light => Icons.dark_mode,
-        ThemeMode.system => Icons.brightness_4,
+        .dark => Icons.light_mode,
+        .light => Icons.dark_mode,
+        .system => Icons.brightness_4,
       }, color: const Color(0xffffffff)),
     );
   }
