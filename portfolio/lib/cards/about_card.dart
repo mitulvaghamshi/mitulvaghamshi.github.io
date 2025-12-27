@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/frame.dart';
 import 'package:portfolio/state/app_scope.dart';
-import 'package:portfolio/theme/app_colors.dart';
-import 'package:portfolio/utils/app_data.dart';
+import 'package:portfolio/theme/colors_model.dart';
+import 'package:portfolio/utils/app_content.dart';
 
 @immutable
 class AboutCard extends StatelessWidget {
@@ -15,10 +15,7 @@ class AboutCard extends StatelessWidget {
       displayColor: context.colors.aboutText,
     );
     final items = [
-      Padding(
-        padding: const EdgeInsets.all(16),
-        child: Image.asset('assets/icon.webp'),
-      ),
+      Padding(padding: const .all(16), child: Image.asset('assets/icon.webp')),
       const SizedBox.square(dimension: 16),
       Text(
         '© ${DateTime.now().year} Portfolio App. ',
@@ -28,7 +25,7 @@ class AboutCard extends StatelessWidget {
       Text('Developed by Mitul Vaghamshi.', style: theme.titleMedium),
     ];
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
+      padding: const .only(bottom: 8),
       child: Frame.container(
         color: context.colors.aboutContainer,
         child: context.config.build(
@@ -41,7 +38,7 @@ class AboutCard extends StatelessWidget {
           ),
           tabletLarge760: Column(
             children: [
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: items),
+              Row(mainAxisAlignment: .center, children: items),
               const _AboutButtons(),
             ],
           ),
@@ -62,31 +59,31 @@ class _AboutButtons extends StatelessWidget {
       displayColor: context.colors.aboutText,
     );
     return Wrap(
-      alignment: WrapAlignment.center,
+      alignment: .center,
       children: [
-        ...AppData.footerLinks.map(
-          (link) => SizedBox(
-            width: 250,
+        ...AppContent.footerLinks.map((link) {
+          return SizedBox(
+            width: 200,
             child: Frame.link(
               url: link.url,
               color: context.colors.aboutCard,
               child: Text(
                 link.value,
+                textAlign: .center,
                 style: theme.titleMedium,
-                textAlign: TextAlign.center,
               ),
             ),
-          ),
-        ),
+          );
+        }),
         SizedBox(
-          width: 250,
+          width: 200,
           child: Frame.card(
             onTap: () => showLicensePage(context: context),
             color: context.colors.aboutCard,
             child: Text(
               'See licenses',
+              textAlign: .center,
               style: theme.titleMedium,
-              textAlign: TextAlign.center,
             ),
           ),
         ),

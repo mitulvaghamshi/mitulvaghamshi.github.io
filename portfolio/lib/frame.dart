@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/theme/colors_model.dart';
 import 'package:url_launcher/link.dart';
 
 @immutable
@@ -13,22 +14,20 @@ class Frame extends StatelessWidget {
     required this.child,
   });
 
-  const factory Frame.container({
-    final Color? color,
-    required final Widget child,
-  }) = _FrameContainer;
+  const factory Frame.container({Color? color, required Widget child}) =
+      _FrameContainer;
 
   const factory Frame.card({
-    final Color? color,
-    final bool animate,
-    final VoidCallback? onTap,
-    required final Widget child,
+    Color? color,
+    bool animate,
+    VoidCallback? onTap,
+    required Widget child,
   }) = _FrameCard;
 
   const factory Frame.link({
-    final Color? color,
-    required final String url,
-    required final Widget child,
+    Color? color,
+    required String url,
+    required Widget child,
   }) = _FrameLink;
 
   final bool animate;
@@ -41,20 +40,32 @@ class Frame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget widget = child;
-    if (padding != null) widget = Padding(padding: padding!, child: widget);
-    if (onTap != null) widget = InkWell(onTap: onTap, child: widget);
+
+    if (padding != null) {
+      widget = Padding(padding: padding!, child: widget);
+    }
+
+    if (onTap != null) {
+      widget = InkWell(
+        onTap: onTap,
+        splashColor: context.colors.themeButton,
+        child: widget,
+      );
+    }
 
     widget = Card(
       elevation: 0,
       color: color,
       margin: margin,
-      clipBehavior: Clip.hardEdge,
+      clipBehavior: .hardEdge,
       child: widget,
     );
 
-    if (!animate) return widget;
+    if (animate) {
+      return AnimatedSize(duration: const Duration(seconds: 1), child: widget);
+    }
 
-    return AnimatedSize(duration: const Duration(seconds: 1), child: widget);
+    return widget;
   }
 }
 
@@ -66,8 +77,8 @@ class _FrameContainer extends Frame {
   Widget build(BuildContext context) => Frame(
     color: color,
     animate: true,
-    padding: const EdgeInsets.all(16),
-    margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+    padding: const .all(16),
+    margin: const .symmetric(vertical: 8, horizontal: 16),
     child: child,
   );
 }
@@ -86,8 +97,8 @@ class _FrameCard extends Frame {
     onTap: onTap,
     color: color,
     animate: animate,
-    margin: const EdgeInsets.all(8),
-    padding: const EdgeInsets.all(16),
+    margin: const .all(8),
+    padding: const .all(16),
     child: child,
   );
 }
@@ -100,8 +111,8 @@ class _FrameLink extends _FrameCard {
 
   @override
   Widget build(BuildContext context) => Link(
-    uri: Uri.parse(url),
-    target: LinkTarget.blank,
+    uri: .parse(url),
+    target: .blank,
     builder: (_, link) => _FrameCard(onTap: link, color: color, child: child),
   );
 }

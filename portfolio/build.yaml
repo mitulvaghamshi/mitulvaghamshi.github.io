@@ -3,4 +3,4 @@ targets:
     builders:
       theme_extension_builder|theme_extension_builder:
         generate_for:
-          - lib/theme/app_colors.dart
+          - lib/theme/colors_model.dart

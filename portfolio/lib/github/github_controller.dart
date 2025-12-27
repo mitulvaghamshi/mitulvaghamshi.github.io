@@ -4,12 +4,12 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-import 'package:portfolio/github/github_repo.dart';
-import 'package:portfolio/utils/app_data.dart';
+import 'package:portfolio/github/github_model.dart';
+import 'package:portfolio/utils/app_content.dart';
 
-typedef RepoList = Iterable<GitHubRepo>;
+typedef RepoList = Iterable<GitHubModel>;
 
-class GitHubApiService extends ChangeNotifier {
+class GitHubController extends ChangeNotifier {
   // List of fetched repositories
   RepoList _repos = [];
 
@@ -31,33 +31,25 @@ class GitHubApiService extends ChangeNotifier {
     try {
       kDebugMode ? await _fetchDebug : await _fetchNetwork;
     } finally {
-      // Set error message if no repos were fetched
-      if (_repos.isEmpty) _status = 'Unable to connect to GitHub 💔';
+      if (_repos.isEmpty) {
+        _status = 'Unable to connect to GitHub 💔';
+      }
       notifyListeners();
     }
   }
 }
 
-extension Utils on GitHubApiService {
-  // Returns either all repositories or a limited number based on _showAll flag
-  RepoList items(int count) => _showAll ? _repos : _repos.take(count);
-
-  // Label for a button that toggles between showing all or few repositories
-  String get buttonLabel => _repos.isEmpty
-      ? _status //
-      : 'View ${_showAll ? 'few' : 'all'} repositories';
-}
-
-extension on GitHubApiService {
+extension on GitHubController {
   // Decode the JSON string and map it to a list of GitHubRepo objects
-  RepoList _parser(String content) =>
-      List<Map<String, dynamic>> //
-          .from(jsonDecode(content))
-          .map(GitHubRepo.fromJson);
+  RepoList _parser(String content) {
+    final items = List<Map<String, dynamic>>.from(jsonDecode(content));
+    return items.map(GitHubModel.fromJson);
+  }
 
   Future<void> get _fetchDebug async {
     // Load repos from local asset file and parse into list it GitHubRepo
-    _repos = _parser(await rootBundle.loadString('assets/repos.json'));
+    final content = await rootBundle.loadString('assets/repos.json');
+    _repos = _parser(content);
     // Add 2 second delay for network request simulation
     await Future<void>.delayed(const Duration(seconds: 2));
   }
@@ -65,9 +57,21 @@ extension on GitHubApiService {
   Future<void> get _fetchNetwork async {
     // Fetch repos from GitHub Api
     final res = await http.get(
-      Uri.parse(AppData.githubApiUrl),
+      .parse(AppContent.githubApiUrl),
       headers: {'Accept': 'application/vnd.github+json'},
     );
-    if (res.statusCode == HttpStatus.ok) _repos = _parser(res.body);
+    if (res.statusCode == HttpStatus.ok) {
+      _repos = _parser(res.body);
+    }
   }
+}
+
+extension Utils on GitHubController {
+  // Returns either all repositories or a limited number based on _showAll flag
+  RepoList items(int count) => _showAll ? _repos : _repos.take(count);
+
+  // Label for a button that toggles between showing all or few repositories
+  String get buttonLabel => _repos.isEmpty
+      ? _status
+      : 'View ${_showAll ? 'few' : 'all'} repositories';
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/home.dart';
 import 'package:portfolio/state/app_scope.dart';
 import 'package:portfolio/state/app_state.dart';
-import 'package:portfolio/theme/app_colors.dart';
+import 'package:portfolio/theme/colors_model.dart';
 
 void main() => runApp(const MainApp());
 
@@ -17,7 +17,7 @@ class MainApp extends StatelessWidget {
       builder: (_, constraints) {
         final width = constraints.biggest.width;
         if (state == null) {
-          state = AppState.create(width: width);
+          state = .create(width: width);
           return PortfolioApp(state: state!);
         }
         state = state!.update(width);
@@ -49,16 +49,16 @@ class PortfolioApp extends StatelessWidget {
   );
 }
 
-final _colors = AppColors();
+const _colors = ColorsModel();
 
 final _lightThemeData = ThemeData(
-  colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+  colorScheme: .fromSeed(seedColor: Colors.white),
   useMaterial3: true,
   extensions: [_colors.lightThemeExtension],
 );
 
 final _darkThemeData = ThemeData(
   useMaterial3: true,
-  brightness: Brightness.dark,
+  brightness: .dark,
   extensions: [_colors.darkThemeExtension],
 );
