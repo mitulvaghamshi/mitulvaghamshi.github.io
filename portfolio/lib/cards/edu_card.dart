@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/frame.dart';
 import 'package:portfolio/state/app_scope.dart';
-import 'package:portfolio/theme/app_colors.dart';
-import 'package:portfolio/utils/app_data.dart';
+import 'package:portfolio/theme/colors_model.dart';
+import 'package:portfolio/utils/app_content.dart';
 
 @immutable
 class EduCard extends StatelessWidget {
@@ -13,19 +13,19 @@ class EduCard extends StatelessWidget {
     color: context.colors.eduContainer,
     child: context.config.build(
       mobileSmall290: Column(
-        children: AppData.educationLinks.map((e) {
+        children: AppContent.educationLinks.map((item) {
           return SizedBox(
             width: context.width,
-            child: _EduItem(college: e),
+            child: _EduItem(college: item),
           );
         }).toList(),
       ),
       tabletLarge760: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: AppData.educationLinks.map((e) {
+        mainAxisAlignment: .center,
+        children: AppContent.educationLinks.map((item) {
           return SizedBox(
             width: context.width / 2 - 32,
-            child: _EduItem(college: e),
+            child: _EduItem(college: item),
           );
         }).toList(),
       ),
@@ -37,7 +37,7 @@ class EduCard extends StatelessWidget {
 class _EduItem extends StatelessWidget {
   const _EduItem({required this.college});
 
-  final Cinq college;
+  final EduPair college;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class _EduItem extends StatelessWidget {
         children: [
           Text(
             college.major,
-            overflow: TextOverflow.ellipsis,
+            overflow: .ellipsis,
             style: theme.headlineSmall!.copyWith(
               color: context.colors.eduTitle,
             ),

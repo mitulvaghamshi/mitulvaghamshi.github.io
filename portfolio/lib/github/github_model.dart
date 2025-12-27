@@ -1,10 +1,9 @@
 import 'package:flutter/foundation.dart';
 
-// Immutable GitHub repository model
 @immutable
-class GitHubRepo {
-  // Private constructor for creating a GitHubRepo instance
-  const GitHubRepo._({
+class GitHubModel {
+  // Private constructor for creating a GitHubModel instance
+  const GitHubModel._({
     required this.name,
     required this.url,
     required this.lang,
@@ -14,8 +13,8 @@ class GitHubRepo {
     required this.forks,
   });
 
-  // Factory constructor to create a GitHubRepo from a JSON map
-  factory GitHubRepo.fromJson(final Map<String, dynamic> json) {
+  // Factory constructor to create a GitHubModel from a JSON map
+  factory GitHubModel.fromJson(Map<String, dynamic> json) {
     // Pattern matching to extract data from the json data
     if (json case {
       'name': String name,
@@ -26,8 +25,7 @@ class GitHubRepo {
       'stargazers_count': int stars,
       'forks_count': int forks,
     }) {
-      // Create a GitHubRepo instance using the extracted data
-      return GitHubRepo._(
+      return GitHubModel._(
         name: name,
         url: url,
         lang: lang ?? 'Markdown',
@@ -38,7 +36,7 @@ class GitHubRepo {
       );
     }
     // Throw an exception if the map does not match the expected format
-    throw const FormatException('Invalid json data');
+    throw const FormatException('[GitHubModel]: Invalid json data');
   }
 
   final String name;
@@ -50,7 +48,7 @@ class GitHubRepo {
   final int forks;
 }
 
-extension Utils on GitHubRepo {
+extension Utils on GitHubModel {
   String get subTitle => '$lang ($repoSize) - $stars Stars - $forks Forks';
 
   String get repoSize => size ~/ 1024 <= 0

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:portfolio/frame.dart';
 import 'package:portfolio/state/app_scope.dart';
-import 'package:portfolio/theme/app_colors.dart';
-import 'package:portfolio/utils/app_data.dart';
-import 'package:url_launcher/link.dart';
+import 'package:portfolio/theme/colors_model.dart';
+import 'package:portfolio/widgets/description_widget.dart';
+import 'package:portfolio/widgets/empty_widget.dart';
+import 'package:portfolio/widgets/name_widget.dart';
+import 'package:portfolio/widgets/picture_widget.dart';
+import 'package:portfolio/widgets/social_buttons.dart';
 
 part 'intro_card.layouts.dart';
-part 'intro_card.widgets.dart';
 
 @immutable
 class IntroCard extends StatelessWidget {
@@ -15,11 +16,12 @@ class IntroCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.only(top: 16),
+    padding: const .only(top: 16),
     child: Frame.container(
       color: context.colors.introContainer,
       child: context.config.build(
         mobileSmall290: const _Widget290(),
+        mobileLarge420: const _Widget420(),
         tabletMedium640: const _Widget640(),
         tabletLarge760: const _Widget760(),
         laptopSmall940: const _Widget940(),

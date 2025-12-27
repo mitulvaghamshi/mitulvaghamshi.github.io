@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-typedef Deux = ({String url, String value});
+typedef UrlPair = ({String url, String value});
 
-typedef Cinq = ({
+typedef EduPair = ({
   String url,
   String name,
   String year,
@@ -11,20 +11,20 @@ typedef Cinq = ({
 });
 
 @immutable
-mixin AppData {
+mixin AppContent {
   static String get introText => _introText;
   static String get wesBadgeUrl => _wesBadgeUrl;
   static String get wesReportUrl => _wesReportUrl;
   static String get githubApiUrl => _githubApiUrl;
 
-  static Iterable<Deux> get socialLinks => _socialLinks;
-  static Iterable<Deux> get footerLinks => _footerLinks;
-  static Iterable<Cinq> get educationLinks => _educationLinks;
+  static Iterable<UrlPair> get socialLinks => _socialLinks;
+  static Iterable<UrlPair> get footerLinks => _footerLinks;
+  static Iterable<EduPair> get educationLinks => _educationLinks;
 
   static String buildSVG({required Color color, required String data}) =>
       '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">'
-      '<path fill="#${color.toARGB32().toRadixString(16).substring(2)}" d="$data"/>'
-      '</svg>';
+      '<path fill="#${color.toARGB32().toRadixString(16).substring(2)}" '
+      'd="$data"/></svg>';
 }
 
 const _githubApiUrl = 'https://api.github.com/users/mitulvaghamshi/repos';
@@ -36,7 +36,7 @@ const _wesReportUrl =
     'https://badges.wes.org/Evidence?type=ca&i=3794f10a-19b3-47f0-82bd-393315bc6584';
 
 const _introText =
-    '''Highly skilled Software Developer with 4+ years of hands-on experience in cross-platform development, backend engineering, and technical support. Strong grounding in object-oriented programming, clean code principles, and modern development frameworks. Known for delivering scalable solutions, resolving complex technical issues, and collaborating effectively in agile environments. Passionate about innovation, continuous learning, and creating user-centric applications.''';
+    '''Software Developer with 4+ years of hands-on experience in cross-platform development, backend engineering, and technical support. Strong grounding in object-oriented programming, clean code principles, and modern development frameworks. Known for delivering scalable solutions, resolving complex technical issues, and collaborating effectively in agile environments. Passionate about innovation, continuous learning, and creating user-centric applications.''';
 
 const _socialLinks = [
   (
@@ -75,7 +75,7 @@ const _host = 'https://mitulvaghamshi.github.io';
 
 const _footerLinks = [
   (url: '$_host/resume/resume.pdf', value: 'Download resume'),
-  (url: '$_host/resume', /*      */ value: 'Html version'),
+  (url: '$_host/resume' /*      */, value: 'Html version'),
   (url: '$_host/resume/policy.html', value: 'Privacy policy'),
 ];
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/frame.dart';
-import 'package:portfolio/github/github_api.dart';
-import 'package:portfolio/github/github_repo.dart';
+import 'package:portfolio/github/github_controller.dart';
+import 'package:portfolio/github/github_model.dart';
 import 'package:portfolio/state/app_scope.dart';
-import 'package:portfolio/theme/app_colors.dart';
+import 'package:portfolio/theme/colors_model.dart';
 
 @immutable
 class RepoCard extends StatelessWidget {
@@ -11,31 +11,31 @@ class RepoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final handler = AppScope.of(context).githubApiService;
+    final controller = AppScope.of(context).githubController;
     final count = (context.width / 500).round();
     return Frame.container(
       color: context.colors.repoContainer,
       child: ListenableBuilder(
-        listenable: handler,
+        listenable: controller,
         builder: (context, child) => Column(
           children: [
             context.config.build(
               mobileSmall290: Wrap(
-                alignment: WrapAlignment.center,
-                runAlignment: WrapAlignment.center,
-                children: handler.items(count * 2).map((e) {
+                alignment: .center,
+                runAlignment: .center,
+                children: controller.items(count * 2).map((repo) {
                   return SizedBox(
                     width: context.width / count - 32,
                     height: context.width > 420 ? 200 : 220,
-                    child: _RepoItem(repo: e),
+                    child: _RepoItem(repo: repo),
                   );
                 }).toList(),
               ),
             ),
             Frame.card(
-              onTap: handler.toggleShowAll,
+              onTap: controller.toggleShowAll,
               color: context.colors.repoContainer,
-              child: Text(handler.buttonLabel),
+              child: Text(controller.buttonLabel),
             ),
           ],
         ),
@@ -48,7 +48,7 @@ class RepoCard extends StatelessWidget {
 class _RepoItem extends StatelessWidget {
   const _RepoItem({required this.repo});
 
-  final GitHubRepo repo;
+  final GitHubModel repo;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +65,7 @@ class _RepoItem extends StatelessWidget {
           Text(
             repo.name,
             maxLines: 1,
-            overflow: TextOverflow.ellipsis,
+            overflow: .ellipsis,
             style: theme.headlineSmall!.copyWith(
               color: context.colors.repoTitle,
             ),
@@ -81,7 +81,7 @@ class _RepoItem extends StatelessWidget {
           Text(
             repo.desc,
             maxLines: 3,
-            overflow: TextOverflow.ellipsis,
+            overflow: .ellipsis,
             style: theme.bodyMedium!.copyWith(color: context.colors.repoText),
           ),
         ],

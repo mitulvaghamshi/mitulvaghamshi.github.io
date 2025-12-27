@@ -5,18 +5,21 @@ class _Widget940 extends StatelessWidget {
   const _Widget940();
 
   @override
-  Widget build(BuildContext context) => const Row(
-    crossAxisAlignment: .end,
-    children: [
-      ProfilePicture(),
-      Expanded(
-        child: Column(
-          crossAxisAlignment: .stretch,
-          children: [FullName(), Description()],
+  Widget build(BuildContext context) => const SizedBox(
+    height: 420,
+    child: Row(
+      crossAxisAlignment: .stretch,
+      children: [
+        PictureWidget(width: 300),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: .stretch,
+            children: [NameWidget(), DescriptionWidget(), EmptyWidget()],
+          ),
         ),
-      ),
-      SocialButtonBar(),
-    ],
+        SocialButtons(),
+      ],
+    ),
   );
 }
 
@@ -27,19 +30,22 @@ class _Widget760 extends StatelessWidget {
   @override
   Widget build(BuildContext context) => const Column(
     children: [
-      Row(
-        crossAxisAlignment: .start,
-        children: [
-          ProfilePicture(),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: .stretch,
-              children: [FullName(), Description()],
+      SizedBox(
+        height: 430,
+        child: Row(
+          crossAxisAlignment: .start,
+          children: [
+            PictureWidget(width: 300),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: .stretch,
+                children: [NameWidget(), DescriptionWidget(), EmptyWidget()],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-      SocialButtonBar(),
+      SocialButtons(),
     ],
   );
 }
@@ -50,16 +56,42 @@ class _Widget640 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const Column(
+    crossAxisAlignment: .stretch,
     children: [
-      Row(
-        crossAxisAlignment: .start,
-        children: [
-          ProfilePicture(),
-          Expanded(child: FullName()),
-        ],
+      SizedBox(
+        height: 400,
+        child: Row(
+          crossAxisAlignment: .stretch,
+          children: [
+            PictureWidget(width: 280),
+            Expanded(child: DescriptionWidget()),
+          ],
+        ),
       ),
-      SocialButtonBar(),
-      Description(),
+      NameWidget(),
+      SocialButtons(),
+    ],
+  );
+}
+
+@immutable
+class _Widget420 extends StatelessWidget {
+  const _Widget420();
+
+  @override
+  Widget build(BuildContext context) => const Column(
+    crossAxisAlignment: .stretch,
+    children: [
+      SizedBox(
+        height: 400,
+        child: Row(
+          crossAxisAlignment: .stretch,
+          children: [PictureWidget(width: 290), EmptyWidget()],
+        ),
+      ),
+      NameWidget(),
+      DescriptionWidget(),
+      SocialButtons(),
     ],
   );
 }
@@ -70,6 +102,12 @@ class _Widget290 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const Column(
-    children: [ProfilePicture(), FullName(), Description(), SocialButtonBar()],
+    crossAxisAlignment: .stretch,
+    children: [
+      PictureWidget(width: 290),
+      NameWidget(),
+      DescriptionWidget(),
+      SocialButtons(),
+    ],
   );
 }
