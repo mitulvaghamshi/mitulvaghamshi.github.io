@@ -6,15 +6,26 @@ import 'package:portfolio/state/app_scope.dart';
 import 'package:portfolio/theme/colors_model.dart';
 
 @immutable
-class RepoCard extends StatelessWidget {
+class RepoCard extends StatefulWidget {
   const RepoCard({super.key});
+
+  @override
+  State<RepoCard> createState() => _RepoCardState();
+}
+
+class _RepoCardState extends State<RepoCard> {
+  bool isMinimized = false;
 
   @override
   Widget build(BuildContext context) {
     final controller = AppScope.of(context).githubController;
     final count = (context.width / 500).round();
-    return Frame.container(
+    return Frame.controls(
+      title: 'GitHub',
+      titleColor: context.colors.repoTitle,
       color: context.colors.repoContainer,
+      isMinimized: isMinimized,
+      onMinimize: () => setState(() => isMinimized = !isMinimized),
       child: ListenableBuilder(
         listenable: controller,
         builder: (context, child) => Column(

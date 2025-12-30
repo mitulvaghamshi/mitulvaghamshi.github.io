@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 @immutable
@@ -10,7 +11,7 @@ class TrafficLights extends StatelessWidget {
     this.onMaximize,
   });
 
-  final String? title;
+  final Widget? title;
   final VoidCallback? onClose;
   final VoidCallback? onMinimize;
   final VoidCallback? onMaximize;
@@ -22,28 +23,28 @@ class TrafficLights extends StatelessWidget {
       // 1. Red (Close) Button
       _TrafficLightButton(
         onTap: onClose,
-        color: const Color(0xFFFC615C), // macOS Red
-        hoverColor: const Color(0xFFF74E4A),
-        icon: const Icon(Icons.close, size: 8, color: Colors.black45),
+        color: const Color(0xFFFF5950),
+        hoverColor: CupertinoColors.destructiveRed,
+        icon: const Icon(Icons.close, size: 10),
       ),
       const SizedBox(width: 8),
       // 2. Yellow (Minimize) Button
       _TrafficLightButton(
         onTap: onMinimize,
-        color: const Color(0xFFFBBC2D), // macOS Yellow
-        hoverColor: const Color(0xFFF0AF29),
-        icon: const Icon(Icons.remove, size: 8, color: Colors.black45),
+        color: const Color(0xFFFFD83D),
+        hoverColor: CupertinoColors.systemYellow,
+        icon: const Icon(Icons.remove, size: 10),
       ),
       const SizedBox(width: 8),
       // 3. Green (Maximize) Button
       _TrafficLightButton(
         onTap: onMaximize,
-        color: const Color(0xFF28CA41), // macOS Green
-        hoverColor: const Color(0xFF23B53A),
-        icon: const Icon(Icons.fullscreen, size: 8, color: Colors.black45),
+        color: CupertinoColors.systemGreen,
+        hoverColor: CupertinoColors.activeGreen,
+        icon: const Icon(Icons.fullscreen, size: 10),
       ),
       const SizedBox(width: 12),
-      Text(title ?? 'Terminal', style: const TextStyle(fontWeight: .bold)),
+      if (title != null) title!,
     ],
   );
 }
@@ -77,12 +78,13 @@ class _TrafficLightButtonState extends State<_TrafficLightButton> {
       onEnter: (_) => setState(() => _isHovering = true),
       onExit: (_) => setState(() => _isHovering = false),
       child: AnimatedContainer(
-        width: 12,
-        height: 12,
+        width: 14,
+        height: 14,
+        clipBehavior: .antiAlias,
         duration: const Duration(milliseconds: 100),
         decoration: BoxDecoration(
           color: _isHovering ? widget.hoverColor : widget.color,
-          borderRadius: .circular(6), // Perfect circle
+          borderRadius: .circular(10), // Perfect circle
         ),
         child: Center(
           child: AnimatedOpacity(

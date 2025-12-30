@@ -11,14 +11,25 @@ import 'package:portfolio/widgets/social_buttons.dart';
 part 'intro_card.layouts.dart';
 
 @immutable
-class IntroCard extends StatelessWidget {
+class IntroCard extends StatefulWidget {
   const IntroCard({super.key});
+
+  @override
+  State<IntroCard> createState() => _IntroCardState();
+}
+
+class _IntroCardState extends State<IntroCard> {
+  bool isMinimized = false;
 
   @override
   Widget build(BuildContext context) => Padding(
     padding: const .only(top: 16),
-    child: Frame.container(
+    child: Frame.controls(
+      title: 'Introduction',
+      titleColor: context.colors.introText,
       color: context.colors.introContainer,
+      isMinimized: isMinimized,
+      onMinimize: () => setState(() => isMinimized = !isMinimized),
       child: context.config.build(
         mobileSmall290: const _Widget290(),
         mobileLarge420: const _Widget420(),

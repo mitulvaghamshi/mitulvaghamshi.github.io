@@ -4,7 +4,6 @@ import 'package:portfolio/frame.dart';
 import 'package:portfolio/state/app_scope.dart';
 import 'package:portfolio/theme/colors_model.dart';
 import 'package:portfolio/utils/app_content.dart';
-import 'package:portfolio/widgets/traffic_lights.dart';
 import 'package:url_launcher/link.dart';
 
 @immutable
@@ -18,23 +17,19 @@ class SocialButtons extends StatelessWidget {
         : context.width > 360
         ? 32.0
         : 20.0;
-    final items = AppContent.socialLinks
-        .map((link) => _SocialButton(size: size, link: link))
-        .toList();
+    final items = AppContent.socialLinks.map((link) {
+      return _SocialButton(size: size, link: link);
+    });
     return Frame.card(
       color: context.colors.introCard,
       child: context.config.build(
-        mobileSmall290: Column(
-          crossAxisAlignment: .start,
-          children: [
-            const TrafficLights(title: 'connect.txt'),
-            const SizedBox(height: 16),
-            Row(mainAxisAlignment: .spaceBetween, children: items),
-          ],
+        mobileSmall290: Row(
+          mainAxisAlignment: .spaceBetween,
+          children: items.toList(),
         ),
         laptopSmall940: Column(
           mainAxisAlignment: .spaceBetween,
-          children: items,
+          children: items.toList(),
         ),
       ),
     );
