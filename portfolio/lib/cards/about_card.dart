@@ -5,8 +5,15 @@ import 'package:portfolio/theme/colors_model.dart';
 import 'package:portfolio/utils/app_content.dart';
 
 @immutable
-class AboutCard extends StatelessWidget {
+class AboutCard extends StatefulWidget {
   const AboutCard({super.key});
+
+  @override
+  State<AboutCard> createState() => _AboutCardState();
+}
+
+class _AboutCardState extends State<AboutCard> {
+  bool isMinimized = false;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +33,12 @@ class AboutCard extends StatelessWidget {
     ];
     return Padding(
       padding: const .only(bottom: 8),
-      child: Frame.container(
+      child: Frame.controls(
+        title: 'About',
+        titleColor: context.colors.aboutText,
         color: context.colors.aboutContainer,
+        isMinimized: isMinimized,
+        onMinimize: () => setState(() => isMinimized = !isMinimized),
         child: context.config.build(
           mobileSmall290: Column(
             children: [

@@ -5,12 +5,23 @@ import 'package:portfolio/theme/colors_model.dart';
 import 'package:portfolio/utils/app_content.dart';
 
 @immutable
-class WesCard extends StatelessWidget {
+class WesCard extends StatefulWidget {
   const WesCard({super.key});
 
   @override
-  Widget build(BuildContext context) => Frame.container(
+  State<WesCard> createState() => _WesCardState();
+}
+
+class _WesCardState extends State<WesCard> {
+  bool isMinimized = false;
+
+  @override
+  Widget build(BuildContext context) => Frame.controls(
+    title: 'Credentials',
+    titleColor: context.colors.wesText,
     color: context.colors.wesContainer,
+    isMinimized: isMinimized,
+    onMinimize: () => setState(() => isMinimized = !isMinimized),
     child: context.config.build(
       mobileSmall290: const Wrap(
         alignment: .center,

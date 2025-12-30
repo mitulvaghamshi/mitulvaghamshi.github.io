@@ -5,12 +5,23 @@ import 'package:portfolio/theme/colors_model.dart';
 import 'package:portfolio/utils/app_content.dart';
 
 @immutable
-class EduCard extends StatelessWidget {
+class EduCard extends StatefulWidget {
   const EduCard({super.key});
 
   @override
-  Widget build(BuildContext context) => Frame.container(
+  State<EduCard> createState() => _EduCardState();
+}
+
+class _EduCardState extends State<EduCard> {
+  bool isMinimized = false;
+
+  @override
+  Widget build(BuildContext context) => Frame.controls(
+    title: 'Education',
+    titleColor: context.colors.eduTitle,
     color: context.colors.eduContainer,
+    isMinimized: isMinimized,
+    onMinimize: () => setState(() => isMinimized = !isMinimized),
     child: context.config.build(
       mobileSmall290: Column(
         children: AppContent.educationLinks.map((item) {

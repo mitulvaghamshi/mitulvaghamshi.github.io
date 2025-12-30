@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/frame.dart';
 import 'package:portfolio/theme/colors_model.dart';
-import 'package:portfolio/widgets/traffic_lights.dart';
 
 @immutable
 class NameWidget extends StatelessWidget {
@@ -15,29 +14,24 @@ class NameWidget extends StatelessWidget {
     );
     return Frame.card(
       color: context.colors.introCard,
-      child: Column(
-        crossAxisAlignment: .start,
-        children: [
-          const TrafficLights(title: 'name.txt'),
-          Text.rich(
+      child: Text.rich(
+        TextSpan(
+          text: 'Software Developer',
+          style: style.titleSmall!.copyWith(fontWeight: .bold),
+          children: [
             TextSpan(
-              text: 'Software Developer',
-              style: style.titleSmall!.copyWith(fontWeight: .bold),
-              children: [
-                TextSpan(
-                  text: '_\n',
-                  style: style.headlineMedium!.copyWith(
-                    color: context.colors.themeButton,
-                  ),
-                ),
-                TextSpan(
-                  text: 'Mitul Vaghamshi',
-                  style: style.headlineLarge!.copyWith(fontWeight: .bold),
-                ),
-              ],
+              text: '_\n',
+              style: style.headlineMedium!.copyWith(
+                fontWeight: .bold,
+                color: context.colors.themeButton,
+              ),
             ),
-          ),
-        ],
+            TextSpan(
+              text: 'Mitul Vaghamshi',
+              style: style.headlineLarge!.copyWith(fontWeight: .bold),
+            ),
+          ],
+        ),
       ),
     );
   }
