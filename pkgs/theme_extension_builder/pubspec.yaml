@@ -1,16 +1,22 @@
-name: theme_extension
+name: theme_extension_builder
 description: A new Flutter package project.
 version: 0.0.1
 publish_to: none
 homepage: https://mitulvaghamshi.github.io
 
 environment:
-  sdk: ^3.10.4
-  flutter: ^3.38.5
+  sdk: ^3.10.8
+  flutter: ^3.38.9
 
 dependencies:
+  analyzer: ^10.0.1
+  build: ^4.0.2
+  build_config: ^1.1.1
   flutter:
     sdk: flutter
+  source_gen: ^4.0.0
+  theme_extension:
+    path: ../theme_extension
 
 dev_dependencies:
   flutter_test:

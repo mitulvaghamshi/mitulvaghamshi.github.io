@@ -73,21 +73,19 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'MyApp',
-      theme: _lightTheme, // Light theme
-      darkTheme: _darkTheme, // Dark Theme
-      home: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          backgroundColor: context.colors.buttonColor, // Access color using extension.
-          child: Icon(Icons.add),
-        ),
-        body: const SizedBox(),
+  Widget build(BuildContext context) => MaterialApp(
+    title: 'MyApp',
+    theme: _lightTheme, // Light theme
+    darkTheme: _darkTheme, // Dark Theme
+    home: Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        // Access color using [colors] extension of [BuildContext].
+        backgroundColor: context.colors.buttonColor,
+        child: Icon(Icons.add),
       ),
-    );
-  }
+    ),
+  );
 }
 ```
 
