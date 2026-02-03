@@ -4,10 +4,10 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-import 'package:portfolio/github/github_model.dart';
+import 'package:portfolio/github/github_repo.dart';
 import 'package:portfolio/utils/app_content.dart';
 
-typedef RepoList = Iterable<GitHubModel>;
+typedef RepoList = Iterable<GitHubRepo>;
 
 class GitHubController extends ChangeNotifier {
   // List of fetched repositories
@@ -42,8 +42,9 @@ class GitHubController extends ChangeNotifier {
 extension on GitHubController {
   // Decode the JSON string and map it to a list of GitHubRepo objects
   RepoList _parser(String content) {
+    if (content.isEmpty) return const .empty();
     final items = List<Map<String, dynamic>>.from(jsonDecode(content));
-    return items.map(GitHubModel.fromJson);
+    return items.map(GitHubRepo.fromJson);
   }
 
   Future<void> get _fetchDebug async {

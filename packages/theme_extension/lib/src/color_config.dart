@@ -13,3 +13,7 @@
 interface class ColorConfig {
   const ColorConfig();
 }
+
+/// A shorthand to annotate as [@colorconfig],
+/// instead calling a [ColorConfig()] constructor.
+const colorconfig = ColorConfig();

@@ -1,15 +1,16 @@
 name: theme_extension_builder
 description: A new Flutter package project.
-version: 0.0.1
-publish_to: none
 homepage: https://mitulvaghamshi.github.io
+publish_to: none
+
+version: 0.0.1
 
 environment:
-  sdk: ^3.10.4
-  flutter: ^3.38.5
+  sdk: ^3.11.0
+  flutter: ^3.41.1
 
 dependencies:
-  analyzer: ^9.0.0
+  analyzer: ^10.0.1
   build: ^4.0.2
   build_config: ^1.1.1
   flutter:
@@ -19,8 +20,10 @@ dependencies:
     path: ../theme_extension
 
 dev_dependencies:
+  extra_lints:
+    git:
+      url: https://github.com/mitulvaghamshi/extra_lints.git
   flutter_test:
     sdk: flutter
-  flutter_lints: ^6.0.0
 
 flutter:

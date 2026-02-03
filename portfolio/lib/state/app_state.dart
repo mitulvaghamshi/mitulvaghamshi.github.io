@@ -13,10 +13,11 @@ class AppState {
   });
 
   // Factory constructor to create an AppState instance.
-  AppState.create({required this.width})
-    : layoutConfig = .from(width),
-      themeController = ThemeController(),
-      githubController = GitHubController()..fetchAsync();
+  AppState.init()
+    : width = 0,
+      layoutConfig = .mobileTiny,
+      themeController = .new(),
+      githubController = .new()..fetchAsync();
 
   // The width of the screen.
   final double width;
@@ -43,7 +44,7 @@ extension Utils on AppState {
     LayoutConfig? layoutConfig,
     ThemeController? themeController,
     GitHubController? githubController,
-  }) => AppState(
+  }) => .new(
     width: width ?? this.width,
     layoutConfig: layoutConfig ?? this.layoutConfig,
     themeController: themeController ?? this.themeController,

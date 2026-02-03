@@ -2,25 +2,12 @@ import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/visitor2.dart';
 
 class FieldVisitor extends SimpleElementVisitor2 {
-  FieldVisitor({required this.className});
+  FieldVisitor() : items = [];
 
-  final String className;
-
-  final constructorBuffer = StringBuffer();
-  final variableBuffer = StringBuffer();
-  final copyWithBuffer = StringBuffer();
-  final lerpBuffer = StringBuffer();
-  final lightBuffer = StringBuffer();
-  final darkBuffer = StringBuffer();
+  final List<String> items;
 
   @override
   void visitFieldElement(FieldElement element) {
-    final color = element.displayName;
-    constructorBuffer.write('required this.$color,');
-    variableBuffer.write('final Color? $color;');
-    copyWithBuffer.write('$color: $color,');
-    lerpBuffer.write('$color: Color.lerp($color, other.$color, t),');
-    lightBuffer.write('$color: $className.$color.\$1,');
-    darkBuffer.write('$color: $className.$color.\$2,');
+    items.add(element.displayName);
   }
 }

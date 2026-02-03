@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/frame.dart';
 import 'package:portfolio/github/github_controller.dart';
-import 'package:portfolio/github/github_model.dart';
+import 'package:portfolio/github/github_repo.dart';
 import 'package:portfolio/state/app_scope.dart';
 import 'package:portfolio/theme/colors_model.dart';
 
@@ -59,7 +59,7 @@ class _RepoCardState extends State<RepoCard> {
 class _RepoItem extends StatelessWidget {
   const _RepoItem({required this.repo});
 
-  final GitHubModel repo;
+  final GitHubRepo repo;
 
   @override
   Widget build(BuildContext context) {

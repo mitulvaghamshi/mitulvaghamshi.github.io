@@ -11,20 +11,7 @@ class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    AppState? state;
-    return LayoutBuilder(
-      builder: (_, constraints) {
-        final width = constraints.biggest.width;
-        if (state == null) {
-          state = .create(width: width);
-          return PortfolioApp(state: state!);
-        }
-        state = state!.update(width);
-        return PortfolioApp(state: state!);
-      },
-    );
-  }
+  Widget build(BuildContext context) => PortfolioApp(state: .init());
 }
 
 @immutable
@@ -35,14 +22,14 @@ class PortfolioApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => AppScope(
-    data: state,
+    data: state.update(MediaQuery.sizeOf(context).width),
     child: AnimatedBuilder(
-      animation: state.themeController.themeMode,
-      builder: (_, child) => MaterialApp(
+      animation: state.themeController,
+      builder: (context, child) => MaterialApp(
         title: 'Portfolio App',
         theme: _lightThemeData,
         darkTheme: _darkThemeData,
-        themeMode: state.themeController.themeMode.value,
+        themeMode: state.themeController.themeMode,
         home: const HomeWidget(),
       ),
     ),

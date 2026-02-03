@@ -1,6 +1,6 @@
 # Mitul Vaghamshi - Portfolio
 
-[![](./preview/portfolio.webp)](https://mitulvaghamshi.github.io "Click to view Portfolio.")
+[![](assets/portfolio.webp)](https://mitulvaghamshi.github.io "Click to view Portfolio.")
 
 ## Screenshots
 
@@ -17,32 +17,32 @@
 
 ## v7 light mode
 
-![v7b](./preview/v7b.webp)
+![v7b](assets/v7b.webp)
 
 ## v7 dark mode
 
-![v7a](./preview/v7a.webp)
+![v7a](assets/v7a.webp)
 
 ## v6 rounded
 
-![v6](./preview/v6.webp)
+![v6](assets/v6.webp)
 
 ## v5 square colored
 
-![v5](./preview/v5.webp)
+![v5](assets/v5.webp)
 
 ## v4 square b/w
 
-![v4](./preview/v4.webp)
+![v4](assets/v4.webp)
 
 ## v3 border less
 
-![v3](./preview/v3.webp)
+![v3](assets/v3.webp)
 
 ## v2 elevated
 
-![v2](./preview/v2.webp)
+![v2](assets/v2.webp)
 
 ## v1 initial
 
-![v1](./preview/v1.webp)
+![v1](assets/v1.webp)

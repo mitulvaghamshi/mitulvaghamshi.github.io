@@ -1,54 +1,55 @@
-import 'package:analyzer/dart/element/element.dart';
-import 'package:theme_extension_builder/src/field_visitor.dart';
-
 class ThemeTemplate {
-  const ThemeTemplate({required this.element, required this.visitor});
+  const ThemeTemplate({required this.clazz, required this.items});
 
-  final Element element;
-  final FieldVisitor visitor;
-
-  String get className => visitor.className;
-
-  void visit() => element.visitChildren(visitor);
+  final String clazz;
+  final Iterable<String> items;
 
   @override
-  String toString() =>
-      '''
-  @immutable
-  class \$$className extends ThemeExtension<\$$className> {
-  const \$$className._({${visitor.constructorBuffer}});
+  String toString() {
+    final constructors = StringBuffer();
+    final variables = StringBuffer();
+    final parameters = StringBuffer();
+    final copyWith = StringBuffer();
+    final lerp = StringBuffer();
+    final light = StringBuffer();
+    final dark = StringBuffer();
 
-  ${visitor.variableBuffer}
+    for (var color in items) {
+      constructors.write('required this.$color,');
+      variables.write('final Color? $color;');
+      parameters.write('Color? $color,');
+      copyWith.write('$color: $color,');
+      lerp.write('$color: .lerp($color, other.$color, t),');
+      light.write('$color: $clazz.$color.\$1,');
+      dark.write('$color: $clazz.$color.\$2,');
+    }
 
-  @override
-  ThemeExtension<\$$className> copyWith({
-    ${visitor.variableBuffer.toString().replaceAll(';', ',')}
-  }) {
-    return \$$className._(${visitor.copyWithBuffer});
+    return '''
+      @immutable class \$$clazz extends ThemeExtension<\$$clazz> {
+      const \$$clazz._({$constructors});
+
+      $variables
+
+      @override ThemeExtension<\$$clazz> copyWith({$parameters}) => \$$clazz._($copyWith);
+
+      @override ThemeExtension<\$$clazz> lerp(\$$clazz? other, double t) {
+        if (other is! \$$clazz) return this;
+        return \$$clazz._($lerp);
+      }
+
+      static final \$$clazz _lightThemeExt = ._($light);
+
+      static final \$$clazz _darkThemeExt = ._($dark);
+      }
+
+      extension ${clazz}ThemeExtension on $clazz {
+        \$$clazz get lightThemeExtension => ._lightThemeExt;
+        \$$clazz get darkThemeExtension => ._darkThemeExt;
+      }
+
+      extension \$${clazz}Extension on BuildContext {
+        \$$clazz get colors => Theme.of(this).extension<\$$clazz>()!;
+      }
+    ''';
   }
-
-  @override
-  ThemeExtension<\$$className> lerp(
-    covariant ThemeExtension<\$$className>? other,
-    double t,
-  ) {
-    if (other is! \$$className) return this;
-    return \$$className._(${visitor.lerpBuffer});
-  }
-
-  static final \$$className _lightThemeExt = \$$className._(${visitor.lightBuffer});
-
-  static final \$$className _darkThemeExt = \$$className._(${visitor.darkBuffer});
-  }
-
-  extension ${className}ThemeExtension on $className {
-    \$$className get lightThemeExtension => \$$className._lightThemeExt;
-    \$$className get darkThemeExtension => \$$className._darkThemeExt;
-  }
-
-  extension \$${className}Extension on BuildContext {
-    \$$className get colors => Theme.of(this).extension<\$$className>()!;
-  }
-
-  ''';
 }

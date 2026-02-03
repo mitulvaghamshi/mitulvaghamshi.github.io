@@ -1,8 +1,5 @@
-include: package:flutter_lints/flutter.yaml
+include: package:extra_lints/flutter.yaml
 
-linter:
-  rules:
-    prefer_single_quotes: true
-    prefer_const_declarations: true
-    prefer_const_constructors: true
-    avoid_redundant_argument_values: true
+analyzer:
+  exclude:
+    - "*.g.dart"

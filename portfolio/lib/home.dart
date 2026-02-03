@@ -40,7 +40,7 @@ class _ThemeButton extends StatelessWidget {
     return Frame.card(
       onTap: ctrl.toggle,
       color: context.colors.themeButton,
-      child: Icon(switch (ctrl.themeMode.value) {
+      child: Icon(switch (ctrl.themeMode) {
         .dark => Icons.light_mode,
         .light => Icons.dark_mode,
         .system => Icons.brightness_4,
