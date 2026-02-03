@@ -5,7 +5,7 @@ part 'colors_model.g.dart';
 
 @immutable
 @colorconfig
-class ColorsModel {
+interface class ColorsModel {
   const ColorsModel();
 
   // Theme Button
@@ -45,30 +45,30 @@ class ColorsModel {
   static const aboutText = (Color(0xFF19364B), Color(0xFFE4E5E9));
 }
 
-// mixin SampleColors {
-//   static const black = (Color(0xFF8F959B), Color(0xFF343739));
-//   static const white = (Color(0xFFF6F9FA), Color(0xFFFFFFFF));
-//   static const red = (Color(0xFFF4A59E), Color(0xFFF18075));
-//   static const green = (Color(0xFF7DFFBD), Color(0xFF20694C));
-//   static const blue = (Color(0xFFA6C4F8), Color(0xFF7EABF6));
-//   static const pink = (Color(0xFFF2ADF7), Color(0xFFE953F6));
-//   static const cyan = (Color(0xFF75F8F9), Color(0xFF3FB7BF));
-//   static const orange = (Color(0xFFF6D059), Color(0xFFDF6902));
-// }
+mixin ColorSet1 {
+  static const black = (Color(0xFF8F959B), Color(0xFF343739));
+  static const white = (Color(0xFFF6F9FA), Color(0xFFFFFFFF));
+  static const red = (Color(0xFFF4A59E), Color(0xFFF18075));
+  static const green = (Color(0xFF7DFFBD), Color(0xFF20694C));
+  static const blue = (Color(0xFFA6C4F8), Color(0xFF7EABF6));
+  static const pink = (Color(0xFFF2ADF7), Color(0xFFE953F6));
+  static const cyan = (Color(0xFF75F8F9), Color(0xFF3FB7BF));
+  static const orange = (Color(0xFFF6D059), Color(0xFFDF6902));
+}
 
-// mixin TestColor {
-//   static const cardDark = Color(0xFF202A34);
-//   static const containerDark = Color(0xFF151921);
+mixin ColorSet2 {
+  static const cardDark = Color(0xFF202A34);
+  static const containerDark = Color(0xFF151921);
 
-//   static const containerBlue = Color(0xffebf5fe);
-//   static const buttonBlue = Color(0xff41a1f0);
-//   static const buttonBlueLight = Color(0x8041A1F0);
+  static const containerBlue = Color(0xffebf5fe);
+  static const buttonBlue = Color(0xff41a1f0);
+  static const buttonBlueLight = Color(0x8041A1F0);
 
-//   static const containerOrange = Color(0xfffff2eb);
-//   static const buttonOrange = Color(0xffff7c3f);
-//   static const buttonOrangeLight = Color(0x80ff7c3f);
+  static const containerOrange = Color(0xfffff2eb);
+  static const buttonOrange = Color(0xffff7c3f);
+  static const buttonOrangeLight = Color(0x80ff7c3f);
 
-//   static const bontainerGreen = Color(0xffe9f9f0);
-//   static const buttonGreen = Color(0xff2ebf6d);
-//   static const buttonGreenLight = Color(0x802ebf6d);
-// }
+  static const bontainerGreen = Color(0xffe9f9f0);
+  static const buttonGreen = Color(0xff2ebf6d);
+  static const buttonGreenLight = Color(0x802ebf6d);
+}

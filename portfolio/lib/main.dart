@@ -37,12 +37,12 @@ class PortfolioApp extends StatelessWidget {
   Widget build(BuildContext context) => AppScope(
     data: state,
     child: AnimatedBuilder(
-      animation: state.themeController.themeMode,
-      builder: (_, child) => MaterialApp(
+      animation: state.themeController,
+      builder: (context, child) => MaterialApp(
         title: 'Portfolio App',
         theme: _lightThemeData,
         darkTheme: _darkThemeData,
-        themeMode: state.themeController.themeMode.value,
+        themeMode: state.themeController.themeMode,
         home: const HomeWidget(),
       ),
     ),

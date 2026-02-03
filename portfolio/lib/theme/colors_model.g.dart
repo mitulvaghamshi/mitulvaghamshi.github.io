@@ -3,7 +3,7 @@
 part of 'colors_model.dart';
 
 // **************************************************************************
-// ThemeExtensionGenerator
+// ThemeGenerator
 // **************************************************************************
 
 @immutable
@@ -58,88 +58,83 @@ class $ColorsModel extends ThemeExtension<$ColorsModel> {
 
   @override
   ThemeExtension<$ColorsModel> copyWith({
-    final Color? themeButton,
-    final Color? imageBlend,
-    final Color? introContainer,
-    final Color? introCard,
-    final Color? introText,
-    final Color? repoContainer,
-    final Color? repoCard,
-    final Color? repoTitle,
-    final Color? repoSubtitle,
-    final Color? repoText,
-    final Color? eduContainer,
-    final Color? eduCard,
-    final Color? eduTitle,
-    final Color? eduSubtitle,
-    final Color? eduText,
-    final Color? wesContainer,
-    final Color? wesCard,
-    final Color? wesTitle,
-    final Color? wesText,
-    final Color? aboutContainer,
-    final Color? aboutCard,
-    final Color? aboutText,
-  }) {
-    return $ColorsModel._(
-      themeButton: themeButton,
-      imageBlend: imageBlend,
-      introContainer: introContainer,
-      introCard: introCard,
-      introText: introText,
-      repoContainer: repoContainer,
-      repoCard: repoCard,
-      repoTitle: repoTitle,
-      repoSubtitle: repoSubtitle,
-      repoText: repoText,
-      eduContainer: eduContainer,
-      eduCard: eduCard,
-      eduTitle: eduTitle,
-      eduSubtitle: eduSubtitle,
-      eduText: eduText,
-      wesContainer: wesContainer,
-      wesCard: wesCard,
-      wesTitle: wesTitle,
-      wesText: wesText,
-      aboutContainer: aboutContainer,
-      aboutCard: aboutCard,
-      aboutText: aboutText,
-    );
-  }
+    Color? themeButton,
+    Color? imageBlend,
+    Color? introContainer,
+    Color? introCard,
+    Color? introText,
+    Color? repoContainer,
+    Color? repoCard,
+    Color? repoTitle,
+    Color? repoSubtitle,
+    Color? repoText,
+    Color? eduContainer,
+    Color? eduCard,
+    Color? eduTitle,
+    Color? eduSubtitle,
+    Color? eduText,
+    Color? wesContainer,
+    Color? wesCard,
+    Color? wesTitle,
+    Color? wesText,
+    Color? aboutContainer,
+    Color? aboutCard,
+    Color? aboutText,
+  }) => $ColorsModel._(
+    themeButton: themeButton,
+    imageBlend: imageBlend,
+    introContainer: introContainer,
+    introCard: introCard,
+    introText: introText,
+    repoContainer: repoContainer,
+    repoCard: repoCard,
+    repoTitle: repoTitle,
+    repoSubtitle: repoSubtitle,
+    repoText: repoText,
+    eduContainer: eduContainer,
+    eduCard: eduCard,
+    eduTitle: eduTitle,
+    eduSubtitle: eduSubtitle,
+    eduText: eduText,
+    wesContainer: wesContainer,
+    wesCard: wesCard,
+    wesTitle: wesTitle,
+    wesText: wesText,
+    aboutContainer: aboutContainer,
+    aboutCard: aboutCard,
+    aboutText: aboutText,
+  );
 
   @override
-  ThemeExtension<$ColorsModel> lerp(
-    covariant ThemeExtension<$ColorsModel>? other,
-    double t,
-  ) {
+  ThemeExtension<$ColorsModel> lerp($ColorsModel? other, double t) {
     if (other is! $ColorsModel) return this;
     return $ColorsModel._(
-      themeButton: Color.lerp(themeButton, other.themeButton, t),
-      imageBlend: Color.lerp(imageBlend, other.imageBlend, t),
-      introContainer: Color.lerp(introContainer, other.introContainer, t),
-      introCard: Color.lerp(introCard, other.introCard, t),
-      introText: Color.lerp(introText, other.introText, t),
-      repoContainer: Color.lerp(repoContainer, other.repoContainer, t),
-      repoCard: Color.lerp(repoCard, other.repoCard, t),
-      repoTitle: Color.lerp(repoTitle, other.repoTitle, t),
-      repoSubtitle: Color.lerp(repoSubtitle, other.repoSubtitle, t),
-      repoText: Color.lerp(repoText, other.repoText, t),
-      eduContainer: Color.lerp(eduContainer, other.eduContainer, t),
-      eduCard: Color.lerp(eduCard, other.eduCard, t),
-      eduTitle: Color.lerp(eduTitle, other.eduTitle, t),
-      eduSubtitle: Color.lerp(eduSubtitle, other.eduSubtitle, t),
-      eduText: Color.lerp(eduText, other.eduText, t),
-      wesContainer: Color.lerp(wesContainer, other.wesContainer, t),
-      wesCard: Color.lerp(wesCard, other.wesCard, t),
-      wesTitle: Color.lerp(wesTitle, other.wesTitle, t),
-      wesText: Color.lerp(wesText, other.wesText, t),
-      aboutContainer: Color.lerp(aboutContainer, other.aboutContainer, t),
-      aboutCard: Color.lerp(aboutCard, other.aboutCard, t),
-      aboutText: Color.lerp(aboutText, other.aboutText, t),
+      themeButton: .lerp(themeButton, other.themeButton, t),
+      imageBlend: .lerp(imageBlend, other.imageBlend, t),
+      introContainer: .lerp(introContainer, other.introContainer, t),
+      introCard: .lerp(introCard, other.introCard, t),
+      introText: .lerp(introText, other.introText, t),
+      repoContainer: .lerp(repoContainer, other.repoContainer, t),
+      repoCard: .lerp(repoCard, other.repoCard, t),
+      repoTitle: .lerp(repoTitle, other.repoTitle, t),
+      repoSubtitle: .lerp(repoSubtitle, other.repoSubtitle, t),
+      repoText: .lerp(repoText, other.repoText, t),
+      eduContainer: .lerp(eduContainer, other.eduContainer, t),
+      eduCard: .lerp(eduCard, other.eduCard, t),
+      eduTitle: .lerp(eduTitle, other.eduTitle, t),
+      eduSubtitle: .lerp(eduSubtitle, other.eduSubtitle, t),
+      eduText: .lerp(eduText, other.eduText, t),
+      wesContainer: .lerp(wesContainer, other.wesContainer, t),
+      wesCard: .lerp(wesCard, other.wesCard, t),
+      wesTitle: .lerp(wesTitle, other.wesTitle, t),
+      wesText: .lerp(wesText, other.wesText, t),
+      aboutContainer: .lerp(aboutContainer, other.aboutContainer, t),
+      aboutCard: .lerp(aboutCard, other.aboutCard, t),
+      aboutText: .lerp(aboutText, other.aboutText, t),
     );
   }
 
-  static final $ColorsModel _lightThemeExt = $ColorsModel._(
+  static final $ColorsModel _lightThemeExt = ._(
     themeButton: ColorsModel.themeButton.$1,
     imageBlend: ColorsModel.imageBlend.$1,
     introContainer: ColorsModel.introContainer.$1,
@@ -164,7 +159,7 @@ class $ColorsModel extends ThemeExtension<$ColorsModel> {
     aboutText: ColorsModel.aboutText.$1,
   );
 
-  static final $ColorsModel _darkThemeExt = $ColorsModel._(
+  static final $ColorsModel _darkThemeExt = ._(
     themeButton: ColorsModel.themeButton.$2,
     imageBlend: ColorsModel.imageBlend.$2,
     introContainer: ColorsModel.introContainer.$2,
@@ -191,8 +186,8 @@ class $ColorsModel extends ThemeExtension<$ColorsModel> {
 }
 
 extension ColorsModelThemeExtension on ColorsModel {
-  $ColorsModel get lightThemeExtension => $ColorsModel._lightThemeExt;
-  $ColorsModel get darkThemeExtension => $ColorsModel._darkThemeExt;
+  $ColorsModel get lightThemeExtension => ._lightThemeExt;
+  $ColorsModel get darkThemeExtension => ._darkThemeExt;
 }
 
 extension $ColorsModelExtension on BuildContext {

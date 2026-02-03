@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:flutter/material.dart';
 
 typedef UrlPair = ({String url, String value});
@@ -22,7 +24,7 @@ mixin AppContent {
   static Iterable<EduPair> get educationLinks => _educationLinks;
 
   static String buildSVG({required Color color, required String data}) =>
-      '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">'
+      '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"> '
       '<path fill="#${color.toARGB32().toRadixString(16).substring(2)}" '
       'd="$data"/></svg>';
 }

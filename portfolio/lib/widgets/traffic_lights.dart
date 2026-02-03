@@ -44,7 +44,7 @@ class TrafficLights extends StatelessWidget {
         icon: const Icon(Icons.fullscreen, size: 10),
       ),
       const SizedBox(width: 12),
-      if (title != null) title!,
+      ?title,
     ],
   );
 }
