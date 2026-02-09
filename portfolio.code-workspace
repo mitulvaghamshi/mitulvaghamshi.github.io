@@ -7,10 +7,10 @@
       "path": "portfolio",
     },
     {
-      "path": "pkgs/theme_extension"
+      "path": "packages/theme_extension"
     },
     {
-      "path": "pkgs/theme_extension_builder"
+      "path": "packages/theme_extension_builder"
     },
   ],
   "settings": {
