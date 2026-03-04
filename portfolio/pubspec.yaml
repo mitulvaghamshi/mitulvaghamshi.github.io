@@ -21,8 +21,7 @@ dependencies:
 dev_dependencies:
   build_runner: ^2.4.6
   extra_lints:
-    git:
-      url: https://github.com/mitulvaghamshi/extra_lints.git
+    git: https://github.com/mitulvaghamshi/extra_lints.git
   theme_extension_builder:
     path: ../packages/theme_extension_builder
 

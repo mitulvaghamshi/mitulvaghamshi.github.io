@@ -4,27 +4,12 @@
       "path": "."
     }
   ],
-  "settings": {
-    "dart.flutterCreateOrganization": "me.mitul",
-    "dart.flutterSdkPath": "/Users/mitulvaghamshi/flutter/bin",
-    "dart.flutterCreatePlatforms": [
-      "web"
-    ]
-  },
-  "extensions": {
-    "recommendations": [
-      "Dart-Code.flutter",
-      "Dart-Code.dart-code",
-      "GitHub.github-vscode-theme",
-      "vscode-icons-team.vscode-icons"
-    ]
-  },
   "tasks": {
     "version": "2.0.0",
     "tasks": [
       {
         "type": "shell",
-        "label": "Run: build_runner:build",
+        "label": "build_runner: build clean",
         "command": "dart run build_runner build clean",
         "isBackground": true,
         "problemMatcher": [

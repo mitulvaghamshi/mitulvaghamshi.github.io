@@ -4,14 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-
     <meta name="author" content="Mitul Vaghamshi">
     <meta name="description" content="Single page resume built with HTML & CSS - Mitul Vaghamshi">
-
-    <link rel="shortcut icon" type="image/webp" href="../icons/icon-192.webp">
-
-    <title>Single page resume | Mitul Vaghamshi</title>
-
+    <link rel="shortcut icon" type="image/webp" href="https://mitulvaghamshi.github.io/icons/icon-192.webp">
+    <title>Resume | Mitul Vaghamshi</title>
     <style>
         :root {
             color-scheme: light dark;
@@ -21,7 +17,7 @@
             --section-color: #9acdff;
         }
 
-        @media (prefers-color-scheme:dark) {
+        @media (prefers-color-scheme: dark) {
             :root {
                 --font-color: #f8f8ff;
                 --hover-color: #ff794c;
@@ -35,10 +31,9 @@
             margin: 16px auto;
             border-radius: 8px;
             width: 8.3in;
-            height: 11.7in;
             color: var(--font-color);
             outline: 1px solid var(--border-color);
-            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-family: Georgia, "Times New Roman", Times, serif;
         }
 
         figure {
@@ -95,7 +90,7 @@
         }
 
         td {
-            font-size: 1.5em;
+            font-size: 1.8em;
             padding: 10px 30px;
             border-radius: 10px 40px;
             background-color: #9f9f9f41;
@@ -106,19 +101,22 @@
             background-color: var(--hover-color);
         }
 
-        a>div {
+        table {
+            margin: auto;
+            padding: 10px;
+        }
+
+        a>div,
+        table {
             margin-top: 10px;
             padding-left: 20px;
             border-radius: 10px 40px;
             border: 1px solid var(--border-color);
         }
 
-        a>div:hover {
+        a>div:hover,
+        table:hover {
             background-color: #9f9f9f41;
-        }
-
-        span:last-of-type {
-            display: none;
         }
 
         @media print {
@@ -131,14 +129,6 @@
             h2 {
                 outline: 1px solid var(--border-color);
             }
-
-            span:first-of-type {
-                display: none;
-            }
-
-            span:last-of-type {
-                display: block;
-            }
         }
     </style>
 </head>
@@ -146,18 +136,15 @@
 <body>
     <main>
         <header>
-            <h1 title="Firstname: Mitul, Lastname: Vaghamshi, Pronounce: MEE-TOO-L">Mitul Vaghamshi</h1>
+            <h1 title="Firstname: Mitul, Lastname: Vaghamshi, Pronounce: MEE-TOO-L">
+                Mitul Vaghamshi
+            </h1>
             <p title="Software Developer">Software Developer_</p>
         </header>
-
         <section>
             <h2>
-                <a href="resume.pdf" target="_blank" title="Download Resume PDF">
-                    <span>Download Resume</span>
-                    <span>https://mitulvaghamshi.github.io/resume/resume.pdf</span>
-                </a>
+                <a href="resume.pdf" target="_blank" title="Download Resume PDF">Download Resume</a>
             </h2>
-
             <table>
                 <tbody>
                     <tr>
@@ -169,7 +156,7 @@
                     <tr>
                         <td>Contact</td>
                         <td>
-                            <a href="tel:+12899330783" title="Click to call Mitul Vaghamshi at 1 289 933 0783">+1 (289) 933 - 0783</a>
+                            <a href="tel:+919725930783" title="Click to call Mitul Vaghamshi at +91 97259 30783">+91 97259 30783</a>
                         </td>
                     </tr>
                     <tr>
@@ -181,22 +168,50 @@
                     <tr>
                         <td>Address</td>
                         <td>
-                            <a title="Mitul's Address: Hamilton, ON, CA Postal Code L8T 4C8.">Hamilton, ON, CA (L8T 4C8)</a>
+                            <a title="Mitul's Address: Anand, Gujarat, India.">Anand, Gujarat, India</a>
                         </td>
                     </tr>
                     <tr>
                         <td>Portfolio</td>
                         <td>
-                            <a href="https://mitulvaghamshi.github.io" rel="me" target="_blank" title="Link to Portfolio Website - Mitul Vaghamshi">https://mitulvaghamshi.github.io</a>
+                            <a href="https://mitulvaghamshi.github.io" target="_blank" title="Link to Portfolio Website - Mitul Vaghamshi">https://mitulvaghamshi.github.io</a>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </section>
-
         <section>
-            <h2>Education & Work Experience</h2>
-
+            <h2>Work Experience</h2>
+            <a href="https://vrundaz.com" target="_blank" title="Vrundaz Technology">
+                <div>
+                    <figure>
+                        <img src="../images/vrundaz.webp" alt="Vrundaz Technology" title="Vrundaz Technology">
+                        <figcaption>Vrundaz Technology</figcaption>
+                    </figure>
+                    <dl>
+                        <dt>Senior Flutter Developer</dt>
+                        <dd>- Dec 2025 - Jan 2026.</dd>
+                        <dd>- Vrundaz Technology.</dd>
+                        <dd>- Senior Flutter Developer.</dd>
+                        <dd>- Vadodara, GJ, India.</dd>
+                    </dl>
+                </div>
+            </a>
+            <a href="https://www.concentrix.com" target="_blank" title="Concentrix WebHelp">
+                <div>
+                    <figure>
+                        <img src="../images/cnx.webp" alt="Concentrix WebHelp" title="Concentrix WebHelp">
+                        <figcaption>Concentrix WebHelp</figcaption>
+                    </figure>
+                    <dl>
+                        <dt>Senior Support Advisor</dt>
+                        <dd>- Nov 2023 - Nov 2025.</dd>
+                        <dd>- Concentrix WebHelp.</dd>
+                        <dd>- Technical Support Advisor.</dd>
+                        <dd>- Hamilton, ON, Canada.</dd>
+                    </dl>
+                </div>
+            </a>
             <a href="https://www.ubc.ca" target="_blank" title="University of British Columbia">
                 <div>
                     <figure>
@@ -204,7 +219,7 @@
                         <figcaption>University of British Columbia</figcaption>
                     </figure>
                     <dl>
-                        <dt> Application Developer</dt>
+                        <dt>Application Developer</dt>
                         <dd>- Jan 2021 - Aug 2021.</dd>
                         <dd>- University of British Columbia.</dd>
                         <dd>- Full stack application developer.</dd>
@@ -212,7 +227,9 @@
                     </dl>
                 </div>
             </a>
-
+        </section>
+        <section>
+            <h2>Education</h2>
             <a href="https://www.mohawkcollege.ca" target="_blank" title="Mohawk College Internationals - Hamilton, ON">
                 <div>
                     <figure>
@@ -220,7 +237,7 @@
                         <figcaption>Mohawk College</figcaption>
                     </figure>
                     <dl>
-                        <dt> Post Secondary Diploma</dt>
+                        <dt>Post Secondary Diploma</dt>
                         <dd>- Jan 2020 - Dec 2021 (2yr).</dd>
                         <dd>- Mohawk College Internationals.</dd>
                         <dd>- Designated Learning Institute.</dd>
@@ -228,7 +245,6 @@
                     </dl>
                 </div>
             </a>
-
             <a href="http://www.aij.ind.in" target="_blank" title="Amrut Institute - Junagadh, Diploma Engineering College">
                 <div>
                     <figure>
@@ -236,7 +252,7 @@
                         <figcaption>Amrut Institute</figcaption>
                     </figure>
                     <dl>
-                        <dt> Diploma Computer Engineering</dt>
+                        <dt>Diploma Computer Engineering</dt>
                         <dd>- Jun 2014 - May 2017 (3yr).</dd>
                         <dd>- Amrut Institute Junagadh.</dd>
                         <dd>- Self-financing Engineering College.</dd>

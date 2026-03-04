@@ -12,7 +12,6 @@ class AppState {
     required this.githubController,
   });
 
-  // Factory constructor to create an AppState instance.
   AppState.init()
     : width = 0,
       layoutConfig = .mobileTiny,
@@ -33,12 +32,10 @@ class AppState {
 }
 
 extension Utils on AppState {
-  // Updates the app state based on the new width.
   AppState update(double width) => layoutConfig.canHold(width)
       ? copyWith(width: width)
       : copyWith(width: width, layoutConfig: .from(width));
 
-  // Creates a copy of the app state with the given parameters.
   AppState copyWith({
     double? width,
     LayoutConfig? layoutConfig,

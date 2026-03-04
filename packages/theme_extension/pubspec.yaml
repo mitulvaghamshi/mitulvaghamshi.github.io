@@ -1,6 +1,5 @@
 name: theme_extension
 description: A new Flutter package project.
-homepage: https://mitulvaghamshi.github.io
 publish_to: none
 
 version: 0.0.1
@@ -15,9 +14,6 @@ dependencies:
 
 dev_dependencies:
   extra_lints:
-    git:
-      url: https://github.com/mitulvaghamshi/extra_lints.git
+    git: https://github.com/mitulvaghamshi/extra_lints.git
   flutter_test:
     sdk: flutter
-
-flutter:

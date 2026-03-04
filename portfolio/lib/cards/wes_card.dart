@@ -42,8 +42,9 @@ class _WesLogo extends StatelessWidget {
     child: Image.asset(
       'assets/wes.webp',
       cacheWidth: 200,
-      frameBuilder: (_, child, frame, _) =>
-          frame == null ? const SizedBox(width: 200) : child,
+      frameBuilder: (_, child, frame, _) {
+        return frame == null ? const SizedBox(width: 200) : child;
+      },
     ),
   );
 }

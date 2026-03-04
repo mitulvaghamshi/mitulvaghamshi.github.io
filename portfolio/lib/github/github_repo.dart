@@ -12,9 +12,7 @@ class GitHubRepo {
     required this.forks,
   });
 
-  // Factory constructor to create a GitHubRepo from a JSON map
   factory GitHubRepo.fromJson(Map<String, dynamic> json) {
-    // Pattern matching to extract data from the json data
     if (json case {
       'name': String name,
       'html_url': String url,
@@ -35,8 +33,7 @@ class GitHubRepo {
       );
     }
 
-    // Throw an exception if the map does not match the expected format
-    throw const FormatException('[GitHubRepo]: Invalid json data');
+    throw const FormatException('[GitHubRepo]: Invalid JSON data');
   }
 
   final String name;
