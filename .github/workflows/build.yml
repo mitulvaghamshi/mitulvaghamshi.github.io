@@ -37,10 +37,13 @@ jobs:
       # Check out the repository code.
       - uses: actions/checkout@v4.1.1
 
-      # Minify and remove repos.json file.
-      - name: Minify and remove repos.json
+      # Remove 'repos.json' entry from 'pubspec.yaml'.
+      - name: Remove DEBUG asset entry from pubspec.
         shell: bash
-        run: bash ".github/script.sh"
+        run: |
+          sed -i.bak '/assets\/repos.json/d' 'pubspec.yaml';
+          if [[ $? -ne 0 ]]; then exit 1; fi
+        working-directory: portfolio
 
       # Set up the Flutter environment.
       - uses: subosito/flutter-action@v2.16.0

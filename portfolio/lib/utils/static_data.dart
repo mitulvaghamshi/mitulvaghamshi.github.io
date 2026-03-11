@@ -2,7 +2,10 @@
 
 import 'package:flutter/material.dart';
 
-typedef UrlPair = ({String url, String value});
+typedef UrlPair = ({
+  String url, //
+  String value,
+});
 
 typedef EduPair = ({
   String url,
@@ -12,16 +15,29 @@ typedef EduPair = ({
   String address,
 });
 
+typedef ExpPair = ({
+  String url,
+  String name,
+  String position,
+  String duration,
+  String location,
+});
+
 @immutable
-mixin AppContent {
-  static String get introText => _introText;
+mixin StaticData {
+  static String get imgMeSrc => 'assets/me.webp';
+  static String get imgWesSrc => 'assets/wes.webp';
+  static String get imgIconSrc => 'assets/icon.webp';
+
+  static String get summaryText => _summaryText;
   static String get wesBadgeUrl => _wesBadgeUrl;
   static String get wesReportUrl => _wesReportUrl;
   static String get githubApiUrl => _githubApiUrl;
 
   static Iterable<UrlPair> get socialLinks => _socialLinks;
   static Iterable<UrlPair> get footerLinks => _footerLinks;
-  static Iterable<EduPair> get educationLinks => _educationLinks;
+  static Iterable<EduPair> get educationLinks => _eduLinks;
+  static Iterable<ExpPair> get workExprLinks => _workExpLinks;
 
   static String buildSVG({required Color color, required String data}) =>
       '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"> '
@@ -37,10 +53,10 @@ const _wesBadgeUrl =
 const _wesReportUrl =
     'https://badges.wes.org/Evidence?type=ca&i=3794f10a-19b3-47f0-82bd-393315bc6584';
 
-const _introText =
+const _summaryText =
     '''Software Developer with 4+ years of hands-on experience in cross-platform development, backend engineering, and technical support. Strong grounding in object-oriented programming, clean code principles, and modern development frameworks. Known for delivering scalable solutions, resolving complex technical issues, and collaborating effectively in agile environments. Passionate about innovation, continuous learning, and creating user-centric applications.''';
 
-const _socialLinks = [
+const _socialLinks = <UrlPair>[
   (
     url: 'mailto:mitulvaghmashi@gmail.com',
     value:
@@ -62,7 +78,7 @@ const _socialLinks = [
         'm17.5 14.4-2-1c-.3 0-.5-.1-.7.2l-1 1.1c-.1.2-.3.3-.6.1-.3-.1-1.3-.5-2.4-1.5a9 9 0 0 1-1.7-2c-.1-.3 0-.5.2-.6l.4-.6c.2-.1.2-.3.3-.5v-.5L9 7c-.2-.6-.4-.5-.6-.5h-.6a1 1 0 0 0-.8.4c-.2.3-1 1-1 2.5 0 1.4 1 2.8 1.2 3 .2.2 2.1 3.2 5.1 4.5l1.7.6a4 4 0 0 0 1.9.2c.5-.1 1.7-.8 2-1.5.2-.7.2-1.2.1-1.4l-.5-.3M12 21.8a9.9 9.9 0 0 1-5-1.4l-.3-.2-3.8 1 1-3.7-.2-.3a9.9 9.9 0 0 1-1.5-5.3 9.9 9.9 0 0 1 16.8-7 9.8 9.8 0 0 1 3 7 10 10 0 0 1-10 9.9m8.5-18.3A11.8 11.8 0 0 0 12 0 12 12 0 0 0 1.7 17.8L.1 24l6.3-1.7a11.9 11.9 0 0 0 5.6 1.5 12 12 0 0 0 12-11.9 11.8 11.8 0 0 0-3.5-8.4Z',
   ),
   (
-    url: 'tel:12899330783',
+    url: 'tel:919725930783',
     value:
         'M7.7 1.2A1.9 1.9 0 0 0 5.5 0L1.4 1A1.9 1.9 0 0 0 0 3a21 21 0 0 0 21 21 2 2 0 0 0 1.8-1.4l1.1-4.1a1.9 1.9 0 0 0-1-2.2l-4.6-2a1.9 1.9 0 0 0-2.1.6l-2 2.3a15.9 15.9 0 0 1-7.4-7.5L9 7.8c.6-.5.8-1.4.5-2.1L7.7 1.2zm0 0',
   ),
@@ -75,13 +91,13 @@ const _socialLinks = [
 
 const _host = 'https://mitulvaghamshi.github.io';
 
-const _footerLinks = [
-  (url: '$_host/resume/resume.pdf', value: 'Download resume'),
-  (url: '$_host/resume' /*      */, value: 'Html version'),
-  (url: '$_host/resume/policy.html', value: 'Privacy policy'),
+const _footerLinks = <UrlPair>[
+  (url: '$_host/resume.html', value: 'Download resume'),
+  (url: '$_host/static.html', value: 'Html version'),
+  (url: '$_host/policy.html', value: 'Privacy policy'),
 ];
 
-const _educationLinks = [
+const _eduLinks = <EduPair>[
   (
     url: 'https://www.mohawkcollege.ca',
     name: 'Mohawk College',
@@ -95,5 +111,29 @@ const _educationLinks = [
     year: 'Jun 2014 - May 2017 - (3yr)',
     major: 'Diploma in Computer Engineering',
     address: 'Junagadh, Gujarat, India',
+  ),
+];
+
+const _workExpLinks = <ExpPair>[
+  (
+    url: 'https://www.vrundaz.com',
+    position: 'Senior Flutter Developer',
+    duration: 'Dec 2025 - Jan 2026.',
+    name: 'Vrundaz Technology.',
+    location: 'Vadodara, GJ, India.',
+  ),
+  (
+    url: 'https://www.concentrix.com',
+    position: 'Senior Support Advisor',
+    duration: 'Nov 2023 - Nov 2025.',
+    name: 'Concentrix WebHelp.',
+    location: 'Hamilton, ON, Canada.',
+  ),
+  (
+    url: 'https://www.ubc.ca',
+    position: 'Mobile Application Developer',
+    duration: 'Jan 2021 - Aug 2021.',
+    name: 'University of British Columbia.',
+    location: 'Vancouver, BC, Canada.',
   ),
 ];

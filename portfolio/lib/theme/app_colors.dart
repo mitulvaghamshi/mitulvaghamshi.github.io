@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:theme_extension/theme_extension.dart';
 
-part 'colors_model.g.dart';
+part 'app_colors.g.dart';
 
 @immutable
 @colorconfig
-interface class ColorsModel {
-  const ColorsModel();
+interface class AppColors {
+  const AppColors();
+
+  // Card Hover Button
+  static const cardHover = (Color(0xFFFFFFFF), Color(0xFFFF7C3F));
 
   // Theme Button
-  static const themeButton = (Color(0xFF000B37), Color(0xFFFF5500));
+  static const themeButton = (Color(0xFF000B37), Color(0xFFFF7C3F));
 
   // Profile Picture
   static const imageBlend = (Color(0x00000000), Color(0x50FFFFFF));
@@ -19,19 +22,26 @@ interface class ColorsModel {
   static const introCard = (Color(0xFFCCFFBA), Color(0xFF15202B));
   static const introText = (Color(0xFF19364B), Color(0xFFE4E5E9));
 
-  // Repo Card
-  static const repoContainer = (Color(0xFFDEE2FF), Color(0xFF0A0F16));
-  static const repoCard = (Color(0xFFC2C8FF), Color(0xFF15202B));
-  static const repoTitle = (Color(0xFF001B7D), Color(0xFFE4E5E9));
-  static const repoSubtitle = (Color(0xFF005488), Color(0xFFE4E5E9));
-  static const repoText = (Color(0xFF19364B), Color(0xFFE4E5E9));
-
   // Edu Card
   static const eduContainer = (Color(0xFFFCDEFF), Color(0xFF0A0F16));
   static const eduCard = (Color(0xFFF3B6FE), Color(0xFF15202B));
   static const eduTitle = (Color(0xFF7D004D), Color(0xFFE4E5E9));
   static const eduSubtitle = (Color(0xFF880086), Color(0xFFE4E5E9));
   static const eduText = (Color(0xFF81225C), Color(0xFFE4E5E9));
+
+  // Work Card
+  static const workContainer = (Color(0xFFFFDEDE), Color(0xFF0A0F16));
+  static const workCard = (Color(0xFFFEB6B6), Color(0xFF15202B));
+  static const workTitle = (Color(0xFF7D0000), Color(0xFFE4E5E9));
+  static const workSubtitle = (Color(0xFF880000), Color(0xFFE4E5E9));
+  static const workText = (Color(0xFF812222), Color(0xFFE4E5E9));
+
+  // Repo Card
+  static const repoContainer = (Color(0xFFDEE2FF), Color(0xFF0A0F16));
+  static const repoCard = (Color(0xFFC2C8FF), Color(0xFF15202B));
+  static const repoTitle = (Color(0xFF001B7D), Color(0xFFE4E5E9));
+  static const repoSubtitle = (Color(0xFF005488), Color(0xFFE4E5E9));
+  static const repoText = (Color(0xFF19364B), Color(0xFFE4E5E9));
 
   // Wes Card
   static const wesContainer = (Color(0xFFFFF4DE), Color(0xFF0A0F16));

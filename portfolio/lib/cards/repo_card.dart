@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/frame.dart';
-import 'package:portfolio/github/github_controller.dart';
+import 'package:portfolio/github/github_handler.dart';
 import 'package:portfolio/github/github_repo.dart';
 import 'package:portfolio/state/app_scope.dart';
-import 'package:portfolio/theme/colors_model.dart';
+import 'package:portfolio/theme/app_colors.dart';
+import 'package:portfolio/utils/breakpoint.dart';
+import 'package:portfolio/widgets/frame_factory.dart';
 
 @immutable
 class RepoCard extends StatefulWidget {
@@ -14,36 +15,28 @@ class RepoCard extends StatefulWidget {
 }
 
 class _RepoCardState extends State<RepoCard> {
-  bool isMinimized = false;
+  bool _isMinimized = false;
 
   @override
   Widget build(BuildContext context) {
     final controller = AppScope.of(context).githubController;
-    final count = (context.width / 500).round();
-    return Frame.controls(
+    return FrameFactory.controls(
       title: 'GitHub',
       titleColor: context.colors.repoTitle,
       color: context.colors.repoContainer,
-      isMinimized: isMinimized,
-      onMinimize: () => setState(() => isMinimized = !isMinimized),
+      isMinimized: _isMinimized,
+      onMinimize: () => setState(() => _isMinimized = !_isMinimized),
       child: ListenableBuilder(
         listenable: controller,
         builder: (context, child) => Column(
           children: [
-            context.config.build(
-              mobileSmall290: Wrap(
-                alignment: .center,
-                runAlignment: .center,
-                children: controller.items(count * 2).map((repo) {
-                  return SizedBox(
-                    width: context.width / count - 32,
-                    height: context.width > 420 ? 200 : 220,
-                    child: _RepoItem(repo: repo),
-                  );
-                }).toList(),
-              ),
+            context.breakpoint.build(
+              smallMobile: _CardCountWidget(count: 1, controller: controller),
+              largeTablet: _CardCountWidget(count: 2, controller: controller),
+              smallLaptop: _CardCountWidget(count: 3, controller: controller),
+              smallDesktop: _CardCountWidget(count: 4, controller: controller),
             ),
-            Frame.card(
+            FrameFactory.card(
               onTap: controller.toggleShowAll,
               color: context.colors.repoContainer,
               child: Text(controller.buttonLabel),
@@ -56,6 +49,27 @@ class _RepoCardState extends State<RepoCard> {
 }
 
 @immutable
+class _CardCountWidget extends StatelessWidget {
+  const _CardCountWidget({required this.count, required this.controller});
+
+  final int count;
+  final GitHubHandler controller;
+
+  @override
+  Widget build(BuildContext context) => Wrap(
+    alignment: .center,
+    runAlignment: .center,
+    children: controller.items(count * 2).map((item) {
+      return SizedBox(
+        width: (context.width - 64) / count,
+        height: context.width > 420 ? 200 : 220,
+        child: _RepoItem(repo: item),
+      );
+    }).toList(),
+  );
+}
+
+@immutable
 class _RepoItem extends StatelessWidget {
   const _RepoItem({required this.repo});
 
@@ -63,11 +77,11 @@ class _RepoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).textTheme.apply(
+    final theme = TextTheme.of(context).apply(
       bodyColor: context.colors.repoText,
       displayColor: context.colors.repoText,
     );
-    return Frame.link(
+    return FrameFactory.link(
       url: repo.url,
       color: context.colors.repoCard,
       child: Column(
@@ -84,6 +98,8 @@ class _RepoItem extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             repo.subTitle,
+            maxLines: 1,
+            overflow: .ellipsis,
             style: theme.titleMedium!.copyWith(
               color: context.colors.repoSubtitle,
             ),

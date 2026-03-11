@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/frame.dart';
-import 'package:portfolio/theme/colors_model.dart';
+import 'package:portfolio/theme/app_colors.dart';
+import 'package:portfolio/widgets/frame_factory.dart';
 
 @immutable
 class EmptyWidget extends StatelessWidget {
@@ -8,7 +8,7 @@ class EmptyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Expanded(
-    child: Frame.card(
+    child: FrameFactory.card(
       onTap: () {},
       animate: true,
       color: context.colors.introCard,

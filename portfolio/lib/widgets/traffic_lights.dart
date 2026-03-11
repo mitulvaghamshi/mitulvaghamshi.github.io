@@ -33,7 +33,7 @@ class TrafficLights extends StatelessWidget {
         onTap: onMinimize,
         color: const Color(0xFFFFD83D),
         hoverColor: CupertinoColors.systemYellow,
-        icon: const Icon(Icons.remove, size: 10),
+        icon: const Icon(Icons.minimize, size: 10),
       ),
       const SizedBox(width: 8),
       // 3. Green (Maximize) Button
@@ -81,7 +81,7 @@ class _TrafficLightButtonState extends State<_TrafficLightButton> {
         width: 14,
         height: 14,
         clipBehavior: .antiAlias,
-        duration: const Duration(milliseconds: 100),
+        duration: const .new(milliseconds: 100),
         decoration: BoxDecoration(
           color: _isHovering ? widget.hoverColor : widget.color,
           borderRadius: .circular(10), // Perfect circle
@@ -89,7 +89,7 @@ class _TrafficLightButtonState extends State<_TrafficLightButton> {
         child: Center(
           child: AnimatedOpacity(
             opacity: _isHovering ? 1.0 : 0.0,
-            duration: const Duration(milliseconds: 100),
+            duration: const .new(milliseconds: 100),
             child: widget.icon,
           ),
         ),

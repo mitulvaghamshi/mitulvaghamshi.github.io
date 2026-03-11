@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/state/app_state.dart';
-import 'package:portfolio/utils/layout_config.dart';
+import 'package:portfolio/utils/breakpoint.dart';
 
 @immutable
 class AppScope extends InheritedWidget {
@@ -21,5 +21,5 @@ class AppScope extends InheritedWidget {
 extension Utils on BuildContext {
   double get width => AppScope.of(this).width;
 
-  LayoutConfig get config => AppScope.of(this).layoutConfig;
+  Breakpoint get breakpoint => AppScope.of(this).breakpoint;
 }

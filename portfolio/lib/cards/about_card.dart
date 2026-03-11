@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/frame.dart';
 import 'package:portfolio/state/app_scope.dart';
-import 'package:portfolio/theme/colors_model.dart';
-import 'package:portfolio/utils/app_content.dart';
+import 'package:portfolio/theme/app_colors.dart';
+import 'package:portfolio/utils/breakpoint.dart';
+import 'package:portfolio/utils/static_data.dart';
+import 'package:portfolio/widgets/frame_factory.dart';
 
 @immutable
 class AboutCard extends StatefulWidget {
@@ -13,16 +14,19 @@ class AboutCard extends StatefulWidget {
 }
 
 class _AboutCardState extends State<AboutCard> {
-  bool isMinimized = false;
+  bool _isMinimized = false;
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).textTheme.apply(
+    final theme = TextTheme.of(context).apply(
       bodyColor: context.colors.aboutText,
       displayColor: context.colors.aboutText,
     );
     final items = [
-      Padding(padding: const .all(16), child: Image.asset('assets/icon.webp')),
+      Padding(
+        padding: const .all(16),
+        child: Image.asset(StaticData.imgIconSrc),
+      ),
       const SizedBox.square(dimension: 16),
       Text(
         '© ${DateTime.now().year} Portfolio App. ',
@@ -33,21 +37,21 @@ class _AboutCardState extends State<AboutCard> {
     ];
     return Padding(
       padding: const .only(bottom: 8),
-      child: Frame.controls(
+      child: FrameFactory.controls(
         title: 'About',
         titleColor: context.colors.aboutText,
         color: context.colors.aboutContainer,
-        isMinimized: isMinimized,
-        onMinimize: () => setState(() => isMinimized = !isMinimized),
-        child: context.config.build(
-          mobileSmall290: Column(
+        isMinimized: _isMinimized,
+        onMinimize: () => setState(() => _isMinimized = !_isMinimized),
+        child: context.breakpoint.build(
+          smallMobile: Column(
             children: [
               ...items,
               const SizedBox.square(dimension: 16),
               const _AboutButtons(),
             ],
           ),
-          tabletLarge760: Column(
+          largeTablet: Column(
             children: [
               Row(mainAxisAlignment: .center, children: items),
               const _AboutButtons(),
@@ -65,30 +69,29 @@ class _AboutButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).textTheme.apply(
+    final theme = TextTheme.of(context).apply(
       bodyColor: context.colors.aboutText,
       displayColor: context.colors.aboutText,
     );
     return Wrap(
       alignment: .center,
       children: [
-        ...AppContent.footerLinks.map((link) {
-          return SizedBox(
+        for (var item in StaticData.footerLinks)
+          SizedBox(
             width: 200,
-            child: Frame.link(
-              url: link.url,
+            child: FrameFactory.link(
+              url: item.url,
               color: context.colors.aboutCard,
               child: Text(
-                link.value,
+                item.value,
                 textAlign: .center,
                 style: theme.titleMedium,
               ),
             ),
-          );
-        }),
+          ),
         SizedBox(
           width: 200,
-          child: Frame.card(
+          child: FrameFactory.card(
             onTap: () => showLicensePage(context: context),
             color: context.colors.aboutCard,
             child: Text(

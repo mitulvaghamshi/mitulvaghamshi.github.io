@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/home.dart';
 import 'package:portfolio/state/app_scope.dart';
 import 'package:portfolio/state/app_state.dart';
-import 'package:portfolio/theme/colors_model.dart';
+import 'package:portfolio/theme/app_colors.dart';
 
 void main() => runApp(const MainApp());
 
@@ -24,19 +24,19 @@ class PortfolioApp extends StatelessWidget {
   Widget build(BuildContext context) => AppScope(
     data: state.update(MediaQuery.sizeOf(context).width),
     child: AnimatedBuilder(
-      animation: state.themeController,
+      animation: state.themeSwitcher,
       builder: (context, child) => MaterialApp(
         title: 'Portfolio App',
         theme: _lightThemeData,
         darkTheme: _darkThemeData,
-        themeMode: state.themeController.themeMode,
+        themeMode: state.themeSwitcher.mode,
         home: const HomeWidget(),
       ),
     ),
   );
 }
 
-const _colors = ColorsModel();
+const _colors = AppColors();
 
 final _lightThemeData = ThemeData(
   colorScheme: .fromSeed(seedColor: Colors.white),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/theme/colors_model.dart';
+import 'package:portfolio/theme/app_colors.dart';
 import 'package:portfolio/widgets/traffic_lights.dart';
 import 'package:url_launcher/link.dart';
 
 @immutable
-class Frame extends StatelessWidget {
-  const Frame({
+class FrameFactory extends StatelessWidget {
+  const FrameFactory({
     super.key,
     this.onTap,
     this.color,
@@ -15,7 +15,7 @@ class Frame extends StatelessWidget {
     required this.child,
   });
 
-  const factory Frame.controls({
+  const factory FrameFactory.controls({
     required Widget child,
     required String title,
     required bool isMinimized,
@@ -26,18 +26,26 @@ class Frame extends StatelessWidget {
     VoidCallback? onMaximize,
   }) = _FrameControls;
 
-  const factory Frame.container({Color? color, required Widget child}) =
-      _FrameContainer;
+  const factory FrameFactory.container({
+    Color? color,
+    EdgeInsetsGeometry? margin,
+    EdgeInsetsGeometry? padding,
+    required Widget child,
+  }) = _FrameContainer;
 
-  const factory Frame.card({
+  const factory FrameFactory.card({
     Color? color,
     bool animate,
     VoidCallback? onTap,
+    EdgeInsetsGeometry? margin,
+    EdgeInsetsGeometry? padding,
     required Widget child,
   }) = _FrameCard;
 
-  const factory Frame.link({
+  const factory FrameFactory.link({
     Color? color,
+    EdgeInsetsGeometry? margin,
+    EdgeInsetsGeometry? padding,
     required String url,
     required Widget child,
   }) = _FrameLink;
@@ -58,7 +66,8 @@ class Frame extends StatelessWidget {
     if (onTap != null) {
       widget = InkWell(
         onTap: onTap,
-        splashColor: context.colors.themeButton,
+        hoverDuration: const .new(milliseconds: 500),
+        hoverColor: context.colors.cardHover,
         child: widget,
       );
     }
@@ -72,7 +81,7 @@ class Frame extends StatelessWidget {
     if (animate) {
       return AnimatedSize(
         alignment: .topCenter,
-        duration: const Duration(milliseconds: 700),
+        duration: const .new(milliseconds: 700),
         child: widget,
       );
     }
@@ -81,7 +90,7 @@ class Frame extends StatelessWidget {
 }
 
 @immutable
-class _FrameControls extends Frame {
+class _FrameControls extends FrameFactory {
   const _FrameControls({
     required super.child,
     required this.title,
@@ -101,7 +110,7 @@ class _FrameControls extends Frame {
   final VoidCallback? onMaximize;
 
   @override
-  Widget build(BuildContext context) => Frame(
+  Widget build(BuildContext context) => FrameFactory(
     color: color,
     animate: true,
     padding: const .all(16),
@@ -113,7 +122,7 @@ class _FrameControls extends Frame {
           child: TrafficLights(
             title: Text(
               title,
-              style: TextStyle(color: titleColor, fontWeight: .bold),
+              style: .new(color: titleColor, fontWeight: .bold),
             ),
             onClose: onClose,
             onMinimize: onMinimize,
@@ -127,44 +136,55 @@ class _FrameControls extends Frame {
 }
 
 @immutable
-class _FrameContainer extends Frame {
-  const _FrameContainer({super.color, required super.child});
-
-  @override
-  Widget build(BuildContext context) {
-    return Frame(
-      color: color,
-      animate: true,
-      padding: const .all(16),
-      margin: const .symmetric(vertical: 8, horizontal: 16),
-      child: child,
-    );
-  }
-}
-
-@immutable
-class _FrameCard extends Frame {
-  const _FrameCard({
-    super.onTap,
+class _FrameContainer extends FrameFactory {
+  const _FrameContainer({
     super.color,
-    super.animate,
+    super.margin,
+    super.padding,
     required super.child,
   });
 
   @override
-  Widget build(BuildContext context) => Frame(
+  Widget build(BuildContext context) => FrameFactory(
+    color: color,
+    animate: true,
+    padding: padding ?? const .all(16),
+    margin: margin ?? const .symmetric(vertical: 8, horizontal: 16),
+    child: child,
+  );
+}
+
+@immutable
+class _FrameCard extends FrameFactory {
+  const _FrameCard({
+    super.onTap,
+    super.color,
+    super.animate,
+    super.margin,
+    super.padding,
+    required super.child,
+  });
+
+  @override
+  Widget build(BuildContext context) => FrameFactory(
     onTap: onTap,
     color: color,
     animate: animate,
-    margin: const .all(8),
-    padding: const .all(16),
+    margin: margin ?? const .all(8),
+    padding: padding ?? const .all(16),
     child: child,
   );
 }
 
 @immutable
 class _FrameLink extends _FrameCard {
-  const _FrameLink({super.color, required this.url, required super.child});
+  const _FrameLink({
+    super.color,
+    super.margin,
+    super.padding,
+    required super.child,
+    required this.url,
+  });
 
   final String url;
 
@@ -172,6 +192,12 @@ class _FrameLink extends _FrameCard {
   Widget build(BuildContext context) => Link(
     uri: .parse(url),
     target: .blank,
-    builder: (_, link) => _FrameCard(onTap: link, color: color, child: child),
+    builder: (_, link) => _FrameCard(
+      onTap: link,
+      color: color,
+      margin: margin,
+      padding: padding,
+      child: child,
+    ),
   );
 }

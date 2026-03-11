@@ -1,111 +1,172 @@
-// ignore_for_file: constant_identifier_names
-
-enum Ratio {
-  ratio3by2__(03 / 02),
-  ratio7by5__(07 / 05),
-  ratio4by3__(04 / 03),
-  ratio5by3__(05 / 03),
-  ratio5by4__(05 / 04),
-  ratio14by9_(14 / 09),
-  ratio16by9_(16 / 09),
-  ratio16by10(16 / 10),
-  ratio17by9_(17 / 09);
-
-  const Ratio(this.value);
-
-  final double value;
-}
+import 'package:flutter/material.dart';
 
 enum Breakpoint {
-  cga______(0320, 0200, .ratio16by10),
-  qvga_____(0320, 0240, .ratio4by3__),
-  varient1_(0480, 0320, .ratio3by2__),
-  vga______(0640, 0480, .ratio4by3__),
-  ntsc_____(0720, 0480, .ratio3by2__),
-  varient2_(0768, 0480, .ratio3by2__),
-  pal______(0768, 0576, .ratio4by3__),
-  wvga_____(0800, 0480, .ratio5by3__),
-  svga_____(0800, 0600, .ratio4by3__),
-  fwvga____(0854, 0480, .ratio16by9_),
-  varient3_(0960, 0600, .ratio16by10),
-  varient4_(0960, 0640, .ratio3by2__),
-  wsvga____(1024, 0600, .ratio5by3__),
-  varient5_(1024, 0720, .ratio7by5__),
-  xga______(1024, 0768, .ratio4by3__),
-  varient6_(1152, 0720, .ratio16by10),
-  varient7_(1125, 0768, .ratio3by2__),
-  hd720____(1280, 0720, .ratio16by9_),
-  wxga_____(1280, 0768, .ratio5by3__),
-  varient8_(1280, 0800, .ratio16by10),
-  varient9_(1280, 0854, .ratio3by2__),
-  varient10(1280, 0900, .ratio7by5__),
-  varient11(1280, 0960, .ratio4by3__),
-  sxga_____(1280, 1024, .ratio5by4__),
-  varient12(1366, 0768, .ratio16by9_),
-  varient13(1400, 0900, .ratio14by9_),
-  varient14(1400, 0960, .ratio7by5__),
-  sxgaPlus_(1400, 1050, .ratio4by3__),
-  varient15(1440, 0900, .ratio16by10),
-  varient16(1440, 0960, .ratio3by2__),
-  varient17(1600, 1050, .ratio7by5__),
-  varient18(1600, 1080, .ratio5by3__),
-  usxga____(1600, 1200, .ratio4by3__),
-  wsxgaPlus(1680, 1050, .ratio16by10),
-  hd1080___(1920, 1080, .ratio16by9_),
-  wuxga____(1920, 1200, .ratio16by10),
-  hd2k_____(2048, 1080, .ratio17by9_),
-  qxga_____(2048, 1536, .ratio4by3__),
-  wqxga____(2560, 1600, .ratio16by10),
-  qsxga____(2560, 2048, .ratio5by4__);
+  deviceX(min: 0, max: 290),
+  mobileS(min: 290, max: 320),
+  mobileM(min: 320, max: 420),
+  mobileL(min: 420, max: 560),
+  tabletS(min: 560, max: 640),
+  tabletM(min: 640, max: 760),
+  tabletL(min: 760, max: 940),
+  laptopS(min: 940, max: 1080),
+  laptopM(min: 1080, max: 1280),
+  laptopL(min: 1280, max: 1440),
+  dsktopS(min: 1440, max: 1920),
+  dsktopM(min: 1920, max: 3840),
+  dsktopL(min: 3840, max: 7680);
 
-  const Breakpoint(this.width, this.height, this.ratio);
+  const Breakpoint({required this.min, required this.max});
 
-  final int width;
-  final int height;
-  final Ratio ratio;
+  factory Breakpoint.from(double width) =>
+      values.singleWhere((size) => size.canHold(width));
+
+  final double min;
+  final double max;
+
+  bool canHold(double width) => width >= min && width < max;
 }
 
-// Layout Breakpoints
-//
-// | No. | Name       | Size(w, h)   | Ratio   | Value |
-// | --- | ---------- | ------------ | ------- | ----- |
-// | 1   | CGA        | (320, 200)   | 16 / 10 | 1.60  |
-// | 2   | QVGA       | (320, 240)   | 4 / 3   | 1.33  |
-// | 3   | Varient 1  | (480, 320)   | 3 / 2   | 1.50  |
-// | 4   | VGA        | (640, 480)   | 4 / 3   | 1.33  |
-// | 5   | NTSC       | (720, 480)   | 3 / 2   | 1.50  |
-// | 6   | Varient 2  | (768, 480)   | 3 / 2   | 1.50  |
-// | 7   | PAL        | (768, 576)   | 4 / 3   | 1.33  |
-// | 8   | WVGA       | (800, 480)   | 5 / 3   | 1.67  |
-// | 9   | SVGA       | (800, 600)   | 4 / 3   | 1.33  |
-// | 10  | FWVGA      | (854, 480)   | 16 / 9  | 1.78  |
-// | 11  | Varient 3  | (960, 600)   | 16 / 10 | 1.60  |
-// | 12  | Varient 4  | (960, 640)   | 3 / 2   | 1.50  |
-// | 13  | WSVGA      | (1024, 600)  | 5 / 3   | 1.67  |
-// | 14  | Varient 5  | (1024, 720)  | 7 / 5   | 1.40  |
-// | 15  | XGA        | (1024, 768)  | 4 / 3   | 1.33  |
-// | 16  | Varient 6  | (1152, 720)  | 16 / 10 | 1.60  |
-// | 17  | Varient 7  | (1125, 768)  | 3 / 2   | 1.50  |
-// | 18  | HD 720     | (1280, 720)  | 16 / 9  | 1.78  |
-// | 19  | WXGA       | (1280, 768)  | 5 / 3   | 1.67  |
-// | 20  | Varient 8  | (1280, 800)  | 16 / 10 | 1.60  |
-// | 21  | Varient 9  | (1280, 854)  | 3 / 2   | 1.50  |
-// | 22  | Varient 10 | (1280, 900)  | 7 / 5   | 1.40  |
-// | 23  | Varient 11 | (1280, 960)  | 4 / 3   | 1.33  |
-// | 24  | SXGA       | (1280, 1024) | 5 / 4   | 1.25  |
-// | 25  | Varient 12 | (1366, 768)  | 16 / 9  | 1.78  |
-// | 26  | Varient 13 | (1400, 900)  | 14 / 9  | 1.56  |
-// | 27  | Varient 14 | (1400, 960)  | 7 / 5   | 1.40  |
-// | 28  | SXGA+      | (1400, 1050) | 4 / 3   | 1.33  |
-// | 29  | Varient 15 | (1440, 900)  | 16 / 10 | 1.60  |
-// | 30  | Varient 16 | (1440, 960)  | 3 / 2   | 1.50  |
-// | 31  | Varient 17 | (1600, 1050) | 7 / 5   | 1.40  |
-// | 32  | Varient 18 | (1600, 1080) | 5 / 3   | 1.67  |
-// | 33  | UXGA       | (1600, 1200) | 4 / 3   | 1.33  |
-// | 34  | WSXGA+     | (1680, 1050) | 16 / 10 | 1.60  |
-// | 35  | HD 1080    | (1920, 1080) | 16 / 9  | 1.78  |
-// | 36  | WUXGA      | (1920, 1200) | 16 / 10 | 1.60  |
-// | 37  | 2K         | (2048, 1080) | 17 / 9  | 1.89  |
-// | 38  | QXGA       | (2048, 1536) | 4 / 3   | 1.33  |
-// | 39  | WQXGA      | (2560, 1600) | 16 / 10 | 1.60  |
-// | 40  | QSQGA      | (2560, 2048) | 5 / 4   | 1.25  |
+extension Builder on Breakpoint {
+  /// Responsive widget builder.
+  ///
+  /// Builds widgets based on screen size using provided breakpoints.
+  /// All breakpounts are optional and can fallback to any provided breakpoint
+  /// which is spaller then this (skipped) breakpoint.
+  ///
+  /// e.g: if no breakpoint is specified the method will show a [deviceX] layout
+  /// which smallest possible breakpoint supported by this implementation.
+  ///
+  /// e.g (simplified): Assume that:
+  /// - Current device width is large-tablet.
+  /// - The provided breakpoint are small-laptop and large-mobile only.
+  /// - Since no breakpoint is avaiable for large-tablet, which is currently
+  ///   active breakpoint, this will return the widget provided for
+  ///   large-mobile, as that is the closets one and smaller then this one.
+  /// - The returned widget in above situation is scalled as per Flutter's
+  ///   scalling behavior.
+  /// - If the window is resized to 1px smaller them large-mobile width,
+  ///   which is the only smallest avaiable breakpoint in this example,
+  ///   the resulting widget will be a Placeholder() covered by tiny-mobile.
+  ///
+  /// Providing a widget for [smallMobile] will display that widget
+  /// for any screen with `minimum_width >= 290px`.
+  ///
+  /// Only widget that matches the active breakpoint will get build, or any
+  /// fallback in case of breakpoint is missing. So it is safe to provide
+  /// all the beakpoints for any single view on the screen.
+  ///
+  /// TIP: Use const constructors whenever possible.
+  ///
+  /// ## Example:
+  ///
+  /// ```dart
+  /// @immutable
+  /// class SampleWidget extends StatelessWidget {
+  ///   const SampleWidget({super.key});
+  ///
+  ///   @override
+  ///   Widget build(BuildContext context) => Padding(
+  ///     padding: const .all(16),
+  ///     child: context.layout.build(
+  ///       smallMobile: const _Widget290(),
+  ///       mediumTablet: const _Widget640(),
+  ///       largeTablet: const _Widget760(),
+  ///       smallLaptop: const _Widget940(),
+  ///     ),
+  ///   );
+  /// }
+  /// ```
+  Widget build({
+    Widget? smallMobile, // mobileS: 290
+    Widget? mediumMobile, // mobileM: 320
+    Widget? largeMobile, // mobileL: 420
+    Widget? smallTablet, // tabletS: 560
+    Widget? mediumTablet, // tabletM: 640
+    Widget? largeTablet, // tabletL: 760
+    Widget? smallLaptop, // laptopS: 940
+    Widget? mediumLaptop, // laptopM: 1080
+    Widget? largeLaptop, // laptopL: 1280
+    Widget? smallDesktop, // dsktopS: 1440
+    Widget? mediumDesktop, // dsktopM: 1920
+    Widget? largeDesktop, // dsktopL: 3840
+  }) => switch (this) {
+    .mobileS => smallMobile ?? _placeholder,
+    .mobileM => mediumMobile ?? smallMobile ?? _placeholder,
+    .mobileL => largeMobile ?? mediumMobile ?? smallMobile ?? _placeholder,
+    .tabletS =>
+      smallTablet ?? largeMobile ?? mediumMobile ?? smallMobile ?? _placeholder,
+    .tabletM =>
+      mediumTablet ??
+          smallTablet ??
+          largeMobile ??
+          mediumMobile ??
+          smallMobile ??
+          _placeholder,
+    .tabletL =>
+      largeTablet ??
+          mediumTablet ??
+          smallTablet ??
+          largeMobile ??
+          mediumMobile ??
+          smallMobile ??
+          _placeholder,
+    .laptopS =>
+      smallLaptop ??
+          largeTablet ??
+          mediumTablet ??
+          smallTablet ??
+          largeMobile ??
+          mediumMobile ??
+          smallMobile ??
+          _placeholder,
+    .laptopM =>
+      mediumLaptop ??
+          smallLaptop ??
+          largeTablet ??
+          mediumTablet ??
+          smallTablet ??
+          largeMobile ??
+          mediumMobile ??
+          smallMobile ??
+          _placeholder,
+    .laptopL =>
+      largeLaptop ??
+          mediumLaptop ??
+          smallLaptop ??
+          largeTablet ??
+          mediumTablet ??
+          smallTablet ??
+          largeMobile ??
+          mediumMobile ??
+          smallMobile ??
+          _placeholder,
+    .dsktopS =>
+      smallDesktop ??
+          largeLaptop ??
+          mediumLaptop ??
+          smallLaptop ??
+          largeTablet ??
+          mediumTablet ??
+          smallTablet ??
+          largeMobile ??
+          mediumMobile ??
+          smallMobile ??
+          _placeholder,
+    .dsktopM =>
+      mediumDesktop ??
+          smallDesktop ??
+          largeLaptop ??
+          mediumLaptop ??
+          smallLaptop ??
+          largeTablet ??
+          mediumTablet ??
+          smallTablet ??
+          largeMobile ??
+          mediumMobile ??
+          smallMobile ??
+          _placeholder,
+    _ => _placeholder,
+  };
+}
+
+const _placeholder = Placeholder();

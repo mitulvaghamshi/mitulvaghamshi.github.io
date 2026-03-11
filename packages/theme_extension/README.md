@@ -2,20 +2,20 @@
 
 Theme extension (`theme_extension`) package provides an annotation class to mark any class as `ColorConfig`, to generate `ThemeExtension` boilerplate code.
 
-This annotation package meant to be used with `theme_extension_builder` package.
+This annotation package meant to be used with [`theme_extension_builder`](../theme_extension_builder/) package.
 
 ## Features
 
-Allow `build_runner` to locate your `AppColors` class using `@colorConfig` annotation.
+Allow `build_runner` to locate your `AppColors` class using `@colorconfig` annotation.
 
 ## Getting started
 
 - Finish setting up build script and dependencies for your project: [ThemeExtensionBuilder](../theme_extension_builder/README.md#getting-started)
 - Add import statement: `import 'package:theme_extension/theme_extension.dart';`
-- Add part file import statement: `part 'app_colors.g.dart';`; Ignore the errors for now.
+- Add part file import statement: `part 'app_colors.g.dart';`, ignore the errors for now.
 - Create a class called `AppColors` that holds declaration for all the app colors for light and dark varients.
 - Class name can be any valid dart class name and it has to be a public class.
-- Annotate this class with `@colorConfig` annotation.
+- Annotate this class with `@colorconfig` annotation as below:
 
 ```dart
 // Annotation package.
@@ -25,11 +25,11 @@ import 'package:theme_extension/theme_extension.dart';
 part 'app_colors.g.dart';
 
 // Add this annotation.
-@colorConfig
+@colorconfig
 class AppColors {
     // Define your colors here, must be a `static` `const` variable.
-    // Values provided using dart `Record` syntax with two values.
-    // First value is `Light` varient and second is `Dark`.
+    // Values provided using dart `Record` syntax with two field,
+    // First field is `Light` varient and second is `Dark`.
     static const buttonColor = (Color(0xFF000B37), Color(0xFFFF5500));
 
     // Add other colors here...
@@ -38,18 +38,18 @@ class AppColors {
 
 - Finally, run `build_runner` to generate theme output.
 
-```shell
-dart run build_runner build --delete-conflicting-outputs
+```sh
+$ dart run build_runner build clean
 ```
 
 ## Usage
 
 - Consume generated themes in your app with extensions.
-- Add import statement: `import 'package:app_root/subfolder/app_colors.dart';`
+- Import `app_colors.dart`: `import 'package:path/to/app_colors.dart';`
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:portfolio/theme/app_colors.dart';
+import 'package:myapp/theme/app_colors.dart';
 
 // Get theme instance.
 final _colors = AppColors();
@@ -75,12 +75,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
     title: 'MyApp',
-    theme: _lightTheme, // Light theme
-    darkTheme: _darkTheme, // Dark Theme
+    theme: _lightTheme, // Access Light theme
+    darkTheme: _darkTheme, // Access Dark Theme
+    themeMode: .system
     home: Scaffold(
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: .new(
         onPressed: () {},
-        // Access color using [colors] extension of [BuildContext].
+        // Access color using generated [colors] extension on [BuildContext].
         backgroundColor: context.colors.buttonColor,
         child: Icon(Icons.add),
       ),
@@ -91,7 +92,7 @@ class MyApp extends StatelessWidget {
 
 ## Additional information
 
-- You may requred to supply custom logic to respond to theme changes to rebuild app with new colors.
-- The package is specifically designed to meet this project `Portfolio` needs.
+- You may need to implement something like ListnableBuilder that responds to theme changes and rebuild your app.
+- The package is specifically designed to meet this `Portfolio` projects' requirement.
 - This package not published on pub.dev or distributed anywhere else.
-- Code licensed under MIL License.
+- Code licensed under MIT License.

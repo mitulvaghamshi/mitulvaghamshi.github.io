@@ -6,26 +6,27 @@ import 'package:portfolio/utils/static_data.dart';
 import 'package:portfolio/widgets/frame_factory.dart';
 
 @immutable
-class EduCard extends StatefulWidget {
-  const EduCard({super.key});
+class WorkCard extends StatefulWidget {
+  const WorkCard({super.key});
 
   @override
-  State<EduCard> createState() => _EduCardState();
+  State<WorkCard> createState() => _WorkCardState();
 }
 
-class _EduCardState extends State<EduCard> {
+class _WorkCardState extends State<WorkCard> {
   bool _isMinimized = false;
 
   @override
   Widget build(BuildContext context) => FrameFactory.controls(
-    title: 'Education',
-    titleColor: context.colors.eduTitle,
-    color: context.colors.eduContainer,
+    title: 'Work Experience',
+    titleColor: context.colors.workTitle,
+    color: context.colors.workContainer,
     isMinimized: _isMinimized,
     onMinimize: () => setState(() => _isMinimized = !_isMinimized),
     child: context.breakpoint.build(
       smallMobile: const _CardCountWidget(count: 1),
       largeTablet: const _CardCountWidget(count: 2),
+      smallLaptop: const _CardCountWidget(count: 3),
     ),
   );
 }
@@ -40,55 +41,55 @@ class _CardCountWidget extends StatelessWidget {
   Widget build(BuildContext context) => Wrap(
     alignment: .center,
     runAlignment: .center,
-    children: StaticData.educationLinks.map((item) {
+    children: StaticData.workExprLinks.map((item) {
       return SizedBox(
         width: (context.width - 64) / count,
         height: context.width > 420 ? 200 : 220,
-        child: _EduItem(college: item),
+        child: _ExpItem(experience: item),
       );
     }).toList(),
   );
 }
 
 @immutable
-class _EduItem extends StatelessWidget {
-  const _EduItem({required this.college});
+class _ExpItem extends StatelessWidget {
+  const _ExpItem({required this.experience});
 
-  final EduPair college;
+  final ExpPair experience;
 
   @override
   Widget build(BuildContext context) {
     final theme = TextTheme.of(context).apply(
-      bodyColor: context.colors.eduText,
-      displayColor: context.colors.eduText,
+      bodyColor: context.colors.workText,
+      displayColor: context.colors.workText,
     );
     return FrameFactory.link(
-      url: college.url,
-      color: context.colors.eduCard,
+      url: experience.url,
+      color: context.colors.workCard,
       child: Column(
         crossAxisAlignment: .start,
         children: [
           Text(
-            college.major,
+            experience.position,
             maxLines: 1,
             overflow: .ellipsis,
             style: theme.headlineSmall!.copyWith(
-              color: context.colors.eduTitle,
+              color: context.colors.workTitle,
             ),
           ),
           const SizedBox(height: 16),
           Text(
-            college.name,
+            experience.name,
             maxLines: 1,
             overflow: .ellipsis,
             style: theme.titleMedium!.copyWith(
-              color: context.colors.eduSubtitle,
+              color: context.colors.workSubtitle,
             ),
           ),
           const SizedBox(height: 8),
-          Text(college.year, style: theme.bodyMedium),
+          Text(experience.duration, style: theme.bodyMedium),
           const SizedBox(height: 8),
-          Text(college.address, style: theme.bodyMedium),
+          Text(experience.location, style: theme.bodyMedium),
         ],
       ),
     );

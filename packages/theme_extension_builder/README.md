@@ -2,7 +2,7 @@
 
 Theme extension builder (`theme_extension_builder`) package generages `ThemeExtension` boilerplate code.
 
-This package depends on `theme_extension` annotation package and requires `build_runner` as dev dependency.
+This package depends on [`theme_extension`](../theme_extension/) annotation package and requires `build_runner` as dev dependency.
 
 ## Features
 
@@ -11,31 +11,27 @@ This package depends on `theme_extension` annotation package and requires `build
 
 ## Getting started
 
-- Add this dependency to your project into `dependencies` section of `pubspec.yaml`.
-- Assume package located in `projectroot/packages/theme_extension` folder.
+- Add `theme_extension` to your project under `dependencies` section.
 
 ```yaml
 dependencies:
   theme_extension:
-    path: packages/theme_extension
+    path: ../packages/theme_extension
     # git: github_repo_path
 ```
 
-- Add this dependency to your project into `dev_dependencies` section of `pubspec.yaml`.
-- Assume package located in `projectroot/packages/theme_extension_builder` folder.
+- Add these dependencies to your project under `dev_dependencies` section.
 
 ```yaml
 dev_dependencies:
   build_runner: <resolveable-version>
   theme_extension_builder:
-    path: packages/theme_extension_builder
+    path: ../packages/theme_extension_builder
     # git: github_repo_path
 ```
 
-- Then run `flutter pub get`.
-
-- Create new file on project root called: `build.yaml` and add this code:
-- Assume your `AppColors` class is located in: `lib/theme/app_colors.dart`
+- Save and run `flutter pub get`.
+- Create new file on project root called: `build.yaml` with content as:
 
 ```yaml
 targets:
@@ -55,4 +51,4 @@ For usage example see: [ThemeExtension](../theme_extension/README.md#usage)
 
 - The package is specifically designed to meet this project `Portfolio` needs.
 - This package not published on pub.dev or distributed anywhere else.
-- Code licensed under MIL License.
+- Code licensed under MIT License.

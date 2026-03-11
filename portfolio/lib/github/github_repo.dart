@@ -12,7 +12,7 @@ class GitHubRepo {
     required this.forks,
   });
 
-  factory GitHubRepo.fromJson(Map<String, dynamic> json) {
+  factory GitHubRepo.fromJson(Object? json) {
     if (json case {
       'name': String name,
       'html_url': String url,
@@ -33,7 +33,7 @@ class GitHubRepo {
       );
     }
 
-    throw const FormatException('[GitHubRepo]: Invalid JSON data');
+    throw FormatException('[$GitHubRepo]: Invalid JSON');
   }
 
   final String name;

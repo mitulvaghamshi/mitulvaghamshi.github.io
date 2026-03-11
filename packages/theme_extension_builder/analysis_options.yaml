@@ -1,5 +1,1 @@
 include: package:extra_lints/flutter.yaml
-
-analyzer:
-  exclude:
-    - "*.g.dart"

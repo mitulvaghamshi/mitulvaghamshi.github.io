@@ -21,5 +21,4 @@ dependencies:
 dev_dependencies:
   extra_lints:
     git: https://github.com/mitulvaghamshi/extra_lints.git
-  flutter_test:
-    sdk: flutter
+  test: ^1.30.0

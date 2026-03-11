@@ -4,9 +4,10 @@ import 'package:portfolio/cards/edu_card.dart';
 import 'package:portfolio/cards/intro_card.dart';
 import 'package:portfolio/cards/repo_card.dart';
 import 'package:portfolio/cards/wes_card.dart';
-import 'package:portfolio/frame.dart';
+import 'package:portfolio/cards/work_card.dart';
 import 'package:portfolio/state/app_scope.dart';
-import 'package:portfolio/theme/colors_model.dart';
+import 'package:portfolio/theme/app_colors.dart';
+import 'package:portfolio/widgets/frame_factory.dart';
 
 @immutable
 class HomeWidget extends StatelessWidget {
@@ -15,6 +16,7 @@ class HomeWidget extends StatelessWidget {
   static const _cards = [
     IntroCard.new,
     EduCard.new,
+    WorkCard.new,
     RepoCard.new,
     WesCard.new,
     AboutCard.new,
@@ -36,11 +38,11 @@ class _ThemeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ctrl = AppScope.of(context).themeController;
-    return Frame.card(
-      onTap: ctrl.toggle,
+    final theme = AppScope.of(context).themeSwitcher;
+    return FrameFactory.card(
+      onTap: theme.toggle,
       color: context.colors.themeButton,
-      child: Icon(switch (ctrl.themeMode) {
+      child: Icon(switch (theme.mode) {
         .dark => Icons.light_mode,
         .light => Icons.dark_mode,
         .system => Icons.brightness_4,

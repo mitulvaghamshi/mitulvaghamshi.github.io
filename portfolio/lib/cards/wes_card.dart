@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/frame.dart';
 import 'package:portfolio/state/app_scope.dart';
-import 'package:portfolio/theme/colors_model.dart';
-import 'package:portfolio/utils/app_content.dart';
+import 'package:portfolio/theme/app_colors.dart';
+import 'package:portfolio/utils/breakpoint.dart';
+import 'package:portfolio/utils/static_data.dart';
+import 'package:portfolio/widgets/frame_factory.dart';
 
 @immutable
 class WesCard extends StatefulWidget {
@@ -13,17 +14,17 @@ class WesCard extends StatefulWidget {
 }
 
 class _WesCardState extends State<WesCard> {
-  bool isMinimized = false;
+  bool _isMinimized = false;
 
   @override
-  Widget build(BuildContext context) => Frame.controls(
+  Widget build(BuildContext context) => FrameFactory.controls(
     title: 'Credentials',
     titleColor: context.colors.wesText,
     color: context.colors.wesContainer,
-    isMinimized: isMinimized,
-    onMinimize: () => setState(() => isMinimized = !isMinimized),
-    child: context.config.build(
-      mobileSmall290: const Wrap(
+    isMinimized: _isMinimized,
+    onMinimize: () => setState(() => _isMinimized = !_isMinimized),
+    child: context.breakpoint.build(
+      smallMobile: const Wrap(
         alignment: .center,
         children: [_WesLogo(), _WesContent()],
       ),
@@ -36,11 +37,11 @@ class _WesLogo extends StatelessWidget {
   const _WesLogo();
 
   @override
-  Widget build(BuildContext context) => Frame.card(
+  Widget build(BuildContext context) => FrameFactory.card(
     animate: true,
     color: context.colors.wesCard,
     child: Image.asset(
-      'assets/wes.webp',
+      StaticData.imgWesSrc,
       cacheWidth: 200,
       frameBuilder: (_, child, frame, _) {
         return frame == null ? const SizedBox(width: 200) : child;
@@ -55,11 +56,11 @@ class _WesContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).textTheme.apply(
+    final theme = TextTheme.of(context).apply(
       bodyColor: context.colors.wesText,
       displayColor: context.colors.wesText,
     );
-    return Frame.card(
+    return FrameFactory.card(
       color: context.colors.wesCard,
       child: Column(
         children: [
@@ -69,13 +70,13 @@ class _WesContent extends StatelessWidget {
             textAlign: .center,
           ),
           const SizedBox(height: 16),
-          Frame.link(
-            url: AppContent.wesBadgeUrl,
+          FrameFactory.link(
+            url: StaticData.wesBadgeUrl,
             color: context.colors.wesTitle,
             child: Text('See badge @(credly.com)', style: theme.titleMedium),
           ),
-          Frame.link(
-            url: AppContent.wesReportUrl,
+          FrameFactory.link(
+            url: StaticData.wesReportUrl,
             color: context.colors.wesTitle,
             child: Text('See evaluation @(wes.org)', style: theme.titleMedium),
           ),

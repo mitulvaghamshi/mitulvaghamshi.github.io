@@ -1,50 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/github/github_controller.dart';
-import 'package:portfolio/theme/theme_controller.dart';
-import 'package:portfolio/utils/layout_config.dart';
+import 'package:portfolio/github/github_handler.dart';
+import 'package:portfolio/theme/theme_switcher.dart';
+import 'package:portfolio/utils/breakpoint.dart';
 
 @immutable
 class AppState {
   const AppState({
     required this.width,
-    required this.layoutConfig,
-    required this.themeController,
+    required this.breakpoint,
+    required this.themeSwitcher,
     required this.githubController,
   });
 
   AppState.init()
     : width = 0,
-      layoutConfig = .mobileTiny,
-      themeController = .new(),
+      breakpoint = .deviceX,
+      themeSwitcher = .new(),
       githubController = .new()..fetchAsync();
 
   // The width of the screen.
   final double width;
 
   // The configuration for the layout.
-  final LayoutConfig layoutConfig;
+  final Breakpoint breakpoint;
 
   // The controller for the application's theme.
-  final ThemeController themeController;
+  final ThemeSwitcher themeSwitcher;
 
   // The service for interacting with the GitHub API.
-  final GitHubController githubController;
+  final GitHubHandler githubController;
 }
 
 extension Utils on AppState {
-  AppState update(double width) => layoutConfig.canHold(width)
+  AppState update(double width) => breakpoint.canHold(width)
       ? copyWith(width: width)
-      : copyWith(width: width, layoutConfig: .from(width));
+      : copyWith(width: width, breakpoint: .from(width));
 
   AppState copyWith({
     double? width,
-    LayoutConfig? layoutConfig,
-    ThemeController? themeController,
-    GitHubController? githubController,
+    Breakpoint? breakpoint,
+    ThemeSwitcher? themeSwitcher,
+    GitHubHandler? githubController,
   }) => .new(
     width: width ?? this.width,
-    layoutConfig: layoutConfig ?? this.layoutConfig,
-    themeController: themeController ?? this.themeController,
+    breakpoint: breakpoint ?? this.breakpoint,
+    themeSwitcher: themeSwitcher ?? this.themeSwitcher,
     githubController: githubController ?? this.githubController,
   );
 }

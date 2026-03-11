@@ -5,11 +5,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:portfolio/github/github_repo.dart';
-import 'package:portfolio/utils/app_content.dart';
+import 'package:portfolio/utils/static_data.dart';
 
 typedef RepoList = Iterable<GitHubRepo>;
 
-class GitHubController extends ChangeNotifier {
+class GitHubHandler extends ChangeNotifier {
   // List of fetched repositories
   RepoList _repos = [];
 
@@ -39,12 +39,14 @@ class GitHubController extends ChangeNotifier {
   }
 }
 
-extension on GitHubController {
+extension on GitHubHandler {
   // Decode the JSON string and map it to a list of GitHubRepo objects
   RepoList _parser(String content) {
     if (content.isEmpty) return const .empty();
-    final items = List<Map<String, dynamic>>.from(jsonDecode(content));
-    return items.map(GitHubRepo.fromJson);
+    if (jsonDecode(content) case Iterable<dynamic> items) {
+      return items.map(GitHubRepo.fromJson);
+    }
+    return const .empty();
   }
 
   Future<void> get _fetchDebug async {
@@ -52,14 +54,14 @@ extension on GitHubController {
     final content = await rootBundle.loadString('assets/repos.json');
     _repos = _parser(content);
     // Add 2 second delay for network request simulation
-    await Future<void>.delayed(const Duration(seconds: 2));
+    await Future<void>.delayed(const .new(seconds: 2));
   }
 
   Future<void> get _fetchNetwork async {
     // Fetch repos from GitHub Api
     final res = await http.get(
-      .parse(AppContent.githubApiUrl),
-      headers: {'Accept': 'application/vnd.github+json'},
+      .parse(StaticData.githubApiUrl),
+      headers: {HttpHeaders.acceptHeader: 'application/vnd.github+json'},
     );
     if (res.statusCode == HttpStatus.ok) {
       _repos = _parser(res.body);
@@ -67,7 +69,7 @@ extension on GitHubController {
   }
 }
 
-extension Utils on GitHubController {
+extension Utils on GitHubHandler {
   // Returns either all repositories or a limited number based on _showAll flag
   RepoList items(int count) => _showAll ? _repos : _repos.take(count);
 
