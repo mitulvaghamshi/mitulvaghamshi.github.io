@@ -1,76 +1,48 @@
-# This workflow builds and deploys a portfolio app to GitHub Pages.
-name: Build and deploy portfolio app.
-
-# Trigger the workflow on push to the main branch or on manual dispatch.
+name: Build and Deploy GitHub Pages
 on:
   push:
     branches: [ "main" ]
-
-  # Manually trigger workflow from github
+    # paths:
+      # - 'portfolio/**'
   workflow_dispatch:
-
-# Permissions required by the workflow.
 permissions:
-  contents: read  # To read the repository contents.
-  pages: write    # To write to the GitHub Pages deployment.
-  id-token: write # To authenticate with GitHub Pages.
-
-# Concurrency control to avoid multiple deployments at the same time.
+  contents: read
+  pages: write
+  id-token: write
 concurrency:
   group: "pages"
-  cancel-in-progress: true # Cancel any in-progress deployments.
-
-# Define the jobs to run.
+  cancel-in-progress: true
 jobs:
-  main:
-    # Set the deployment environment to GitHub Pages.
+  build:
+    runs-on: macos-latest
     environment:
       name: github-pages
-      # Set the URL to the deployed page.
       url: ${{ steps.deployment.outputs.page_url }}
-
-    # Run the job on a macOS runner.
-    runs-on: macos-latest
-
-    # Define the steps to run in the job.
     steps:
-      # Check out the repository code.
-      - uses: actions/checkout@v4.1.1
-
-      # Remove 'repos.json' entry from 'pubspec.yaml'.
-      - name: Remove DEBUG asset entry from pubspec.
+      - name: Checkout
+        uses: actions/checkout@v6.0.2
+      - name: Remove 'repos.json' entry from 'pubspec.yaml'
         shell: bash
         run: |
           sed -i.bak '/assets\/repos.json/d' 'pubspec.yaml';
           if [[ $? -ne 0 ]]; then exit 1; fi
         working-directory: portfolio
-
-      # Set up the Flutter environment.
-      - uses: subosito/flutter-action@v2.16.0
+      - name: Flutter action
+        uses: subosito/flutter-action@v2.23.0
         with:
-          channel: stable # Use the stable Flutter channel.
-
-      # Install project dependencies.
+          channel: stable
       - name: Install dependencies
         run: flutter pub get
         working-directory: portfolio
-
-      # Build the web application.
       - name: Build web
         run: flutter build web
         working-directory: portfolio
-
-      # Configure GitHub Pages for deployment.
-      - name: Configure GitHub pages
-        uses: actions/configure-pages@v5.0.0
-
-      # Upload the built web application as an artifact.
-      - name: Upload GitHub pages artifact
-        uses: actions/upload-pages-artifact@v3.0.1
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v6.0.0
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v4.0.0
         with:
-          path: 'portfolio/build/web' # Path to the built web application.
-
-      # Deploy to GitHub pages
-      - name: Deploy to GitHub pages
+          path: 'portfolio/build/web'
+      - name: Deploy GitHub Pages site
+        uses: actions/deploy-pages@v5.0.0
         id: deployment
-        uses: actions/deploy-pages@v4.0.5 # Action to deploy to GitHub Pages
